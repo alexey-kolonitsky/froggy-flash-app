@@ -11,7 +11,9 @@
           </entries>
           <sdk name="apache-flex" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <option name="resourceFilesMode" value="ResourcePatterns" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />

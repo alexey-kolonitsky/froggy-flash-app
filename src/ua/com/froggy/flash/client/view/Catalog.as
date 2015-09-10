@@ -32,15 +32,15 @@ package ua.com.froggy.flash.client.view
             _logoBitmap = new Images.FROGGY_LOGO();
             addChild(_logoBitmap);
 
-            _phoneLabel = new Label(256, 60, 500, 30, Styles.HEADER_TEXT);
+            _phoneLabel = new Label(256, 60, 500, 30, Styles.TITLE_FORMAT);
             _phoneLabel.text = "тел.: (063) 27-888-27";
             addChild(_phoneLabel);
 
-            _emailTextField = new Label(256, 100, 500, 30, Styles.HEADER_TEXT);
+            _emailTextField = new Label(256, 100, 500, 30, Styles.TITLE_FORMAT);
             _emailTextField.text = "email: devishna@gmail.com";
             addChild(_emailTextField);
 
-            _addressTextField = new Label(256, 150, 500, 90, Styles.HEADER_TEXT, true);
+            _addressTextField = new Label(256, 150, 500, 90, Styles.TITLE_FORMAT, true);
             _addressTextField.text = "вы можете купить эксклюзивные украшения в магазине Podval";
             addChild(_addressTextField);
 

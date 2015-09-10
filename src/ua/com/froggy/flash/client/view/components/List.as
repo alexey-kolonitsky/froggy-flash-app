@@ -8,7 +8,7 @@ package ua.com.froggy.flash.client.view.components
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 
-    public class ScrollList extends Sprite
+    public class List extends Sprite
     {
         private var _itemRendererClass:Class;
         private var _dataProvider:Vector.<Object>;
@@ -18,19 +18,30 @@ package ua.com.froggy.flash.client.view.components
          */
         private var _renderers:Vector.<IItemRenderer>;
 
-        private var contentWidth:int = 700;
-        private var contentHeight:int = 500;
+        private var _contentWidth:int = 700;
+        private var _contentHeight:int = 500;
 
-        private var itemWidth:int = 256;
-        private var itemHeight:int = 300;
+        private var horizontalGap = 2;
+        private var verticalGap = 2;
 
-        public function ScrollList(itemRendererClass:Class, contentWidth:int, contentHeight:int)
+        private var _itemWidth:int = 0;
+        private var _itemHeight:int = 0;
+
+        public function List(itemRendererClass:Class, contentWidth:int, contentHeight:int, itemWidth:int, itemHeight:int)
         {
             super();
             _renderers = new Vector.<IItemRenderer>();
             _itemRendererClass = itemRendererClass;
 
             updateSize(contentWidth, contentHeight);
+            setItemSize(itemWidth, itemHeight);
+        }
+
+        private function setItemSize(itemWidth:int, itemHeight:int):void
+        {
+            _itemWidth = itemWidth;
+            _itemHeight = itemHeight;
+            updateRenderersPosition();
         }
 
         public function get dataProvider():Vector.<Object>
@@ -42,13 +53,13 @@ package ua.com.froggy.flash.client.view.components
         {
             _dataProvider = value;
             createItemRenderers();
+            updateRenderersPosition();
         }
 
         public function updateSize(contentX:int, contentY:int)
         {
-            this.contentWidth = contentX;
-            this.contentHeight = contentY;
-
+            _contentWidth = contentX;
+            _contentHeight = contentY;
             updateRenderersPosition();
         }
 
@@ -69,10 +80,9 @@ package ua.com.froggy.flash.client.view.components
             var i:int;
             var child:DisplayObject;
             var itemRenderer:IItemRenderer;
-            var n:int = _dataProvider.length;
-            if (n > _renderers.length)
+            if (_dataProvider.length > _renderers.length)
             {
-                n = _renderers.length - n;
+                var n:int = _dataProvider.length - _renderers.length;
 
                 for (i = 0; i < n; i++)
                 {
@@ -100,22 +110,22 @@ package ua.com.froggy.flash.client.view.components
 
         private function updateRenderersPosition():void
         {
-            var rowIndex = 0;
-            var colIndex = 0;
-            var colMax = Math.ceil(contentWidth / itemWidth);
-
             if (_renderers == null || _renderers.length == 0)
                 return;
 
             if (_dataProvider == null || _dataProvider.length != _renderers.length)
                 return;
 
+            if (_contentWidth == 0 || _contentHeight == 0)
+                return;
+
             var n:int = _dataProvider.length;
+            var rowIndex:int = 0;
+            var colIndex:int = 0;
+            var colMax:int = (_contentWidth + horizontalGap) / (_itemWidth + horizontalGap);
             for (var i:int = 0; i < n; i++)
             {
-                var xPos:int = 0;
-                var yPos:int = 0;
-                if (colIndex > colMax)
+                if (colIndex >= colMax)
                 {
                     rowIndex += 1;
                     colIndex = 0;
@@ -124,13 +134,14 @@ package ua.com.froggy.flash.client.view.components
                 var child:DisplayObject = _renderers[i] as DisplayObject;
                 if (child)
                 {
-                    child.x = colIndex * itemWidth;
-                    child.y = rowIndex * itemHeight;
+                    child.x = colIndex * (_itemWidth + horizontalGap);
+                    child.y = rowIndex * (_itemHeight + verticalGap);
                 }
                 else
                 {
                     trace("[ERROR] [View] ItemRenderer must be inherited from DisplayObject");
                 }
+                colIndex++;
             }
         }
     }

@@ -3,18 +3,51 @@
  */
 package ua.com.froggy.flash.client.view.froggy_components
 {
+    import flash.events.Event;
+
     import ua.com.froggy.flash.client.view.components.*;
     import flash.display.Sprite;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
     import ua.com.froggy.flash.client.view.renderers.ProductItemRenderer;
 
-    public class CatalogList extends ScrollList
+    public class CatalogList extends ScrollView
     {
+        public var _productsList:List;
+
+
+        public function get dataProvider():Vector.<Object>
+        {
+            return _productsList.dataProvider;
+        }
+
+        public function set dataProvider(value:Vector.<Object>)
+        {
+            _productsList.dataProvider = value;
+        }
 
         public function CatalogList()
         {
-            super(ProductItemRenderer, 0, 0);
+            _productsList = new List(ProductItemRenderer, 0, 0, ProductItemRenderer.DEFAULT_WIDTH, ProductItemRenderer.DEFAULT_HEIGHT);
+
+            super(_productsList, 1024, 760);
+            horizontalScroll = false;
+            verticalScroll = true;
+            debugMode = false;
+
+            addChild(_productsList);
+            addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+        }
+
+        public function addedToStageHandler(event:Event)
+        {
+            var stageWidth = stage.stageWidth;
+            var stageHeight = stage.stageHeight - y;
+
+            setScrollSize(stageWidth, stageHeight);
+            _productsList.updateSize(stageWidth, stageHeight);
+
+            stage.addEventListener(Event.RESIZE, addedToStageHandler);
         }
 
     }

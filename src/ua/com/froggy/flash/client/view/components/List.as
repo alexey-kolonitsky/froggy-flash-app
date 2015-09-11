@@ -7,10 +7,14 @@ package ua.com.froggy.flash.client.view.components
     import flash.display.Sprite;
     import flash.globalization.NumberParseResult;
 
+    import ua.com.froggy.flash.client.events.ShopEvent;
+
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 
     public class List extends Sprite
     {
+        public static const ERROR_DISPLAY_OBJECT:String = "[ERROR] [View] ItemRenderer must be inherited from DisplayObject";
+
         private var _itemRendererClass:Class;
         private var _dataProvider:Vector.<Object>;
 
@@ -28,16 +32,21 @@ package ua.com.froggy.flash.client.view.components
         private var _itemWidth:int = 0;
         private var _itemHeight:int = 0;
 
-        private var _colMax:int;
-        private var _rowMax:int;
+        private var _columnCount:int;
+        private var _rowCount:int;
         private var _width:int;
         private var _height:int;
 
-        public function List(itemRendererClass:Class, contentWidth:int, contentHeight:int, itemWidth:int, itemHeight:int)
+        private var _layout:String;
+
+        public function List(itemRendererClass:Class,
+            contentWidth:int, contentHeight:int,
+            itemWidth:int, itemHeight:int, layout:String = "tile")
         {
             super();
             _renderers = new Vector.<IItemRenderer>();
             _itemRendererClass = itemRendererClass;
+            _layout = layout;
 
             updateSize(contentWidth, contentHeight);
             setItemSize(itemWidth, itemHeight);
@@ -138,13 +147,76 @@ package ua.com.froggy.flash.client.view.components
             if (_contentWidth == 0 || _contentHeight == 0)
                 return;
 
+            switch (_layout)
+            {
+                case LayoutType.TILE_LAYOUT:
+                    tileLayout();
+                    break;
+                case LayoutType.HORIZONTAL_LAYOUT:
+                    horizontalLayout();
+                    break;
+                case LayoutType.VERTICAL_LAYOUT:
+                    verticalLayout();
+                    break;
+            }
+
+            _width = _columnCount * (_itemWidth + horizontalGap) - horizontalGap;
+            _height = _rowCount * (_itemHeight + verticalGap) - verticalGap;
+        }
+
+        public function horizontalLayout():void
+        {
             var n:int = _dataProvider.length;
-            var rowIndex:int = 0;
-            var colIndex:int = 0;
-            _colMax = (_contentWidth + horizontalGap) / (_itemWidth + horizontalGap);
+            var index:int = 0;
             for (var i:int = 0; i < n; i++)
             {
-                if (colIndex >= _colMax)
+                var child:DisplayObject = _renderers[i] as DisplayObject;
+                if (child == null)
+                    continue;
+
+                if (child.visible == false)
+                    continue;
+
+                child.x = index * (_itemWidth + horizontalGap);
+                child.y = 0;
+                index++;
+            }
+
+            _columnCount = index;
+            _rowCount = 1;
+        }
+
+        public function verticalLayout():void
+        {
+            var n:int = _dataProvider.length;
+            var index:int = 0;
+            for (var i:int = 0; i < n; i++)
+            {
+                var child:DisplayObject = _renderers[i] as DisplayObject;
+                if (child == null)
+                    continue;
+
+                if (child.visible == false)
+                    continue;
+
+                child.x = 0;
+                child.y = index * (_itemHeight + verticalGap);
+                index++;
+            }
+
+            _columnCount = index;
+            _rowCount = 1;
+        }
+
+        public function tileLayout()
+        {
+            var rowIndex:int = 0;
+            var colIndex:int = 0;
+            var n:int = _dataProvider.length;
+            _columnCount = (_contentWidth + horizontalGap) / (_itemWidth + horizontalGap);
+            for (var i:int = 0; i < n; i++)
+            {
+                if (colIndex >= _columnCount)
                 {
                     rowIndex += 1;
                     colIndex = 0;
@@ -158,17 +230,16 @@ package ua.com.froggy.flash.client.view.components
                 {
                     child.x = colIndex * (_itemWidth + horizontalGap);
                     child.y = rowIndex * (_itemHeight + verticalGap);
+
                 }
                 else
                 {
-                    trace("[ERROR] [View] ItemRenderer must be inherited from DisplayObject");
+                    trace(ERROR_DISPLAY_OBJECT);
                 }
                 colIndex++;
             }
-            _rowMax = rowIndex + 1;
 
-            _width = _colMax * (_itemWidth + horizontalGap) - horizontalGap;
-            _height = _rowMax * (_itemHeight + verticalGap) - verticalGap;
+            _rowCount = rowIndex + 1;
         }
     }
 }

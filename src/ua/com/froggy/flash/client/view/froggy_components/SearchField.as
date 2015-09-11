@@ -61,7 +61,7 @@ package ua.com.froggy.flash.client.view.froggy_components
 
             _inputTextField = new TextField();
             _inputTextField.type = TextFieldType.INPUT;
-            _inputTextField.defaultTextFormat = Styles.BASE_TEXT_FORMAT;
+            _inputTextField.defaultTextFormat = Styles.BUTTON_TEXT;
             _inputTextField.x = 32;
             _inputTextField.y = 4;
             _inputTextField.width = 220;

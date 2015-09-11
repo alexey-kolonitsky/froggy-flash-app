@@ -9,6 +9,6 @@ package ua.com.froggy.flash.client.view.components
         function set data(value:Object):void;
         function get index():int;
         function set index(value:int):void;
-        function get id():int;
+        function get id():String
     }
 }

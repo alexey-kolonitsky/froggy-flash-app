@@ -3,6 +3,8 @@
  */
 package ua.com.froggy.flash.client.model.vo
 {
+    import flash.display.BitmapData;
+
     public class ProductVO
     {
         /* Unique identifier of product. Character limit 50 */
@@ -20,6 +22,6 @@ package ua.com.froggy.flash.client.model.vo
         public var price:String;
 
         /** Cache of loaded image */
-        public var imageBitmap;
+        public var imageBitmap:BitmapData;
     }
 }

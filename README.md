@@ -3,16 +3,16 @@ Task:
 Create a sample MVC(S) Robotlegs project using Robotlegs version 1.5.2. The
 project must implement the following concepts. Please make sure the concepts
 are implemented in a practical and meaningful way.
- * Context
+ * Context [?]
  * Model [ok]
  * View [ok]
  * Mediator [ok]
  * Controller (Command) [ok]
  * Service [ok]
- * Factory
+ * Factory [?]
  * Interface [ok]
- * Signals
- * Unit tests
+ * Signals [?]
+ * Unit tests [?]
  * Tweens (using Greensock) [ok]
 
 You are free to choose the functionality of the application if you think

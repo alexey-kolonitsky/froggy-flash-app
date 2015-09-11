@@ -5,10 +5,9 @@ package ua.com.froggy.flash.client.view.froggy_components
 {
     import flash.events.Event;
 
-    import ua.com.froggy.flash.client.view.components.*;
-    import flash.display.Sprite;
+    import ua.com.froggy.flash.client.events.ShopEvent;
 
-    import ua.com.froggy.flash.client.model.vo.ProductVO;
+    import ua.com.froggy.flash.client.view.components.*;
     import ua.com.froggy.flash.client.view.renderers.ProductItemRenderer;
 
     public class CatalogList extends ScrollView

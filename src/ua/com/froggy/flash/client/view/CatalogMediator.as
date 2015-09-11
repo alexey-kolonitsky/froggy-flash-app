@@ -16,12 +16,10 @@ package ua.com.froggy.flash.client.view
         public var catalog:Catalog;
 
         [Inject]
+        public var effectLayer:EffectLayer;
+
+        [Inject]
         public var catalogProxy:CatalogProxy;
-
-        public function CatalogMediator()
-        {
-
-        }
 
         override public function onRegister():void
         {
@@ -29,6 +27,17 @@ package ua.com.froggy.flash.client.view
 
             catalog.searchField.addEventListener(SearchEvent.SEARCH, searchField_searchHandler);
             catalog.searchField.addEventListener(SearchEvent.CLEAR, searchField_searchHandler);
+            catalog.addEventListener(ShopEvent.BUY_PRODUCT, buyProductHandler);
+        }
+
+
+        //---------------------------------------------------------------------
+        // Event handlers
+        //---------------------------------------------------------------------
+
+        private function buyProductHandler(event:ShopEvent):void
+        {
+            dispatch(new ShopEvent(event.type, event.product));
         }
 
         private function catalogLoadedHandler(event:ShopEvent):void

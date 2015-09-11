@@ -18,7 +18,9 @@ package ua.com.froggy.flash.client.service
 
     public class HTMLFroggyService extends Actor implements IFroggyService
     {
-        private static const XHTML_NAMESPACE:Namespace = new Namespace("http://www.w3.org/1999/xhtml");
+        private static const XHTML_NAMESPACE:Namespace = new Namespace("xhtml", "http://www.w3.org/1999/xhtml");
+        private static const FROGGY_NAMESPACE:Namespace = new Namespace("froggy", "http://froggy.com.ua/2007/shop");
+
         public static const HPRODUCT_ROOT:String = "hproduct";
         public static const HPRODUCT_NAME:String = "fn";
         public static const HPRODUCT_DESCRIPTION:String = "description";
@@ -86,8 +88,9 @@ package ua.com.froggy.flash.client.service
                     continue;
 
                 var productVO:ProductVO = new ProductVO();
+                productVO.id = String(divXML.@FROGGY_NAMESPACE::id);
                 productVO.title = String(firstNodeByClass(divXML..h2, HPRODUCT_NAME));
-                productVO.description = String(firstNodeByClass(divXML..p, HPRODUCT_DESCRIPTION).text());
+                productVO.description = String(firstNodeByClass(divXML..p, HPRODUCT_DESCRIPTION).toXMLString);
                 productVO.imageURL = String(firstNodeByClass(divXML..img, HPRODUCT_PHOTO).@src);
                 productVO.price = String(firstNodeByClass(divXML..span, HPRODUCT_PRICE));
                 _productsFull.push(productVO);

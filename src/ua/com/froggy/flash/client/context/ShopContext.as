@@ -8,6 +8,8 @@ package ua.com.froggy.flash.client.context
     import org.robotlegs.base.ContextEvent;
     import org.robotlegs.mvcs.Context;
 
+    import ua.com.froggy.flash.client.controller.BuyCommand;
+
     import ua.com.froggy.flash.client.controller.CatalogLoadedCommand;
     import ua.com.froggy.flash.client.controller.SearchCommand;
 
@@ -22,6 +24,7 @@ package ua.com.froggy.flash.client.context
     import ua.com.froggy.flash.client.view.CatalogMediator;
     import ua.com.froggy.flash.client.view.ShoppingCart;
     import ua.com.froggy.flash.client.view.ShoppingCartMediator;
+    import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
 
     public class ShopContext extends Context
     {
@@ -35,6 +38,8 @@ package ua.com.froggy.flash.client.context
             //map commands
             commandMap.mapEvent(ShopEvent.STARTUP, StartupCommand, ShopEvent, true);
             commandMap.mapEvent(ShopEvent.CATALOG_LOADED, CatalogLoadedCommand, ShopEvent, true);
+            commandMap.mapEvent(ShopEvent.BUY_PRODUCT, BuyCommand, ShopEvent);
+
             commandMap.mapEvent(SearchEvent.SEARCH, SearchCommand, SearchEvent);
             commandMap.mapEvent(SearchEvent.CLEAR, SearchCommand, SearchEvent);
 
@@ -47,7 +52,7 @@ package ua.com.froggy.flash.client.context
 
             //map view
             mediatorMap.mapView(Catalog, CatalogMediator);
-            mediatorMap.mapView(ShoppingCart, ShoppingCartMediator);
+            mediatorMap.mapView(ShoppingCartLine, ShoppingCartMediator);
 
             dispatchEvent( new ShopEvent(ShopEvent.STARTUP) );
         }

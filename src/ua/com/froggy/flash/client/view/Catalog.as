@@ -5,10 +5,12 @@ package ua.com.froggy.flash.client.view
 {
     import flash.display.Bitmap;
     import flash.display.Sprite;
+    import flash.events.Event;
     import flash.text.TextField;
 
     import ua.com.froggy.flash.client.Images;
     import ua.com.froggy.flash.client.Styles;
+    import ua.com.froggy.flash.client.events.ShopEvent;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
     import ua.com.froggy.flash.client.view.components.Label;
     import ua.com.froggy.flash.client.view.froggy_components.CatalogList;
@@ -46,13 +48,21 @@ package ua.com.froggy.flash.client.view
 
             _searchField = new SearchField();
             _searchField.x = 700;
-            _searchField.y = 60;
+            _searchField.y = 150;
             addChild(_searchField);
 
             _catalogTileList = new CatalogList();
             _catalogTileList.x = 0;
             _catalogTileList.y = 256;
             addChild(_catalogTileList);
+            
+            addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+            addEventListener(Event.RESIZE, addedToStageHandler);
+        }
+
+        private function addedToStageHandler(event:Event):void
+        {
+            _searchField.x = stage.stageWidth - _searchField.DEFAULT_WIDTH - 8;
         }
 
         public function get searchField():SearchField

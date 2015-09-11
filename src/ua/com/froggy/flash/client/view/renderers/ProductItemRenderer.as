@@ -9,11 +9,14 @@ package ua.com.froggy.flash.client.view.renderers
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
+    import flash.events.MouseEvent;
     import flash.net.URLRequest;
 
     import ua.com.froggy.flash.client.Styles;
+    import ua.com.froggy.flash.client.events.ShopEvent;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
+    import ua.com.froggy.flash.client.view.components.Button;
 
     import ua.com.froggy.flash.client.view.components.IItemRenderer;
     import ua.com.froggy.flash.client.view.components.Label;
@@ -28,7 +31,7 @@ package ua.com.froggy.flash.client.view.renderers
         private var _titleLabel:Label;
         private var _descriptionLabel:Label;
         private var _priceLabel:Label;
-        private var _buyButton:SimpleButton;
+        private var _buyButton:Button;
 
         private var _data:ProductVO;
 
@@ -42,15 +45,27 @@ package ua.com.froggy.flash.client.view.renderers
             graphics.lineStyle();
             graphics.endFill();
 
-            _titleLabel = new Label(0, 256, DEFAULT_WIDTH, 64, Styles.PRODUCT_TITLE_FORMAT, false);
-            addChild(_titleLabel);
-
-            _descriptionLabel = new Label(0, 256 + 64, DEFAULT_WIDTH, 128, Styles.BASE_TEXT_FORMAT, true);
-            addChild(_descriptionLabel);
-
             _photo = new ProductImage(DEFAULT_WIDTH, DEFAULT_WIDTH);
             _photo.addEventListener(Event.COMPLETE, photoCompleteHandler);
             addChild(_photo);
+
+            _titleLabel = new Label(0, 256, DEFAULT_WIDTH, 32, Styles.PRODUCT_TITLE_FORMAT, false);
+            addChild(_titleLabel);
+
+            _buyButton = new Button("Купить");
+            _buyButton.x = (DEFAULT_WIDTH - _buyButton.width) / 2;
+            _buyButton.y = 256 + 32;
+            _buyButton.addEventListener(MouseEvent.CLICK, buyButton_clickHandler);
+            addChild(_buyButton);
+
+            _descriptionLabel = new Label(0, 256 + 64, DEFAULT_WIDTH, 128, Styles.BUTTON_TEXT, true);
+            addChild(_descriptionLabel);
+        }
+
+        private function buyButton_clickHandler(event:MouseEvent):void
+        {
+            var e:ShopEvent = new ShopEvent(ShopEvent.BUY_PRODUCT, _data);
+            dispatchEvent(e);
         }
 
         private function photoCompleteHandler(event:Event):void
@@ -85,11 +100,11 @@ package ua.com.froggy.flash.client.view.renderers
         {
         }
 
-        public function get id() : int
+        public function get id() : String
         {
             if (_data)
-                _data.id;
-            return 0;
+                return _data.id;
+            return "";
         }
 
         private function update()
@@ -97,7 +112,7 @@ package ua.com.froggy.flash.client.view.renderers
             if (_data && _titleLabel)
                 _titleLabel.text = _data.title;
             if (_data && _descriptionLabel)
-                _descriptionLabel.text = _data.description;
+                _descriptionLabel.htmlText = _data.description;
 
             if (_data && _photo)
             {
@@ -112,6 +127,8 @@ package ua.com.froggy.flash.client.view.renderers
                 }
             }
 
+            if (_data && _buyButton)
+                _buyButton.text = "Купить за " + _data.price;
         }
     }
 }

@@ -11,6 +11,7 @@ package ua.com.froggy.flash.client.view.components
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.ProgressEvent;
+    import flash.geom.Matrix;
     import flash.net.URLRequest;
 
     import ua.com.froggy.flash.client.Styles;
@@ -26,6 +27,7 @@ package ua.com.froggy.flash.client.view.components
         private var _label:Label;
 
         private var _bitmapData:BitmapData;
+        private var _scaleMode:String;
 
         public function get bitmapData():BitmapData
         {
@@ -38,10 +40,11 @@ package ua.com.froggy.flash.client.view.components
             drawBoundary();
         }
 
-        public function ProductImage(imageWidth, imageHeight)
+        public function ProductImage(imageWidth:Number, imageHeight:Number, fitType:String = "noScale")
         {
             _imageWidht = imageWidth;
             _imageHeight = imageHeight;
+            _scaleMode = fitType;
 
             _label = new Label(0, 0, 256, 60, Styles.PRODUCT_DESCTIPTION_FORMAT, true);
             _label.text = "loading...";
@@ -106,7 +109,30 @@ package ua.com.froggy.flash.client.view.components
             if (_bitmapData == null)
                 graphics.beginFill(0x00FFFF);
             else
-                graphics.beginBitmapFill(_bitmapData);
+            {
+                var m:Matrix = new Matrix();
+                var sx:Number = _imageWidht / _bitmapData.width;
+                var sy:Number = _imageHeight / _bitmapData.height;
+                var smax:Number = sx > sy ? sx : sy;
+                var smin:Number = sx < sy ? sx : sy;
+                switch(_scaleMode)
+                {
+                    case FitType.FIT:
+                        m.scale(sx, sy);
+                        break;
+                    case FitType.FIT_LONGEST:
+                        m.scale(smax, smax);
+                        break;
+                    case FitType.FIT_SHORTEST:
+                        m.scale(smin, smin);
+                        break;
+
+                    default:
+                    case FitType.NO_SCALE:
+                        break;
+                }
+                graphics.beginBitmapFill(_bitmapData, m, false, true);
+            }
 
             graphics.drawRect(0, 0, _imageWidht, _imageHeight);
             graphics.endFill();

@@ -63,7 +63,9 @@ package ua.com.froggy.flash.client.view.components
 
         private function loader_completeHandler(event:Event):void
         {
-            removeChild(_label);
+            if (_label.parent == this)
+                removeChild(_label);
+
             var loaderInfo:LoaderInfo = event.target as LoaderInfo;
             var bitmap:Bitmap = loaderInfo.content as Bitmap;
             _bitmapData = bitmap.bitmapData;

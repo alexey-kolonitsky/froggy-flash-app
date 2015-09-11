@@ -10,5 +10,8 @@ package ua.com.froggy.flash.client
 
         [Embed(source="/../assets/glyphicons_free/glyphicons/png/glyphicons-28-search.png")]
         public static const ICON_SEARCH:Class;
+
+        [Embed(source="/../assets/glyphicons_free/glyphicons/png/glyphicons-198-remove.png")]
+        public static const ICON_REMOVE:Class;
     }
 }

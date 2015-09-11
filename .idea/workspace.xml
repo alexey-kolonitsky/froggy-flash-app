@@ -2,19 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45b667ac-2d10-417a-9132-28cd811cd7f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/greensock.swc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/SearchCommand.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/SearchEvent.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/ShoppingCartLine.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/CatalogList.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/CatalogList.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Images.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Images.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/SearchField.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/SearchField.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/index.html" afterPath="$PROJECT_DIR$/assets/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\view\components\ScrollList.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as" />
     </list>
     <ignored path="froggy-flash-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +46,8 @@
       <file leaf-file-name="Catalog.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1071">
-              <caret line="51" column="40" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="783" max-vertical-offset="1156">
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -50,20 +56,10 @@
       <file leaf-file-name="CatalogMediator.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="595">
-              <caret line="30" column="67" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HTMLFroggyService.as" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.110320285" vertical-offset="258" max-vertical-offset="2261">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="524" max-vertical-offset="816">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
-                <element signature="e#93#119#0" expanded="true" />
+                <element signature="e#90#125#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +68,8 @@
       <file leaf-file-name="CatalogList.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/CatalogList.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="1020">
-              <caret line="43" column="34" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1020">
+              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#108#134#0" expanded="true" />
@@ -82,46 +78,77 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductItemRenderer.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as">
+      <file leaf-file-name="ScrollView.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1032" max-vertical-offset="2057">
-              <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="3009">
+              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
               <folding>
-                <element signature="e#100#128#0" expanded="true" />
+                <element signature="e#101#136#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductImage.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as">
+      <file leaf-file-name="List.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1423" max-vertical-offset="2023">
-              <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#101#129#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Styles.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="25" max-vertical-offset="816">
-              <caret line="15" column="54" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1181" max-vertical-offset="2958">
+              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Label.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as">
+      <file leaf-file-name="SearchField.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/SearchField.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-              <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2173" max-vertical-offset="2465">
+              <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+              <folding>
+                <element signature="e#108#138#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchCommand.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/SearchCommand.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="493">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="e#96#130#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShoppingCartLine.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/ShoppingCartLine.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.13212435" vertical-offset="0" max-vertical-offset="386">
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShopContext.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="697">
+              <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CatalogProxy.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="552" max-vertical-offset="1377">
+              <caret line="52" column="68" selection-start-line="52" selection-start-column="68" selection-end-line="52" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -149,10 +176,7 @@
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/TileList.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductList.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/IItemRenderer.as" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Styles.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Images.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/IFroggryService.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/SearchField.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/CatalogList.as" />
@@ -162,24 +186,31 @@
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Config.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/ShoppingCartMediator.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/ShoppingCartProxy.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/ShopEvent.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/StartupCommand.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/vo/ProductVO.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/CatalogLoadedCommand.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Main.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollList.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/lList.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as" />
-        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/CatalogList.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/ShopEvent.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Images.as" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/SearchEvent.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/SearchField.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/SearchCommand.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as" />
+        <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/ShoppingCartLine.as" />
       </list>
     </option>
   </component>
@@ -241,6 +272,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -502,23 +534,8 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="froggy-flash-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="froggy-flash-app" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -542,17 +559,18 @@
     <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\controller" />
+      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\events" />
+      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\view\components" />
+      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\view" />
+    </key>
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
+      <recent name="ua.com.froggy.flash.client.view.froggy_components" />
       <recent name="ua.com.froggy.flash.client.view.components" />
       <recent name="ua.com.froggy.flash.client" />
       <recent name="ua.com.froggy.flash.client.view" />
       <recent name="ua.com.froggy.flash.client.service" />
-      <recent name="ua.com.froggy.flash.client.view.renderers" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\controller" />
-      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\view\components" />
-      <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\view" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\alexey\work\froggy-flash-app\src\ua\com\froggy\flash\client\model\vo" />
@@ -845,17 +863,22 @@
       <workItem from="1439716479398" duration="1318000" />
       <workItem from="1439718505165" duration="24833000" />
       <workItem from="1441808633517" duration="2260000" />
-      <workItem from="1441895073731" duration="13032000" />
+      <workItem from="1441895073731" duration="17516000" />
+      <workItem from="1441958621081" duration="10480000" />
     </task>
     <task id="LOCAL-00001" summary="Site title with contacts and search fields">
       <created>1439726005694</created>
       <updated>1439726005694</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add tile layout, scoll view component, product image component and display product data in ProductItemRenderer">
+      <created>1441910352443</created>
+      <updated>1441910352443</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48442000" />
+    <option name="totallyTimeSpent" value="63406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="0" width="1305" height="768" extended-state="0" />
@@ -866,10 +889,9 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49304482" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49304482" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33075735" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -886,15 +908,16 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49304482" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969134" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -932,7 +955,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Site title with contacts and search fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="Site title with contacts and search fields" />
+    <MESSAGE value="Add tile layout, scoll view component, product image component and display product data in ProductItemRenderer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add tile layout, scoll view component, product image component and display product data in ProductItemRenderer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -952,11 +976,16 @@
           <line>88</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as</url>
+          <line>36</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="44" />
+      <option name="time" value="82" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -964,30 +993,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="428" max-vertical-offset="1445">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/ShopEvent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="425">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="969">
-          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/Main.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
@@ -1007,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="476">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,7 +1092,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="476">
           <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#90#125#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,7 +1102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="476">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,20 +1153,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/Images.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/ShoppingCart.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
@@ -1183,24 +1174,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/SearchField.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="351" max-vertical-offset="1054">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/ShoppingCartProxy.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/IItemRenderer.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1211,57 +1188,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/StartupCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/CatalogLoadedCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="230" max-vertical-offset="527">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="317" max-vertical-offset="663">
-          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/ShopEvent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="391">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/robotlegs-framework-v1.5.2.swc!/library.swf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6451" max-vertical-offset="11067">
-          <caret line="388" column="28" selection-start-line="388" selection-start-column="28" selection-end-line="388" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="428" max-vertical-offset="1445">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/vo/ProductVO.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
           <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1273,36 +1203,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/Images.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.34" vertical-offset="0" max-vertical-offset="600">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/ShopEvent.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1032" max-vertical-offset="2057">
-          <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-          <folding>
-            <element signature="e#100#128#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.255" vertical-offset="0" max-vertical-offset="600">
+          <caret line="11" column="71" selection-start-line="11" selection-start-column="71" selection-end-line="11" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MultiMarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="1071">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/events/SearchEvent.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="425">
+          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="25" max-vertical-offset="816">
-          <caret line="15" column="54" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="816">
+          <caret line="42" column="80" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/CatalogLoadedCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5072464" vertical-offset="97" max-vertical-offset="442">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/StartupCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5565217" vertical-offset="63" max-vertical-offset="459">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/Label.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40710384" vertical-offset="4" max-vertical-offset="459">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="973" max-vertical-offset="2261">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/robotlegs-framework-v1.5.2.swc!/library.swf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9490" max-vertical-offset="11067">
+          <caret line="565" column="28" selection-start-line="565" selection-start-column="28" selection-end-line="565" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/IItemRenderer.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29565218" vertical-offset="0" max-vertical-offset="345">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1423" max-vertical-offset="2023">
-          <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1364" max-vertical-offset="2057">
+          <caret line="90" column="9" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#101#129#0" expanded="true" />
@@ -1310,26 +1307,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/renderers/ProductItemRenderer.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1071">
-          <caret line="51" column="40" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2057">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+          <folding>
+            <element signature="e#100#128#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../lib/sdk-4.13-15/frameworks/libs/player/11.1/playerglobal.swc!/library.swf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="24030" max-vertical-offset="163676">
+          <caret line="1425" column="29" selection-start-line="1425" selection-start-column="29" selection-end-line="1425" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="595">
-          <caret line="30" column="67" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="3009">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <folding>
+            <element signature="e#101#136#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/CatalogList.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="1020">
-          <caret line="43" column="34" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1020">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#108#134#0" expanded="true" />
@@ -1337,39 +1346,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/Catalog.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="783" max-vertical-offset="1156">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/SearchField.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2173" max-vertical-offset="2465">
+          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+          <folding>
+            <element signature="e#108#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="524" max-vertical-offset="816">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#90#125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="697">
+          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38078293" vertical-offset="1933" max-vertical-offset="2533">
-          <caret line="125" column="20" selection-start-line="125" selection-start-column="20" selection-end-line="125" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1181" max-vertical-offset="2958">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../lib/sdk-4.13-15/frameworks/libs/player/11.1/playerglobal.swc!/library.swf">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/model/CatalogProxy.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="107568" max-vertical-offset="163676">
-          <caret line="6361" column="17" selection-start-line="6361" selection-start-column="17" selection-end-line="6361" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="552" max-vertical-offset="1377">
+          <caret line="52" column="68" selection-start-line="52" selection-start-column="68" selection-end-line="52" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ScrollView.as">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/controller/SearchCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63345194" vertical-offset="1590" max-vertical-offset="2890">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="493">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#101#136#0" expanded="true" />
+            <element signature="e#96#130#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/service/HTMLFroggyService.as">
+    <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/froggy_components/ShoppingCartLine.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.110320285" vertical-offset="258" max-vertical-offset="2261">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#93#119#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.13212435" vertical-offset="0" max-vertical-offset="386">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

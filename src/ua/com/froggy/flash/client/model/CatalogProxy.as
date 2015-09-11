@@ -49,7 +49,10 @@ package ua.com.froggy.flash.client.model
             _filterProducts = new Vector.<ProductVO>();
 
             if (_filter == "" || _filter == null)
+            {
+                dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
                 return;
+            }
 
             var index:int = -1;
             var n:int = _products.length;
@@ -73,6 +76,7 @@ package ua.com.froggy.flash.client.model
                     continue;
                 }
             }
+            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
         }
 
     }

@@ -22,7 +22,7 @@ package ua.com.froggy.flash.client.view.renderers
     public class ProductItemRenderer extends Sprite implements IItemRenderer
     {
         public static const DEFAULT_WIDTH:int = 256;
-        public static const DEFAULT_HEIGHT:int = 512;
+        public static const DEFAULT_HEIGHT:int = 412;
 
         private var _photo:ProductImage;
         private var _titleLabel:Label;

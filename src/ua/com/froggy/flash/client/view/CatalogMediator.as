@@ -5,8 +5,8 @@ package ua.com.froggy.flash.client.view
 {
     import org.robotlegs.mvcs.Mediator;
 
+    import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.events.ShopEvent;
-
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.service.IFroggyService;
 
@@ -26,11 +26,19 @@ package ua.com.froggy.flash.client.view
         override public function onRegister():void
         {
             eventMap.mapListener(catalogProxy.eventDispatcher, ShopEvent.CATALOG_CHAHNGED, catalogLoadedHandler);
+
+            catalog.searchField.addEventListener(SearchEvent.SEARCH, searchField_searchHandler);
+            catalog.searchField.addEventListener(SearchEvent.CLEAR, searchField_searchHandler);
         }
 
         private function catalogLoadedHandler(event:ShopEvent):void
         {
             catalog.products = catalogProxy.products;
+        }
+
+        private function searchField_searchHandler(event:SearchEvent):void
+        {
+            dispatch(new SearchEvent(event.type, event.mask));
         }
     }
 }

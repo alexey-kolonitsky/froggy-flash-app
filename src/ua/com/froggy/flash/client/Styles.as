@@ -40,6 +40,6 @@ package ua.com.froggy.flash.client
 
 
         public static const HINT_TEXT_COLOR:uint = 0xEEEEEE;
-        public static const HINT_TEXT:TextFormat = new TextFormat("Arial", BASE_FONT_SIZE, HINT_TEXT_COLOR);
+        public static const HINT_TEXT:TextFormat = new TextFormat(BASE_FONT_NAME, BASE_FONT_SIZE, HINT_TEXT_COLOR);
     }
 }

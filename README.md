@@ -4,16 +4,16 @@ Create a sample MVC(S) Robotlegs project using Robotlegs version 1.5.2. The
 project must implement the following concepts. Please make sure the concepts
 are implemented in a practical and meaningful way.
  * Context
- * Model
- * View
- * Mediator
- * Controller (Command)
- * Service
+ * Model [ok]
+ * View [ok]
+ * Mediator [ok]
+ * Controller (Command) [ok]
+ * Service [ok]
  * Factory
- * Interface
+ * Interface [ok]
  * Signals
  * Unit tests
- * Tweens (using Greensock)
+ * Tweens (using Greensock) [ok]
 
 You are free to choose the functionality of the application if you think
 another application would showcase the above concepts better, but an example

@@ -5,6 +5,7 @@ package ua.com.froggy.flash.client.view.components
 {
     import flash.display.DisplayObject;
     import flash.display.Sprite;
+    import flash.globalization.NumberParseResult;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 
@@ -26,6 +27,11 @@ package ua.com.froggy.flash.client.view.components
 
         private var _itemWidth:int = 0;
         private var _itemHeight:int = 0;
+
+        private var _colMax:int;
+        private var _rowMax:int;
+        private var _width:int;
+        private var _height:int;
 
         public function List(itemRendererClass:Class, contentWidth:int, contentHeight:int, itemWidth:int, itemHeight:int)
         {
@@ -54,6 +60,16 @@ package ua.com.froggy.flash.client.view.components
             _dataProvider = value;
             createItemRenderers();
             updateRenderersPosition();
+        }
+
+        override public function get width():Number
+        {
+            return _width;
+        }
+
+        override public function get height():Number
+        {
+            return _height;
         }
 
         public function updateSize(contentX:int, contentY:int)
@@ -87,24 +103,27 @@ package ua.com.froggy.flash.client.view.components
                 for (i = 0; i < n; i++)
                 {
                     itemRenderer = new _itemRendererClass();
-                    itemRenderer.data = _dataProvider[i];
-                    itemRenderer.index = i;
                     _renderers.push(itemRenderer);
 
                     child = itemRenderer as DisplayObject;
                     addChild(child);
                 }
             }
-            else
-            {
-                n = n - _renderers.length;
-                for (i = 0; i < n; i++)
-                {
-                    itemRenderer = _renderers[_renderers.length - 1 - n];
 
-                    child = itemRenderer as DisplayObject;
-                    removeChild(child);
+            n = _renderers.length;
+            for (i = 0; i < n; i++)
+            {
+                var isVisible:Boolean = i < _dataProvider.length;
+
+                itemRenderer = _renderers[i];
+                if (isVisible)
+                {
+                    itemRenderer.index = i;
+                    itemRenderer.data = _dataProvider[i]
                 }
+
+                child = itemRenderer as DisplayObject;
+                child.visible = isVisible;
             }
         }
 
@@ -113,7 +132,7 @@ package ua.com.froggy.flash.client.view.components
             if (_renderers == null || _renderers.length == 0)
                 return;
 
-            if (_dataProvider == null || _dataProvider.length != _renderers.length)
+            if (_dataProvider == null)
                 return;
 
             if (_contentWidth == 0 || _contentHeight == 0)
@@ -122,16 +141,19 @@ package ua.com.froggy.flash.client.view.components
             var n:int = _dataProvider.length;
             var rowIndex:int = 0;
             var colIndex:int = 0;
-            var colMax:int = (_contentWidth + horizontalGap) / (_itemWidth + horizontalGap);
+            _colMax = (_contentWidth + horizontalGap) / (_itemWidth + horizontalGap);
             for (var i:int = 0; i < n; i++)
             {
-                if (colIndex >= colMax)
+                if (colIndex >= _colMax)
                 {
                     rowIndex += 1;
                     colIndex = 0;
                 }
 
                 var child:DisplayObject = _renderers[i] as DisplayObject;
+                if (child && child.visible == false)
+                    continue;
+
                 if (child)
                 {
                     child.x = colIndex * (_itemWidth + horizontalGap);
@@ -143,6 +165,10 @@ package ua.com.froggy.flash.client.view.components
                 }
                 colIndex++;
             }
+            _rowMax = rowIndex + 1;
+
+            _width = _colMax * (_itemWidth + horizontalGap) - horizontalGap;
+            _height = _rowMax * (_itemHeight + verticalGap) - verticalGap;
         }
     }
 }

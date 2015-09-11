@@ -9,8 +9,10 @@ package ua.com.froggy.flash.client.context
     import org.robotlegs.mvcs.Context;
 
     import ua.com.froggy.flash.client.controller.CatalogLoadedCommand;
+    import ua.com.froggy.flash.client.controller.SearchCommand;
 
     import ua.com.froggy.flash.client.controller.StartupCommand;
+    import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.events.ShopEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
@@ -33,6 +35,8 @@ package ua.com.froggy.flash.client.context
             //map commands
             commandMap.mapEvent(ShopEvent.STARTUP, StartupCommand, ShopEvent, true);
             commandMap.mapEvent(ShopEvent.CATALOG_LOADED, CatalogLoadedCommand, ShopEvent, true);
+            commandMap.mapEvent(SearchEvent.SEARCH, SearchCommand, SearchEvent);
+            commandMap.mapEvent(SearchEvent.CLEAR, SearchCommand, SearchEvent);
 
             //map model
             injector.mapSingleton(CatalogProxy);

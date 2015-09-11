@@ -55,6 +55,11 @@ package ua.com.froggy.flash.client.view
             addChild(_catalogTileList);
         }
 
+        public function get searchField():SearchField
+        {
+            return _searchField;
+        }
+
         public function get products():Vector.<Object>
         {
             return _catalogTileList.dataProvider;

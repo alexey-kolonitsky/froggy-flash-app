@@ -12,7 +12,7 @@ package ua.com.froggy.flash.client.view.components
     {
         public function Label(x:int, y:int, width:int, height:int, format:TextFormat, multiline:Boolean = false)
         {
-            defaultTextFormat = Styles.TITLE_FORMAT;
+            defaultTextFormat = format;
             this.x = x;
             this.y = y;
             this.width = width;

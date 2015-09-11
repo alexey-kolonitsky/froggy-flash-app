@@ -87,7 +87,7 @@ package ua.com.froggy.flash.client.service
 
                 var productVO:ProductVO = new ProductVO();
                 productVO.title = String(firstNodeByClass(divXML..h2, HPRODUCT_NAME));
-                productVO.description = firstNodeByClass(divXML..p, HPRODUCT_DESCRIPTION).toXMLString();
+                productVO.description = String(firstNodeByClass(divXML..p, HPRODUCT_DESCRIPTION).text());
                 productVO.imageURL = String(firstNodeByClass(divXML..img, HPRODUCT_PHOTO).@src);
                 productVO.price = String(firstNodeByClass(divXML..span, HPRODUCT_PRICE));
                 _productsFull.push(productVO);

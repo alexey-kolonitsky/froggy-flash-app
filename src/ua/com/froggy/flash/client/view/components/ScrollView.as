@@ -89,6 +89,9 @@ package ua.com.froggy.flash.client.view.components
             var left:Number = x;
             var right:Number = x + _content.width;
 
+            if (_content.width < _scrollWidth)
+                return -left;
+
             if (left > 0)
                 return -left;
 
@@ -102,6 +105,10 @@ package ua.com.froggy.flash.client.view.components
         {
             var top:Number = y;
             var bottom:Number = y + _content.height;
+
+            if (_content.height < _scrollHeight)
+                return -top;
+
             if (top > 0)
                 return -top;
 

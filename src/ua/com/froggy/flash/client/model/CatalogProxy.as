@@ -37,22 +37,18 @@ package ua.com.froggy.flash.client.model
             super();
         }
 
-        public function updateCatalog(products:Vector.<ProductVO>)
+        public function updateCatalog(products:Vector.<ProductVO>):void
         {
             _products = products;
-            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
         }
 
-        public function filter(maskString:String)
+        public function filter(maskString:String):void
         {
-            _filter = maskString;
+            _filter = maskString.toLowerCase();
             _filterProducts = new Vector.<ProductVO>();
 
             if (_filter == "" || _filter == null)
-            {
-                dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
                 return;
-            }
 
             var index:int = -1;
             var n:int = _products.length;
@@ -62,21 +58,22 @@ package ua.com.froggy.flash.client.model
                 if (product == null)
                     continue;
 
-                index = product.title.indexOf(_filter);
+                var strTitle:String = product.title.toLowerCase();
+                index = strTitle.indexOf(_filter);
                 if (index != -1)
                 {
                     _filterProducts.push(product);
                     continue;
                 }
 
-                index = product.description.indexOf(_filter);
+                var strDescription:String = product.description.toLowerCase();
+                index = strDescription.indexOf(_filter);
                 if (index != -1)
                 {
                     _filterProducts.push(product);
                     continue;
                 }
             }
-            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
         }
 
     }

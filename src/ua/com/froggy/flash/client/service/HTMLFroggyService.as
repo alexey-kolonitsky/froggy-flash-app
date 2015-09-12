@@ -78,7 +78,7 @@ package ua.com.froggy.flash.client.service
             var bodyXML:XMLList = xmlData.body;
             var divList:XMLList = bodyXML.div;
 
-            for each (var divXML in divList)
+            for each (var divXML:XML in divList)
             {
                 if (!divXML.hasOwnProperty("@class"))
                     continue;
@@ -97,7 +97,7 @@ package ua.com.froggy.flash.client.service
             }
         }
 
-        private function firstNodeByClass(root:XMLList, classValue:String)
+        private function firstNodeByClass(root:XMLList, classValue:String):XML
         {
             for each (var node:XML in root)
             {
@@ -109,7 +109,7 @@ package ua.com.froggy.flash.client.service
                     return node;
             }
 
-            return "";
+            return null;
         }
 
         public function load():void

@@ -33,7 +33,7 @@ package ua.com.froggy.flash.client.model
             _orders = new Vector.<OrderVO>();
         }
 
-        public function remove(product:ProductVO, count:int = 1)
+        public function remove(product:ProductVO, count:int = 1):void
         {
             if (product == null || count == 0)
                 return;

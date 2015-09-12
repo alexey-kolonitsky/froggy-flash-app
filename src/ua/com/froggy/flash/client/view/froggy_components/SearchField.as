@@ -3,25 +3,21 @@
  */
 package ua.com.froggy.flash.client.view.froggy_components
 {
+    import flash.display.Bitmap;
+    import flash.display.SimpleButton;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
     import flash.events.TextEvent;
     import flash.events.TimerEvent;
+    import flash.text.TextField;
+    import flash.text.TextFieldType;
     import flash.utils.Timer;
     import flash.utils.getTimer;
 
-    import ua.com.froggy.flash.client.events.SearchEvent;
-
-    import ua.com.froggy.flash.client.view.components.*;
-    import flash.display.Bitmap;
-    import flash.display.Sprite;
-    import flash.events.Event;
-    import flash.events.FocusEvent;
-    import flash.events.MouseEvent;
-    import flash.text.TextField;
-    import flash.text.TextFieldType;
-
     import ua.com.froggy.flash.client.Images;
-
     import ua.com.froggy.flash.client.Styles;
+    import ua.com.froggy.flash.client.events.SearchEvent;
+    import ua.com.froggy.flash.client.view.components.*;
 
     public class SearchField extends Sprite
     {
@@ -33,7 +29,7 @@ package ua.com.froggy.flash.client.view.froggy_components
         private var _promptTextField:Label;
 
         private var _searchIconBitmap:Bitmap;
-        private var _removeIconBitmap:Bitmap;
+        private var _removeIconBitmap:SimpleButton;
 
         private var _searchTimer:Timer;
         private var _searchMask:String;
@@ -47,7 +43,7 @@ package ua.com.froggy.flash.client.view.froggy_components
             _searchIconBitmap.y = 4;
             addChild(_searchIconBitmap);
 
-            _removeIconBitmap = new Images.ICON_REMOVE;
+            _removeIconBitmap = new SimpleButton(new Images.ICON_REMOVE);
             _removeIconBitmap.x = DEFAULT_WIDTH - 4 - _removeIconBitmap.width;
             _removeIconBitmap.y = 4;
             _removeIconBitmap.alpha = 0.4;
@@ -55,16 +51,16 @@ package ua.com.froggy.flash.client.view.froggy_components
             _removeIconBitmap.addEventListener(MouseEvent.CLICK, removeIconBitmap_clickHandler);
             addChild(_removeIconBitmap);
 
-            _promptTextField = new Label(32, 0, 220, 30, Styles.HINT_TEXT);
+            _promptTextField = new Label(32, 0, 192, 30, Styles.HINT_TEXT);
             _promptTextField.text = "ангел";
             addChild(_promptTextField);
 
             _inputTextField = new TextField();
             _inputTextField.type = TextFieldType.INPUT;
-            _inputTextField.defaultTextFormat = Styles.BUTTON_TEXT;
+            _inputTextField.defaultTextFormat = Styles.INPUT_FONT_FORMAT;
             _inputTextField.x = 32;
             _inputTextField.y = 4;
-            _inputTextField.width = 220;
+            _inputTextField.width = 192;
             _inputTextField.height = 24;
             _inputTextField.addEventListener(MouseEvent.MOUSE_DOWN, inputTextField_mouseDownHandler);
             _inputTextField.addEventListener(TextEvent.TEXT_INPUT, inputTextField_changeHandler);
@@ -119,11 +115,11 @@ package ua.com.froggy.flash.client.view.froggy_components
             _promptTextField.visible = maskLength < 1;
             _removeIconBitmap.visible = maskLength > 1;
 
-            if (_searchMask == "")
+            if (_searchMask.length < 1)
                 _searchTimer.start();
             _searchMask = _inputTextField.text;
 
-            if (_searchMask == "")
+            if (_searchMask.length < 1)
             {
                 clear();
                 return;
@@ -134,6 +130,7 @@ package ua.com.froggy.flash.client.view.froggy_components
             if (dt > SEARCH_DELAY || _searchRequestTime == 0)
             {
                 _searchRequestTime = timer;
+                trace("[INFO] [SearchField] search: " + _searchMask);
                 dispatchEvent(new SearchEvent(SearchEvent.SEARCH, _searchMask));
             }
         }

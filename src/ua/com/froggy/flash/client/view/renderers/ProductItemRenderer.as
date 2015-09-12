@@ -58,7 +58,7 @@ package ua.com.froggy.flash.client.view.renderers
             _buyButton.addEventListener(MouseEvent.CLICK, buyButton_clickHandler);
             addChild(_buyButton);
 
-            _descriptionLabel = new Label(0, 256 + 64, DEFAULT_WIDTH, 128, Styles.BUTTON_TEXT, true);
+            _descriptionLabel = new Label(0, 256 + 64, DEFAULT_WIDTH, 128, Styles.BASE_TEXT_FORMAT, true);
             addChild(_descriptionLabel);
         }
 
@@ -127,7 +127,7 @@ package ua.com.froggy.flash.client.view.renderers
                 }
             }
 
-            if (_data && _buyButton)
+            if (_data && _buyButton && _data.price)
                 _buyButton.text = "Купить за " + _data.price;
         }
     }

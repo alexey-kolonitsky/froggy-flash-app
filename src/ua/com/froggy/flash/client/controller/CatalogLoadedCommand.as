@@ -5,6 +5,8 @@ package ua.com.froggy.flash.client.controller
 {
     import org.robotlegs.mvcs.Command;
 
+    import ua.com.froggy.flash.client.events.ShopEvent;
+
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 
@@ -22,6 +24,7 @@ package ua.com.froggy.flash.client.controller
         {
             // restore previous session
             catalogProxy.updateCatalog(froggyService.products);
+            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
         }
     }
 }

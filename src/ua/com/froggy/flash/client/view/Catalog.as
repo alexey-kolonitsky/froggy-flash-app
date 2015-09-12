@@ -32,6 +32,9 @@ package ua.com.froggy.flash.client.view
             super();
 
             _logoBitmap = new Images.FROGGY_LOGO();
+            _logoBitmap.smoothing = true;
+            _logoBitmap.scaleX = 0.8;
+            _logoBitmap.scaleY = 0.8;
             addChild(_logoBitmap);
 
             _phoneLabel = new Label(256, 60, 500, 30, Styles.TITLE_FORMAT);
@@ -53,7 +56,7 @@ package ua.com.froggy.flash.client.view
 
             _catalogTileList = new CatalogList();
             _catalogTileList.x = 0;
-            _catalogTileList.y = 256;
+            _catalogTileList.y = 220;
             addChild(_catalogTileList);
             
             addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);

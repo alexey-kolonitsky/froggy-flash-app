@@ -3,6 +3,8 @@
  */
 package ua.com.froggy.flash.client.view.components
 {
+    import com.greensock.TweenLite;
+
     import flash.display.DisplayObject;
     import flash.display.Sprite;
     import flash.globalization.NumberParseResult;
@@ -26,8 +28,8 @@ package ua.com.froggy.flash.client.view.components
         private var _contentWidth:int = 700;
         private var _contentHeight:int = 500;
 
-        private var horizontalGap = 2;
-        private var verticalGap = 2;
+        private var horizontalGap:int = 2;
+        private var verticalGap:int = 2;
 
         private var _itemWidth:int = 0;
         private var _itemHeight:int = 0;
@@ -64,7 +66,7 @@ package ua.com.froggy.flash.client.view.components
             return _dataProvider;
         }
 
-        public function set dataProvider(value:Vector.<Object>)
+        public function set dataProvider(value:Vector.<Object>):void
         {
             _dataProvider = value;
             createItemRenderers();
@@ -81,7 +83,7 @@ package ua.com.froggy.flash.client.view.components
             return _height;
         }
 
-        public function updateSize(contentX:int, contentY:int)
+        public function updateSize(contentX:int, contentY:int):void
         {
             _contentWidth = contentX;
             _contentHeight = contentY;
@@ -208,7 +210,7 @@ package ua.com.froggy.flash.client.view.components
             _rowCount = 1;
         }
 
-        public function tileLayout()
+        public function tileLayout():void
         {
             var rowIndex:int = 0;
             var colIndex:int = 0;
@@ -230,7 +232,8 @@ package ua.com.froggy.flash.client.view.components
                 {
                     child.x = colIndex * (_itemWidth + horizontalGap);
                     child.y = rowIndex * (_itemHeight + verticalGap);
-
+                    var index:int = colIndex + rowIndex * _columnCount;
+                    TweenLite.from(child, 0.7, {alpha:0.0, y:child.y+60, delay: 0.1 * index})
                 }
                 else
                 {

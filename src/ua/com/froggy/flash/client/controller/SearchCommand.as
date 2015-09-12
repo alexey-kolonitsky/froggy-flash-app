@@ -6,6 +6,7 @@ package ua.com.froggy.flash.client.controller
     import org.robotlegs.mvcs.Command;
 
     import ua.com.froggy.flash.client.events.SearchEvent;
+    import ua.com.froggy.flash.client.events.ShopEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
 
     public class SearchCommand extends Command
@@ -18,8 +19,9 @@ package ua.com.froggy.flash.client.controller
 
         override public function execute():void
         {
-            trace("[INFO] [SearchCommand]");
+            trace("[INFO] [SearchCommand] mask: " + searchEvent.mask);
             catalog.filter(searchEvent.mask);
+            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
         }
     }
 }

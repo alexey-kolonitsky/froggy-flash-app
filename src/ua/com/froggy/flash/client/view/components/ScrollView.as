@@ -48,7 +48,7 @@ package ua.com.froggy.flash.client.view.components
         //----------------------------------------------------------------------
 
 
-        public function setScrollSize(scrollWidth:int, scrollHeight:int)
+        public function setScrollSize(scrollWidth:int, scrollHeight:int):void
         {
             _scrollWidth = scrollWidth;
             _scrollHeight = scrollHeight;
@@ -57,12 +57,12 @@ package ua.com.froggy.flash.client.view.components
             drawBackground();
         }
 
-        public function moveContentBy(dx:Number, dy:Number)
+        public function moveContentBy(dx:Number, dy:Number):void
         {
             moveContentTo(_content.x + dx, _content.y + dy);
         }
 
-        public function moveContentTo(x:Number, y:Number)
+        public function moveContentTo(x:Number, y:Number):void
         {
             if (horizontalScroll)
                 _content.x = x + horizontalConstraint(x);
@@ -74,7 +74,7 @@ package ua.com.froggy.flash.client.view.components
         private function drawBackground():void
         {
             var alpha:Number = 0.0;
-            if (!debugMode)
+            if (debugMode)
                 alpha = 0.5;
 
             graphics.clear();

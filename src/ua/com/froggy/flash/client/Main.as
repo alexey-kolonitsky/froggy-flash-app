@@ -4,15 +4,10 @@ package ua.com.froggy.flash.client
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
-    import flash.text.TextField;
-
-    import org.robotlegs.base.ContextEvent;
 
     import ua.com.froggy.flash.client.context.ShopContext;
-    import ua.com.froggy.flash.client.events.ShopEvent;
     import ua.com.froggy.flash.client.view.Catalog;
     import ua.com.froggy.flash.client.view.EffectLayer;
-    import ua.com.froggy.flash.client.view.ShoppingCartMediator;
     import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
 
     public class Main extends Sprite
@@ -44,7 +39,7 @@ package ua.com.froggy.flash.client
             _miniCart.y = 60;
             addChild(_miniCart);
 
-            _effectLayer = new EffectLayer()
+            _effectLayer = new EffectLayer();
             addChild(_effectLayer);
         }
     }

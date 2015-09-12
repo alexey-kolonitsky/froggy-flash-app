@@ -16,9 +16,6 @@ package ua.com.froggy.flash.client.view
         public var catalog:Catalog;
 
         [Inject]
-        public var effectLayer:EffectLayer;
-
-        [Inject]
         public var catalogProxy:CatalogProxy;
 
         override public function onRegister():void

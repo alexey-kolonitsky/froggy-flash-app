@@ -72,6 +72,7 @@ package ua.com.froggy.flash.client.view.components
             var loaderInfo:LoaderInfo = event.target as LoaderInfo;
             var bitmap:Bitmap = loaderInfo.content as Bitmap;
             _bitmapData = bitmap.bitmapData;
+            dispatchEvent(new Event(Event.COMPLETE));
             drawBoundary();
         }
 
@@ -107,7 +108,7 @@ package ua.com.froggy.flash.client.view.components
         private function drawBoundary():void
         {
             if (_bitmapData == null)
-                graphics.beginFill(0x00FFFF);
+                graphics.beginFill(0x229544);
             else
             {
                 var m:Matrix = new Matrix();

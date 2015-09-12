@@ -3,6 +3,7 @@
  */
 package ua.com.froggy.flash.client.view.components
 {
+    import flash.text.AntiAliasType;
     import flash.text.TextField;
     import flash.text.TextFormat;
 
@@ -13,6 +14,8 @@ package ua.com.froggy.flash.client.view.components
         public function Label(x:int, y:int, width:int, height:int, format:TextFormat, multiline:Boolean = false)
         {
             defaultTextFormat = format;
+            antiAliasType = AntiAliasType.ADVANCED;
+            embedFonts = true;
             this.x = x;
             this.y = y;
             this.width = width;

@@ -43,7 +43,7 @@ package ua.com.froggy.flash.client.view.froggy_components
             _searchIconBitmap.y = 4;
             addChild(_searchIconBitmap);
 
-            _removeIconBitmap = new SimpleButton(new Images.ICON_REMOVE);
+            _removeIconBitmap = new SimpleButton(new Images.ICON_REMOVE,new Images.ICON_REMOVE,new Images.ICON_REMOVE,new Images.ICON_REMOVE);
             _removeIconBitmap.x = DEFAULT_WIDTH - 4 - _removeIconBitmap.width;
             _removeIconBitmap.y = 4;
             _removeIconBitmap.alpha = 0.4;
@@ -86,6 +86,7 @@ package ua.com.froggy.flash.client.view.froggy_components
         private function clear():void
         {
             dispatchEvent(new SearchEvent(SearchEvent.CLEAR));
+            _inputTextField.text = "";
             _removeIconBitmap.visible = false;
             _promptTextField.visible = true;
             _searchTimer.stop();

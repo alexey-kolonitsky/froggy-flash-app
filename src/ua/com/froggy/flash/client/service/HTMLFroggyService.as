@@ -15,9 +15,14 @@ package ua.com.froggy.flash.client.service
     import ua.com.froggy.flash.client.events.ShopEvent;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
+    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
+    import ua.com.froggy.flash.client.signals.CatalogLoadedSignal;
 
     public class HTMLFroggyService extends Actor implements IFroggyService
     {
+        [Inject]
+        public var catalogLoadedSignal:CatalogLoadedSignal;
+
         private static const XHTML_NAMESPACE:Namespace = new Namespace("xhtml", "http://www.w3.org/1999/xhtml");
         private static const FROGGY_NAMESPACE:Namespace = new Namespace("froggy", "http://froggy.com.ua/2007/shop");
 
@@ -38,22 +43,22 @@ package ua.com.froggy.flash.client.service
             _urlRequest = new URLRequest(Config.PRODUCTS_URL);
 
             _loader = new URLLoader();
-            _loader.addEventListener(Event.COMPLETE, _loader_completeHandler);
-            _loader.addEventListener(IOErrorEvent.IO_ERROR, _loader_ioErrorHandler);
-            _loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, _loader_securityErrorHandler)
+            _loader.addEventListener(Event.COMPLETE, loader_completeHandler);
+            _loader.addEventListener(IOErrorEvent.IO_ERROR, loader_ioErrorHandler);
+            _loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_securityErrorHandler)
         }
 
-        private function _loader_securityErrorHandler(event:SecurityErrorEvent):void
+        private function loader_securityErrorHandler(event:SecurityErrorEvent):void
         {
             trace("[ERROR] [Service] " + event.text);
         }
 
-        private function _loader_ioErrorHandler(event:IOErrorEvent):void
+        private function loader_ioErrorHandler(event:IOErrorEvent):void
         {
             trace("[ERROR] [Service] " + event.text);
         }
 
-        private function _loader_completeHandler(event:Event):void
+        private function loader_completeHandler(event:Event):void
         {
             var strData:String = _loader.data as String;
             try
@@ -66,7 +71,7 @@ package ua.com.froggy.flash.client.service
             }
 
             pars(xmlData);
-            dispatch(new ShopEvent(ShopEvent.CATALOG_LOADED))
+            catalogLoadedSignal.dispatch();
         }
 
         private function pars(xmlData : XML) : void

@@ -3,16 +3,13 @@
  */
 package ua.com.froggy.flash.client.controller
 {
-    import org.robotlegs.mvcs.Command;
-
-    import ua.com.froggy.flash.client.events.ShopEvent;
+    import org.robotlegs.mvcs.SignalCommand;
 
     import ua.com.froggy.flash.client.model.CatalogProxy;
-    import ua.com.froggy.flash.client.model.vo.ProductVO;
-
     import ua.com.froggy.flash.client.service.IFroggyService;
+    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
 
-    public class CatalogLoadedCommand extends Command
+    public class CatalogLoadedCommand extends SignalCommand
     {
         [Inject]
         public var froggyService:IFroggyService;
@@ -20,11 +17,13 @@ package ua.com.froggy.flash.client.controller
         [Inject]
         public var catalogProxy:CatalogProxy;
 
+        [Inject]
+        private var catalogChangedSignal:CatalogChangedSignal;
+
         override public function execute():void
         {
-            // restore previous session
+            trace("[INFO] [CatalogLoadedCommand] ");
             catalogProxy.updateCatalog(froggyService.products);
-            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
         }
     }
 }

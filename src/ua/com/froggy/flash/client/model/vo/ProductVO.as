@@ -23,5 +23,10 @@ package ua.com.froggy.flash.client.model.vo
 
         /** Cache of loaded image */
         public var imageBitmap:BitmapData;
+
+        public function toString():String
+        {
+            return "[ProductVO " + id + " '" + title + "']";
+        }
     }
 }

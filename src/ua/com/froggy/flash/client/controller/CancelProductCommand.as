@@ -3,25 +3,23 @@
  */
 package ua.com.froggy.flash.client.controller
 {
-    import org.robotlegs.mvcs.Command;
+    import org.robotlegs.mvcs.SignalCommand;
 
-    import ua.com.froggy.flash.client.events.SearchEvent;
-    import ua.com.froggy.flash.client.events.ShopEvent;
-    import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
+    import ua.com.froggy.flash.client.model.vo.ProductVO;
 
-    public class CancelProductCommand extends Command
+    public class CancelProductCommand extends SignalCommand
     {
         [Inject]
         public var shoppingCart:ShoppingCartProxy;
 
         [Inject]
-        public var shopEvent:ShopEvent;
+        public var product:ProductVO;
 
         override public function execute():void
         {
-            trace("[INFO] [CancelProductCommand]");
-            shoppingCart.remove(shopEvent.product);
+            trace("[INFO] [CancelProductCommand] " + product);
+            shoppingCart.remove(product);
         }
     }
 }

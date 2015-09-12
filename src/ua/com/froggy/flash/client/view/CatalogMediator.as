@@ -9,22 +9,44 @@ package ua.com.froggy.flash.client.view
     import ua.com.froggy.flash.client.events.ShopEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.service.IFroggyService;
+    import ua.com.froggy.flash.client.signals.BuyProductSignal;
+    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
+    import ua.com.froggy.flash.client.signals.CatalogLoadedSignal;
+    import ua.com.froggy.flash.client.signals.SearchClearSignal;
+    import ua.com.froggy.flash.client.signals.SearchSignal;
 
     public class CatalogMediator extends Mediator
     {
+        [Inject]
+        public var froggyService:IFroggyService;
+
         [Inject]
         public var catalog:Catalog;
 
         [Inject]
         public var catalogProxy:CatalogProxy;
 
+        [Inject]
+        public var catalogChangedSignal:CatalogChangedSignal;
+
+        [Inject]
+        public var searchSignal:SearchSignal;
+
+        [Inject]
+        public var searchClearSignal:SearchClearSignal;
+
+        [Inject]
+        public var buyProductSignal:BuyProductSignal;
+
         override public function onRegister():void
         {
-            eventMap.mapListener(catalogProxy.eventDispatcher, ShopEvent.CATALOG_CHAHNGED, catalogLoadedHandler);
+            catalogChangedSignal.add(catalogLoadedHandler);
 
             catalog.searchField.addEventListener(SearchEvent.SEARCH, searchField_searchHandler);
-            catalog.searchField.addEventListener(SearchEvent.CLEAR, searchField_searchHandler);
+            catalog.searchField.addEventListener(SearchEvent.CLEAR, searchField_searchClearHandler);
             catalog.addEventListener(ShopEvent.BUY_PRODUCT, buyProductHandler);
+
+            froggyService.load();
         }
 
 
@@ -34,17 +56,22 @@ package ua.com.froggy.flash.client.view
 
         private function buyProductHandler(event:ShopEvent):void
         {
-            dispatch(new ShopEvent(event.type, event.product));
+            buyProductSignal.dispatch(event.product);
         }
 
-        private function catalogLoadedHandler(event:ShopEvent):void
+        private function catalogLoadedHandler():void
         {
             catalog.products = catalogProxy.products;
         }
 
         private function searchField_searchHandler(event:SearchEvent):void
         {
-            dispatch(new SearchEvent(event.type, event.mask));
+            searchSignal.dispatch(event.mask);
+        }
+
+        private function searchField_searchClearHandler(event:SearchEvent):void
+        {
+            searchClearSignal.dispatch("");
         }
     }
 }

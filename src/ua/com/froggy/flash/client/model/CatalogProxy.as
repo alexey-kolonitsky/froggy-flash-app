@@ -3,16 +3,16 @@
  */
 package ua.com.froggy.flash.client.model
 {
-    import flash.utils.Proxy;
-
     import org.robotlegs.mvcs.Actor;
 
-    import ua.com.froggy.flash.client.events.ShopEvent;
-
     import ua.com.froggy.flash.client.model.vo.ProductVO;
+    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
 
     public class CatalogProxy extends Actor
     {
+        [Inject]
+        public var catalogChangedSignal:CatalogChangedSignal;
+
         private var _products:Vector.<ProductVO>;
         private var _filterProducts:Vector.<ProductVO>;
         private var _filter:String;
@@ -40,6 +40,7 @@ package ua.com.froggy.flash.client.model
         public function updateCatalog(products:Vector.<ProductVO>):void
         {
             _products = products;
+            catalogChangedSignal.dispatch();
         }
 
         public function filter(maskString:String):void
@@ -48,7 +49,10 @@ package ua.com.froggy.flash.client.model
             _filterProducts = new Vector.<ProductVO>();
 
             if (_filter == "" || _filter == null)
+            {
+                catalogChangedSignal.dispatch();
                 return;
+            }
 
             var index:int = -1;
             var n:int = _products.length;
@@ -74,6 +78,7 @@ package ua.com.froggy.flash.client.model
                     continue;
                 }
             }
+            catalogChangedSignal.dispatch();
         }
 
     }

@@ -3,25 +3,27 @@
  */
 package ua.com.froggy.flash.client.controller
 {
-    import org.robotlegs.mvcs.Command;
+    import org.robotlegs.mvcs.SignalCommand;
 
     import ua.com.froggy.flash.client.events.SearchEvent;
-    import ua.com.froggy.flash.client.events.ShopEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
+    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
 
-    public class SearchCommand extends Command
+    public class SearchCommand extends SignalCommand
     {
         [Inject]
         public var catalog:CatalogProxy;
 
         [Inject]
-        public var searchEvent:SearchEvent;
+        public var mask:String;
+
+        [Inject]
+        public var catalogChangedSignal:CatalogChangedSignal;
 
         override public function execute():void
         {
-            trace("[INFO] [SearchCommand] mask: " + searchEvent.mask);
-            catalog.filter(searchEvent.mask);
-            dispatch(new ShopEvent(ShopEvent.CATALOG_CHAHNGED));
+            trace("[INFO] [SearchCommand] mask: " + mask);
+            catalog.filter(mask);
         }
     }
 }

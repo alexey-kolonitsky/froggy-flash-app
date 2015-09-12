@@ -1,5 +1,4 @@
-package ua.com.froggy.flash.client
-{
+package {
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;

@@ -3,7 +3,7 @@ Task:
 Create a sample MVC(S) Robotlegs project using Robotlegs version 1.5.2. The
 project must implement the following concepts. Please make sure the concepts
 are implemented in a practical and meaningful way.
- * Context [?]
+ * Context [ok]
  * Model [ok]
  * View [ok]
  * Mediator [ok]
@@ -12,7 +12,7 @@ are implemented in a practical and meaningful way.
  * Factory [?]
  * Interface [ok]
  * Signals [?]
- * Unit tests [?]
+ * Unit tests [ok]
  * Tweens (using Greensock) [ok]
 
 You are free to choose the functionality of the application if you think

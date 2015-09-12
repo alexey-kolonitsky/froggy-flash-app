@@ -9,12 +9,8 @@ package ua.com.froggy.flash.client.events
 
     public class ShopEvent extends Event
     {
-        public static const STARTUP:String = "startup";
-        public static const CATALOG_LOADED:String = "catalogLoaded";
-        public static const CATALOG_CHAHNGED:String = "catalogChanged";
         public static const BUY_PRODUCT:String = "buyProduct";
         public static const CANCEL_PRODUCT:String = "cancelProduct";
-        public static const SHOPPING_CART_CHANGED:String = "shoppingCartChanged";
 
         public var product:ProductVO;
 

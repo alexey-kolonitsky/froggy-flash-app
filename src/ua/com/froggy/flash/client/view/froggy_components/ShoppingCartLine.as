@@ -63,7 +63,6 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         private function drawBorder():void
         {
-
             graphics.lineStyle(2, 0xFF0000);
             graphics.drawRect(0, 0, _width, _height);
             graphics.lineStyle();

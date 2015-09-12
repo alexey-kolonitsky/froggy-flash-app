@@ -3,17 +3,17 @@
  */
 package ua.com.froggy.flash.client.model
 {
-    import flash.utils.Proxy;
-
     import org.robotlegs.mvcs.Actor;
-
-    import ua.com.froggy.flash.client.events.ShopEvent;
 
     import ua.com.froggy.flash.client.model.vo.OrderVO;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
+    import ua.com.froggy.flash.client.signals.ShoppingCartChangedSignal;
 
     public class ShoppingCartProxy extends Actor
     {
+        [Inject]
+        public var shoppingCartChangedSignal:ShoppingCartChangedSignal;
+
         private var _orders:Vector.<OrderVO>;
 
         public function get orders():Vector.<Object>
@@ -50,7 +50,7 @@ package ua.com.froggy.flash.client.model
                 else
                     order.count = 0;
 
-                dispatch(new ShopEvent(ShopEvent.SHOPPING_CART_CHANGED));
+                shoppingCartChangedSignal.dispatch();
             }
         }
 
@@ -73,7 +73,7 @@ package ua.com.froggy.flash.client.model
                 order.count += count;
             }
 
-            dispatch(new ShopEvent(ShopEvent.SHOPPING_CART_CHANGED));
+            shoppingCartChangedSignal.dispatch();
         }
 
         public function getOrderById(productId:String):OrderVO

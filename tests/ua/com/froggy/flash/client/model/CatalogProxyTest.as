@@ -3,8 +3,6 @@
  */
 package ua.com.froggy.flash.client.model
 {
-    import flashx.textLayout.debug.assert;
-
     import org.flexunit.asserts.assertEquals;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
@@ -45,6 +43,7 @@ package ua.com.froggy.flash.client.model
         public function tearDown():void
         {
             proxy = null;
+            products = null;
         }
 
         [Test]
@@ -77,5 +76,6 @@ package ua.com.froggy.flash.client.model
             proxy.filter("");
             assertEquals(proxy.products.length, 4);
         }
+
     }
 }

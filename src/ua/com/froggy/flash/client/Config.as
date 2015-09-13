@@ -5,6 +5,6 @@ package ua.com.froggy.flash.client
 {
     public class Config
     {
-        public static const PRODUCTS_URL:String = "assets/index.html";
+        public static const PRODUCTS_URL:String = "html-client.html";
     }
 }

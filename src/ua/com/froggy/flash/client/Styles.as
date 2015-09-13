@@ -8,7 +8,7 @@ package ua.com.froggy.flash.client
 
     public class Styles
     {
-        [Embed(source="/../assets/fonts/trebuc.ttf",
+        [Embed(source="/ua/com/froggy/flash/client/assets/fonts/trebuc.ttf",
             fontName = "Trebuchet",
             mimeType = "application/x-font",
             advancedAntiAliasing="true",

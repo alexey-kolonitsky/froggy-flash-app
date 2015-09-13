@@ -40,7 +40,8 @@ package ua.com.froggy.flash.client.model
         public function updateCatalog(products:Vector.<ProductVO>):void
         {
             _products = products;
-            catalogChangedSignal.dispatch();
+            if (catalogChangedSignal)
+                catalogChangedSignal.dispatch();
         }
 
         public function filter(maskString:String):void
@@ -50,7 +51,8 @@ package ua.com.froggy.flash.client.model
 
             if (_filter == "" || _filter == null)
             {
-                catalogChangedSignal.dispatch();
+                if (catalogChangedSignal)
+                    catalogChangedSignal.dispatch();
                 return;
             }
 
@@ -78,7 +80,9 @@ package ua.com.froggy.flash.client.model
                     continue;
                 }
             }
-            catalogChangedSignal.dispatch();
+
+            if (catalogChangedSignal)
+                catalogChangedSignal.dispatch();
         }
 
     }

@@ -59,8 +59,6 @@ package ua.com.froggy.flash.client.context
             //map view
             mediatorMap.mapView(Catalog, CatalogMediator);
             mediatorMap.mapView(ShoppingCartLine, ShoppingCartMediator);
-
-//            dispatchEvent(new ShopEvent(ShopEvent.STARTUP));
         }
     }
 }

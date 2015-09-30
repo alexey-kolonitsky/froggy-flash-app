@@ -39,5 +39,10 @@ package ua.com.froggy.flash.client
         public static const BASE_TEXT_FORMAT:TextFormat = new TextFormat(BASE_FONT_NAME, BASE_FONT_SIZE, BASE_TEXT_COLOR);
         public static const HINT_TEXT:TextFormat = new TextFormat(BASE_FONT_NAME, INPUT_FONT_SIZE, HINT_TEXT_COLOR);
         public static const INPUT_FONT_FORMAT:TextFormat = new TextFormat(BASE_FONT_NAME, INPUT_FONT_SIZE, INPUT_FONT_COLOR);
+
+        // Interface
+        public static const IMAGE_ALT_FORMAT:TextFormat = new TextFormat(BASE_FONT_NAME, BASE_FONT_SIZE, BASE_TEXT_COLOR);
+
+        public static const IMAGE_BACKGROUND:uint = 0x3CC1AE;
     }
 }

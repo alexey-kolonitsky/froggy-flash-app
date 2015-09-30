@@ -40,6 +40,7 @@ package ua.com.froggy.flash.client.view
 
         override public function onRegister():void
         {
+            trace("[INFO] CatalogMediator.onRegister() ");
             catalogChangedSignal.add(catalogLoadedHandler);
 
             catalog.searchField.addEventListener(SearchEvent.SEARCH, searchField_searchHandler);

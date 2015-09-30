@@ -38,6 +38,8 @@ package ua.com.froggy.flash.client.context
 
         override public function startup():void
         {
+            trace("[INFO] ShopContext startup");
+
             //map model
             injector.mapSingleton(CatalogProxy);
             injector.mapSingleton(ShoppingCartProxy);
@@ -45,7 +47,6 @@ package ua.com.froggy.flash.client.context
             //map signals
             injector.mapSingleton(CatalogChangedSignal);
             injector.mapSingleton(ShoppingCartChangedSignal);
-
 
             signalCommandMap.mapSignalClass(BuyProductSignal, BuyCommand);
             signalCommandMap.mapSignalClass(CancelProductSignal, CancelProductCommand);

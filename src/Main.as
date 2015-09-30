@@ -17,6 +17,7 @@ package {
 
         public function Main()
         {
+            trace("[INFO] Main Created");
             stage.scaleMode = StageScaleMode.NO_SCALE;
             stage.align = StageAlign.TOP_LEFT;
 
@@ -25,6 +26,7 @@ package {
 
         private function addedToStageHandler(event : Event) : void
         {
+            trace("[INFO] Main.addedToStageHandler()");
             _context = new ShopContext(this);
             _context.startup();
 

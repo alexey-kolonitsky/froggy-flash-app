@@ -13,8 +13,9 @@ package ua.com.froggy.flash.client.view.components
     import flash.events.ProgressEvent;
     import flash.geom.Matrix;
     import flash.net.URLRequest;
+import flash.text.TextFieldAutoSize;
 
-    import ua.com.froggy.flash.client.Styles;
+import ua.com.froggy.flash.client.Styles;
 
     public class ProductImage extends Sprite
     {
@@ -46,7 +47,8 @@ package ua.com.froggy.flash.client.view.components
             _imageHeight = imageHeight;
             _scaleMode = fitType;
 
-            _label = new Label(0, 0, 256, 60, Styles.PRODUCT_DESCTIPTION_FORMAT, true);
+            _label = new Label(0, 0, imageWidth, 60, Styles.IMAGE_ALT_FORMAT, true);
+            _label.autoSize = TextFieldAutoSize.CENTER;
             _label.text = "loading...";
             addChild(_label);
 
@@ -78,7 +80,17 @@ package ua.com.froggy.flash.client.view.components
 
         private function loader_ioErrorHandler(event:IOErrorEvent):void
         {
-            _label.text = event.text;
+
+            switch (event.errorID)
+            {
+                case 2036:
+                    _label.text = _url + "\nImage are not found.";
+                    break;
+
+                default:
+                    _label.text = event.text;
+                    break;
+            }
         }
 
 
@@ -108,7 +120,10 @@ package ua.com.froggy.flash.client.view.components
         private function drawBoundary():void
         {
             if (_bitmapData == null)
-                graphics.beginFill(0x229544);
+            {
+                graphics.beginFill(Styles.IMAGE_BACKGROUND);
+                _label.y = (_imageHeight - _label.textHeight) / 2;
+            }
             else
             {
                 var m:Matrix = new Matrix();

@@ -9,11 +9,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/spicelib-logging-3.0.0.swc" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/spicelib-reflect-3.0.0.swc" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/spicelib-xml-mapper-3.0.2.swc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/assets/fonts/trebuc.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/assets/fonts/trebucbd.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/assets/fonts/trebucbi.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/assets/fonts/trebucit.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flash-client.iml" />
       <change type="DELETED" beforePath="C:\Users\Aliaksei_Kalanitski\Work\froggy.com.ua\flash-client\out\production\froggy-flash-app\assets\index.html" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Aliaksei_Kalanitski\Work\froggy.com.ua\flash-client\out\production\froggy-flash-app\history\history.css" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Aliaksei_Kalanitski\Work\froggy.com.ua\flash-client\out\production\froggy-flash-app\history\history.js" afterPath="" />
@@ -41,15 +36,6 @@
       <change type="DELETED" beforePath="C:\Users\Aliaksei_Kalanitski\Work\froggy.com.ua\flash-client\out\production\froggy-flash-app\ua\com\froggy\flash\client\view\froggy_components\CatalogList.as" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Aliaksei_Kalanitski\Work\froggy.com.ua\flash-client\out\production\froggy-flash-app\ua\com\froggy\flash\client\view\froggy_components\SearchField.as" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Aliaksei_Kalanitski\Work\froggy.com.ua\flash-client\out\production\froggy-flash-app\ua\com\froggy\flash\client\view\renderers\ProductItemRenderer.as" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/CatalogMediator.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.as" afterPath="$PROJECT_DIR$/src/Main.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/context/ShopContext.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as" afterPath="$PROJECT_DIR$/src/ua/com/froggy/flash/client/Styles.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/flexCompiler.xml" afterPath="$PROJECT_DIR$/.idea/flexCompiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="flash-client.iws" />
@@ -116,8 +102,8 @@
       <file leaf-file-name="ProductImage.as" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50391936">
-              <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.3225084">
+              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -706,12 +692,19 @@
       <workItem from="1443613478171" duration="1152000" />
       <workItem from="1443614658043" duration="2131000" />
       <workItem from="1443616946426" duration="1161000" />
-      <workItem from="1443619220799" duration="89000" />
+      <workItem from="1443619220799" duration="1026000" />
     </task>
+    <task id="LOCAL-00001" summary="&quot;Trebuchet&quot; font asset and project configuration">
+      <created>1443619580363</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1443619580363</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7139000" />
+    <option name="totallyTimeSpent" value="8076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -719,6 +712,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -738,7 +732,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2948164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -754,6 +747,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Trebuchet&quot; font asset and project configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Trebuchet&quot; font asset and project configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -938,6 +935,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -966,6 +966,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -994,6 +997,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,6 +1037,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.58454645">
           <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding>
+            <element signature="e#14#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1067,8 +1074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/ProductImage.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50391936">
-          <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.3225084">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
           <folding />
         </state>
       </provider>

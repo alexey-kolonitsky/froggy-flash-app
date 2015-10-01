@@ -13,9 +13,10 @@ package ua.com.froggy.flash.client.view.components
     import flash.events.ProgressEvent;
     import flash.geom.Matrix;
     import flash.net.URLRequest;
-import flash.text.TextFieldAutoSize;
+    import flash.text.TextFieldAutoSize;
 
-import ua.com.froggy.flash.client.Styles;
+    import ua.com.froggy.flash.client.Styles;
+    import ua.com.froggy.flash.client.view.controls.Label;
 
     public class ProductImage extends Sprite
     {

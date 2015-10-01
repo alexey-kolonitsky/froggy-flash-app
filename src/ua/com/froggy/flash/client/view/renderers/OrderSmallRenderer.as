@@ -6,7 +6,7 @@ package ua.com.froggy.flash.client.view.renderers
     import flash.display.Sprite;
 
     import ua.com.froggy.flash.client.model.vo.OrderVO;
-    import ua.com.froggy.flash.client.view.components.Button;
+    import ua.com.froggy.flash.client.view.controls.Button;
     import ua.com.froggy.flash.client.view.components.FitType;
 
     import ua.com.froggy.flash.client.view.components.IItemRenderer;

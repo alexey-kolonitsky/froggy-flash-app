@@ -3,23 +3,17 @@
  */
 package ua.com.froggy.flash.client.view.renderers
 {
-    import flash.display.Bitmap;
     import flash.display.Loader;
-    import flash.display.SimpleButton;
     import flash.display.Sprite;
     import flash.events.Event;
-    import flash.events.IOErrorEvent;
     import flash.events.MouseEvent;
-    import flash.net.URLRequest;
 
     import ua.com.froggy.flash.client.Styles;
-    import ua.com.froggy.flash.client.events.ShopEvent;
-
+    import ua.com.froggy.flash.client.events.ProductEvent;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
-    import ua.com.froggy.flash.client.view.components.Button;
-
+    import ua.com.froggy.flash.client.view.controls.Button;
     import ua.com.froggy.flash.client.view.components.IItemRenderer;
-    import ua.com.froggy.flash.client.view.components.Label;
+    import ua.com.froggy.flash.client.view.controls.Label;
     import ua.com.froggy.flash.client.view.components.ProductImage;
 
     public class ProductItemRenderer extends Sprite implements IItemRenderer
@@ -64,7 +58,7 @@ package ua.com.froggy.flash.client.view.renderers
 
         private function buyButton_clickHandler(event:MouseEvent):void
         {
-            var e:ShopEvent = new ShopEvent(ShopEvent.BUY_PRODUCT, _data);
+            var e:ProductEvent = new ProductEvent(ProductEvent.BUY, _data);
             dispatchEvent(e);
         }
 

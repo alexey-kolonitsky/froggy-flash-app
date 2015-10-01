@@ -9,7 +9,7 @@ package ua.com.froggy.flash.client.view.components
     import flash.display.Sprite;
     import flash.globalization.NumberParseResult;
 
-    import ua.com.froggy.flash.client.events.ShopEvent;
+    import ua.com.froggy.flash.client.events.ProductEvent;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 

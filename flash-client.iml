@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="flash_client">
     <configurations>
-      <configuration name="flash_client" main-class="Main" output-file="flash-client.swf" output-folder="$MODULE_DIR$/out/production/froggy-flash-app" use-html-wrapper="true" wrapper-template-path="$MODULE_DIR$/html-template">
+      <configuration name="flash_client" pure-as="true" main-class="Main" output-file="flash-client.swf" output-folder="$MODULE_DIR$/out/production/froggy-flash-app" wrapper-template-path="$MODULE_DIR$/html-template">
         <dependencies target-player="16.0">
           <entries>
             <entry library-name="playerglobal" library-level="application">
@@ -11,22 +11,57 @@
             <entry library-id="8da96129-738f-444d-a0c6-de5728927856">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="929928d1-f6a3-44a8-a21d-426efa61c9da">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="92a4e5d3-8f37-4354-b219-b6dcb8f6c4e0">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="e6164508-f70b-4c7a-a9fd-59b2d63c3caa">
+            <entry library-id="2df1974a-60ab-4b77-9cfb-d39a2f0fb6a5">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="ee14b3a7-ae4c-43e8-8f37-55de6ae349d5">
+            <entry library-id="877f5f4c-7426-4937-8e9d-d53174ddeec9">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="dde9a3f5-eb7c-47bd-80d4-202cd9711f81">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="60bce8a8-4fab-4634-8af2-307624cfcf02">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="bbc21f17-383f-4ca5-95d1-c9bab5666574">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="b616ddde-3539-4e02-aed9-06b0a5a72730">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="05fad868-a1ed-4af5-8608-f8d00f63704d">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="a3dc0bbf-ff31-44e2-b7f6-b9564ae2682a">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="b8e4d761-1e97-421d-8920-ec0fbf2935d5">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="08a54dba-f66f-463f-a668-264bea3838ec">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="680d41fd-745e-46ae-b42b-fcf195f483ec">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="d020bf6a-3d04-46fe-ba86-6bcbda46ab22">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="7b37e8f8-bd0e-4969-b63f-597f67237696">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="c22b255c-8fca-4277-b36e-de5b558c2ee3">
               <dependency linkage="Merged" />
             </entry>
           </entries>
           <sdk name="apache-flex-4.14.1" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <option name="resourceFilesMode" value="ResourcePatterns" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
@@ -38,6 +73,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="apache-flex-4.14.1" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -47,16 +83,6 @@
         <properties id="8da96129-738f-444d-a0c6-de5728927856" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/greensock.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="929928d1-f6a3-44a8-a21d-426efa61c9da" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/as3-signals-v0.5.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -74,9 +100,9 @@
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="e6164508-f70b-4c7a-a9fd-59b2d63c3caa" />
+        <properties id="2df1974a-60ab-4b77-9cfb-d39a2f0fb6a5" />
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/robotlegs-framework-v1.0.3.swc!/" />
+          <root url="jar://$MODULE_DIR$/libs/parsley-core-3.0.0.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -84,9 +110,129 @@
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="ee14b3a7-ae4c-43e8-8f37-55de6ae349d5" />
+        <properties id="877f5f4c-7426-4937-8e9d-d53174ddeec9" />
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/signals-extension-SignalsCommandMap.swc!/" />
+          <root url="jar://$MODULE_DIR$/libs/parsley-flex-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="dde9a3f5-eb7c-47bd-80d4-202cd9711f81" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/parsley-xml-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="60bce8a8-4fab-4634-8af2-307624cfcf02" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/spicelib-commands-3.1.1.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="bbc21f17-383f-4ca5-95d1-c9bab5666574" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/spicelib-logging-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="b616ddde-3539-4e02-aed9-06b0a5a72730" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/spicelib-reflect-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="05fad868-a1ed-4af5-8608-f8d00f63704d" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/spicelib-xml-mapper-3.0.2.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="a3dc0bbf-ff31-44e2-b7f6-b9564ae2682a" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/legacy-parsley-commands-2.5.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="b8e4d761-1e97-421d-8920-ec0fbf2935d5" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/parsley-flash-resources-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="08a54dba-f66f-463f-a668-264bea3838ec" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/parsley-logging-flex-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="680d41fd-745e-46ae-b42b-fcf195f483ec" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/parsley-logging-spicelib-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="d020bf6a-3d04-46fe-ba86-6bcbda46ab22" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/parsley-pimento-support-3.0.0.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="7b37e8f8-bd0e-4969-b63f-597f67237696" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/parsley-popup-3.0.2.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="c22b255c-8fca-4277-b36e-de5b558c2ee3" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/legacy-spicelib-tasks-2.5.0.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

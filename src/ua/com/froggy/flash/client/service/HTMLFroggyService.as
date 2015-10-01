@@ -4,27 +4,32 @@
 package ua.com.froggy.flash.client.service
 {
     import flash.events.Event;
+    import flash.events.EventDispatcher;
     import flash.events.IOErrorEvent;
     import flash.events.SecurityErrorEvent;
     import flash.net.URLLoader;
     import flash.net.URLRequest;
 
-    import org.robotlegs.mvcs.Actor;
-
-    import ua.com.froggy.flash.client.Config;
-    import ua.com.froggy.flash.client.events.ShopEvent;
-
+    import ua.com.froggy.flash.client.events.ServiceEvent;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
-    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
-    import ua.com.froggy.flash.client.signals.CatalogLoadedSignal;
 
-    public class HTMLFroggyService extends Actor implements IFroggyService
+
+    /**
+     * General service which retrieve products info from HTML web client.
+     */
+    public class HTMLFroggyService extends FroggyService
     {
-        [Inject]
-        public var catalogLoadedSignal:CatalogLoadedSignal;
+        //-----------------------------
+        // Namespaces
+        //-----------------------------
 
         private static const XHTML_NAMESPACE:Namespace = new Namespace("xhtml", "http://www.w3.org/1999/xhtml");
         private static const FROGGY_NAMESPACE:Namespace = new Namespace("froggy", "http://froggy.com.ua/2007/shop");
+
+
+        //-----------------------------
+        // Class names
+        //-----------------------------
 
         public static const HPRODUCT_ROOT:String = "hproduct";
         public static const HPRODUCT_NAME:String = "fn";
@@ -32,47 +37,59 @@ package ua.com.froggy.flash.client.service
         public static const HPRODUCT_PHOTO:String = "photo";
         public static const HPRODUCT_PRICE:String = "price";
 
+
+        public var urlRequest:URLRequest;
+
+
+        //-----------------------------
+        // Private
+        //-----------------------------
+
         private var _loader:URLLoader;
-        private var _urlRequest:URLRequest;
         private var _productsFull:Vector.<ProductVO>;
         private var _productsFilter:Vector.<ProductVO>;
         private var _filter:String;
 
+
+        //-----------------------------
+        // Constructor
+        //-----------------------------
+
         public function HTMLFroggyService()
         {
-            _urlRequest = new URLRequest(Config.PRODUCTS_URL);
-
             _loader = new URLLoader();
             _loader.addEventListener(Event.COMPLETE, loader_completeHandler);
             _loader.addEventListener(IOErrorEvent.IO_ERROR, loader_ioErrorHandler);
             _loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_securityErrorHandler)
         }
 
-        private function loader_securityErrorHandler(event:SecurityErrorEvent):void
+        override public function load():void
         {
-            trace("[ERROR] [Service] " + event.text);
-        }
-
-        private function loader_ioErrorHandler(event:IOErrorEvent):void
-        {
-            trace("[ERROR] [Service] " + event.text);
-        }
-
-        private function loader_completeHandler(event:Event):void
-        {
-            var strData:String = _loader.data as String;
-            try
+            if (urlRequest == null)
             {
-                var xmlData:XML = new XML(strData);
-            }
-            catch (error:Error)
-            {
-                trace("[ERROR] [Service] Invalid HTML\n" + error.message);
+                trace("ERROR: [HTMLFroggyService] URL not specified. Check configuration");
+                return;
             }
 
-            pars(xmlData);
-            catalogLoadedSignal.dispatch();
+            trace("INFO: [Service] load: " + urlRequest);
+            _loader.load(urlRequest);
         }
+
+        override public function filter(mask:String):void
+        {
+            _filter = mask;
+
+        }
+
+        override public function get products() : Vector.<ProductVO>
+        {
+            return _productsFull;
+        }
+
+
+        //-------------------------------------------------------------------
+        // Private
+        //-------------------------------------------------------------------
 
         private function pars(xmlData : XML) : void
         {
@@ -117,21 +134,36 @@ package ua.com.froggy.flash.client.service
             return null;
         }
 
-        public function load():void
+
+        //-------------------------------------------------------------------
+        // Event Handlers
+        //-------------------------------------------------------------------
+
+        private function loader_securityErrorHandler(event:SecurityErrorEvent):void
         {
-            trace("[INFO] [Service] load: " + _urlRequest);
-            _loader.load(_urlRequest);
+            trace("ERROR: [Service] " + event.text);
         }
 
-        public function filter(mask:String):void
+        private function loader_ioErrorHandler(event:IOErrorEvent):void
         {
-            _filter = mask;
-
+            trace("ERROR: [Service] " + event.text);
         }
 
-        public function get products() : Vector.<ProductVO>
+        private function loader_completeHandler(event:Event):void
         {
-            return _productsFull;
+            var strData:String = _loader.data as String;
+            try
+            {
+                var xmlData:XML = new XML(strData);
+            }
+            catch (error:Error)
+            {
+                trace("ERROR: [Service] Invalid HTML\n" + error.message);
+            }
+
+            pars(xmlData);
+
+            dispatchEvent(new ServiceEvent(ServiceEvent.SUCCESS_SERVICE_LOADING));
         }
     }
 }

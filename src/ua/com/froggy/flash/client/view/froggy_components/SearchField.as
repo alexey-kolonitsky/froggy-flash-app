@@ -18,8 +18,17 @@ package ua.com.froggy.flash.client.view.froggy_components
     import ua.com.froggy.flash.client.Styles;
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.view.components.*;
+    import ua.com.froggy.flash.client.view.controls.Label;
+    import ua.com.froggy.flash.client.view.core.GUIElement;
 
-    public class SearchField extends Sprite
+
+    [Event(name="search",type="ua.com.froggy.flash.client.events.SearchEvent")]
+
+    [Event(name="clear",type="ua.com.froggy.flash.client.events.SearchEvent")]
+
+    [ManagedEvents("search,clear")]
+
+    public class SearchField extends GUIElement
     {
         public var DEFAULT_WIDTH:Number = 256;
         public var DEFAULT_HEIGHT:Number = 32;
@@ -36,6 +45,16 @@ package ua.com.froggy.flash.client.view.froggy_components
         private var _searchRequestTime:int;
 
         public function SearchField()
+        {
+            _searchTimer = new Timer(SEARCH_DELAY);
+            _searchTimer.addEventListener(TimerEvent.TIMER, searchTimer_timerHandler);
+
+            _searchMask = "";
+            createChildren();
+            drawBorders();
+        }
+
+        private function createChildren():void
         {
             _searchIconBitmap = new Images.ICON_SEARCH;
             _searchIconBitmap.alpha = 0.4;
@@ -65,12 +84,10 @@ package ua.com.froggy.flash.client.view.froggy_components
             _inputTextField.addEventListener(MouseEvent.MOUSE_DOWN, inputTextField_mouseDownHandler);
             _inputTextField.addEventListener(TextEvent.TEXT_INPUT, inputTextField_changeHandler);
             addChild(_inputTextField);
+        }
 
-            _searchTimer = new Timer(SEARCH_DELAY);
-            _searchTimer.addEventListener(TimerEvent.TIMER, searchTimer_timerHandler);
-
-            _searchMask = "";
-
+        private function drawBorders():void
+        {
             graphics.beginFill(0xFFFFFF);
             graphics.lineStyle(1, 0xEEEEEE, 1.0, true);
             graphics.drawRoundRect(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, 16, 16);

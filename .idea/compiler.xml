@@ -4,8 +4,11 @@
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
     <wildcardResourcePatterns>
-      <entry name="*.jpg" />
+      <entry name="*.xml" />
+      <entry name="*.swf" />
       <entry name="*.html" />
+      <entry name="*.js" />
+      <entry name="*.jpeg" />
     </wildcardResourcePatterns>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="false">
@@ -14,4 +17,3 @@
     </annotationProcessing>
   </component>
 </project>
-

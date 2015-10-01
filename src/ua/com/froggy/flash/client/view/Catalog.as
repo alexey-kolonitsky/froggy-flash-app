@@ -10,12 +10,22 @@ package ua.com.froggy.flash.client.view
 
     import ua.com.froggy.flash.client.Images;
     import ua.com.froggy.flash.client.Styles;
-    import ua.com.froggy.flash.client.events.ShopEvent;
-    import ua.com.froggy.flash.client.model.vo.ProductVO;
-    import ua.com.froggy.flash.client.view.components.Label;
+    import ua.com.froggy.flash.client.events.CatalogEvent;
+    import ua.com.froggy.flash.client.events.ProductEvent;
+    import ua.com.froggy.flash.client.events.SearchEvent;
+    import ua.com.froggy.flash.client.model.CatalogProxy;
+    import ua.com.froggy.flash.client.service.FroggyService;
+    import ua.com.froggy.flash.client.view.controls.Label;
     import ua.com.froggy.flash.client.view.froggy_components.CatalogList;
     import ua.com.froggy.flash.client.view.froggy_components.SearchField;
 
+    [Event(name="buyProduct",type="ua.com.froggy.flash.client.events.ProductEvent")]
+
+    [ManagedEvents("search,clear,buyProduct")]
+
+    /**
+     *
+     */
     public class Catalog extends Sprite
     {
         private var _logoBitmap:Bitmap;
@@ -27,10 +37,72 @@ package ua.com.froggy.flash.client.view
 
         private var _catalogTileList:CatalogList;
 
+        [Inject(id="froggyService")]
+        public var froggyService:FroggyService;
+
+        [Inject]
+        public var catalogProxy:CatalogProxy;
+
+        //-----------------------------
+        // Constructor
+        //-----------------------------
+
         public function Catalog()
         {
             super();
 
+            createChildren();
+            addEventListener(Event.RESIZE, addedToStageHandler);
+            addEventListener(ProductEvent.BUY, buyProductHandler);
+
+            if (stage == null)
+            {
+                addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+            }
+            else
+            {
+                dispatchEvent(new Event('configureView', true));
+                updatePosition();
+            }
+
+        }
+
+
+        //-----------------------------
+        // products
+        //-----------------------------
+
+        public function get products():Vector.<Object>
+        {
+            return _catalogTileList.dataProvider;
+        }
+
+        public function set products(value:Vector.<Object>):void
+        {
+            _catalogTileList.dataProvider = value;
+        }
+
+        [Init]
+        public function init():void
+        {
+            froggyService.load();
+        }
+
+        [MessageHandler]
+        public function catalogLoadedHandler(event:CatalogEvent):void
+        {
+            products = catalogProxy.products;
+        }
+
+
+        //-------------------------------------------------------------------
+        //
+        // Private
+        //
+        //-------------------------------------------------------------------
+
+        private function createChildren():void
+        {
             _logoBitmap = new Images.FROGGY_LOGO();
             _logoBitmap.smoothing = true;
             _logoBitmap.scaleX = 0.8;
@@ -52,35 +124,46 @@ package ua.com.froggy.flash.client.view
             _searchField = new SearchField();
             _searchField.x = 700;
             _searchField.y = 150;
+            _searchField.addEventListener(SearchEvent.SEARCH, searchField_searchHandler);
+            _searchField.addEventListener(SearchEvent.CLEAR, searchField_searchClearHandler);
             addChild(_searchField);
 
             _catalogTileList = new CatalogList();
             _catalogTileList.x = 0;
             _catalogTileList.y = 220;
             addChild(_catalogTileList);
-            
-            addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-            addEventListener(Event.RESIZE, addedToStageHandler);
         }
 
-        private function addedToStageHandler(event:Event):void
+        private function updatePosition()
         {
             _searchField.x = stage.stageWidth - _searchField.DEFAULT_WIDTH - 8;
         }
 
-        public function get searchField():SearchField
+        //-------------------------------------------------------------------
+        // Event Handler
+        //-------------------------------------------------------------------
+
+        private function buyProductHandler(event:ProductEvent):void
         {
-            return _searchField;
+            dispatchEvent(new ProductEvent(ProductEvent.BUY, event.product));
         }
 
-        public function get products():Vector.<Object>
+        private function searchField_searchHandler(event:SearchEvent):void
         {
-            return _catalogTileList.dataProvider;
+            dispatchEvent(new SearchEvent(SearchEvent.SEARCH, event.mask));
         }
 
-        public function set products(value:Vector.<Object>):void
+        private function searchField_searchClearHandler(event:SearchEvent):void
         {
-            _catalogTileList.dataProvider = value;
+            dispatchEvent(new SearchEvent(SearchEvent.CLEAR));
+        }
+
+        private function addedToStageHandler(event:Event):void
+        {
+            removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+
+            dispatchEvent(new Event('configureView', true));
+            updatePosition()
         }
     }
 }

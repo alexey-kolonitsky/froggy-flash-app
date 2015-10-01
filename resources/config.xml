@@ -1,0 +1,14 @@
+<objects xmlns="http://www.spicefactory.org/parsley"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.spicefactory.org/parsley">
+
+    <object id="froggyService" type="ua.com.froggy.flash.client.service.HTMLFroggyService">
+        <property name="url" value="html-client.html" />
+    </object>
+
+    <object type="ua.com.froggy.flash.client.model.CatalogProxy" />
+    <object type="ua.com.froggy.flash.client.model.ShoppingCartProxy" />
+
+
+
+</objects>

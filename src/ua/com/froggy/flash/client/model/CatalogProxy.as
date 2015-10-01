@@ -3,19 +3,38 @@
  */
 package ua.com.froggy.flash.client.model
 {
-    import org.robotlegs.mvcs.Actor;
+    import flash.events.EventDispatcher;
+
+    import ua.com.froggy.flash.client.events.CatalogEvent;
+    import ua.com.froggy.flash.client.events.ServiceEvent;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
-    import ua.com.froggy.flash.client.signals.CatalogChangedSignal;
+    import ua.com.froggy.flash.client.service.FroggyService;
 
-    public class CatalogProxy extends Actor
+    [Event(name="catalogChanged", type="ua.com.froggy.flash.client.events.CatalogEvent")]
+
+    [ManagedEvents("catalogChanged")]
+
+    public class CatalogProxy extends EventDispatcher
     {
-        [Inject]
-        public var catalogChangedSignal:CatalogChangedSignal;
-
         private var _products:Vector.<ProductVO>;
         private var _filterProducts:Vector.<ProductVO>;
         private var _filter:String;
+
+
+        //-----------------------------
+        // Constructor
+        //-----------------------------
+
+        public function CatalogProxy()
+        {
+            super();
+        }
+
+
+        //-----------------------------
+        // products read-only-property
+        //-----------------------------
 
         /**
          * Full or filtered vector of object
@@ -32,18 +51,6 @@ package ua.com.froggy.flash.client.model
             return result;
         }
 
-        public function CatalogProxy()
-        {
-            super();
-        }
-
-        public function updateCatalog(products:Vector.<ProductVO>):void
-        {
-            _products = products;
-            if (catalogChangedSignal)
-                catalogChangedSignal.dispatch();
-        }
-
         public function filter(maskString:String):void
         {
             _filter = maskString.toLowerCase();
@@ -51,8 +58,13 @@ package ua.com.froggy.flash.client.model
 
             if (_filter == "" || _filter == null)
             {
-                if (catalogChangedSignal)
-                    catalogChangedSignal.dispatch();
+                dispatchEvent(new CatalogEvent(CatalogEvent.CHANGED));
+                return;
+            }
+
+            if (_products == null)
+            {
+                trace("[WARNING] Using search while catalog is unavailable");
                 return;
             }
 
@@ -81,8 +93,16 @@ package ua.com.froggy.flash.client.model
                 }
             }
 
-            if (catalogChangedSignal)
-                catalogChangedSignal.dispatch();
+            dispatchEvent(new CatalogEvent(CatalogEvent.CHANGED));
+        }
+
+        [MessageHandler]
+        public function service_laodedHandler(event:ServiceEvent):void
+        {
+            var service:FroggyService = event.target as FroggyService;
+            _products = service.products;
+
+            dispatchEvent(new CatalogEvent(CatalogEvent.CHANGED));
         }
 
     }

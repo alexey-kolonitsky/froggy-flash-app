@@ -3,12 +3,10 @@
  */
 package ua.com.froggy.flash.client.controller
 {
-    import org.robotlegs.mvcs.SignalCommand;
-
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 
-    public class BuyCommand extends SignalCommand
+    public class BuyCommand
     {
         [Inject]
         public var shoppingCart:ShoppingCartProxy;
@@ -16,7 +14,7 @@ package ua.com.froggy.flash.client.controller
         [Inject]
         public var product:ProductVO;
 
-        override public function execute():void
+        public function execute():void
         {
             trace("[INFO] [BuyCommand] " + product);
             shoppingCart.add(product);

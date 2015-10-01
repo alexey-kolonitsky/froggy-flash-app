@@ -233,7 +233,7 @@ package ua.com.froggy.flash.client.view.components
                     child.x = colIndex * (_itemWidth + horizontalGap);
                     child.y = rowIndex * (_itemHeight + verticalGap);
                     var index:int = colIndex + rowIndex * _columnCount;
-                    TweenLite.from(child, 0.7, {alpha:0.0, y:child.y+60, delay: 0.1 * index})
+//                    TweenLite.from(child, 0.7, {alpha:0.0, y:child.y+60, delay: 0.1 * index})
                 }
                 else
                 {

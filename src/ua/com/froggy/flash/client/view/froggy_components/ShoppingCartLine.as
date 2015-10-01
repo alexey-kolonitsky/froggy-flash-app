@@ -3,21 +3,17 @@
  */
 package ua.com.froggy.flash.client.view.froggy_components
 {
-    import flash.display.Sprite;
     import flash.events.Event;
 
     import ua.com.froggy.flash.client.events.CartEvent;
-
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
-
-    import ua.com.froggy.flash.client.view.controls.Button;
     import ua.com.froggy.flash.client.view.components.LayoutType;
     import ua.com.froggy.flash.client.view.components.List;
+    import ua.com.froggy.flash.client.view.controls.Button;
+    import ua.com.froggy.flash.client.view.core.GUIElement;
     import ua.com.froggy.flash.client.view.renderers.OrderSmallRenderer;
 
-    [ManagedEvents("cartChanged")]
-
-    public class ShoppingCartLine extends Sprite
+    public class ShoppingCartLine extends GUIElement
     {
         public static const DEFAULT_WIDTH:int = 513;
         public static const DEFAULT_HEIGHT:int = 64;
@@ -40,8 +36,8 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         public function ShoppingCartLine()
         {
+            super();
             createChildren();
-            addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler)
         }
 
         override public function get width():Number
@@ -64,6 +60,27 @@ package ua.com.froggy.flash.client.view.froggy_components
             _list.dataProvider = value;
         }
 
+        [Init]
+        override public function initialize():void
+        {
+            updatePosition();
+            stage.addEventListener(Event.RESIZE, stage_resizeHandler);
+        }
+
+        [MessageHandler]
+        public function shoppingCartChanged(event:CartEvent):void
+        {
+            _list.dataProvider = cartProxy.orders;
+        }
+
+
+
+
+        //-------------------------------------------------------------------
+        //
+        // Private
+        //
+        //-------------------------------------------------------------------
 
         private function createChildren():void
         {
@@ -96,23 +113,9 @@ package ua.com.froggy.flash.client.view.froggy_components
             graphics.lineStyle();
         }
 
-        [MessageHandler]
-        public function shoppingCartChanged(event:CartEvent):void
-        {
-            orders = cartProxy.orders;
-        }
-
         //-------------------------------------------------------------------
         // Event Handlers
         //-------------------------------------------------------------------
-
-        private function addedToStageHandler(event:Event):void
-        {
-            removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-
-            updatePosition();
-            stage.addEventListener(Event.RESIZE, stage_resizeHandler);
-        }
 
         private function stage_resizeHandler(event:Event):void
         {

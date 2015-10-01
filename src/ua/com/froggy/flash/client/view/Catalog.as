@@ -16,6 +16,7 @@ package ua.com.froggy.flash.client.view
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.service.FroggyService;
     import ua.com.froggy.flash.client.view.controls.Label;
+    import ua.com.froggy.flash.client.view.core.GUIElement;
     import ua.com.froggy.flash.client.view.froggy_components.CatalogList;
     import ua.com.froggy.flash.client.view.froggy_components.SearchField;
 
@@ -26,13 +27,13 @@ package ua.com.froggy.flash.client.view
     /**
      *
      */
-    public class Catalog extends Sprite
+    public class Catalog extends GUIElement
     {
         private var _logoBitmap:Bitmap;
 
         private var _phoneLabel:Label;
-        private var _emailTextField:TextField;
-        private var _addressTextField:TextField;
+        private var _emailTextField:Label;
+        private var _addressTextField:Label;
         private var _searchField:SearchField;
 
         private var _catalogTileList:CatalogList;
@@ -50,21 +51,14 @@ package ua.com.froggy.flash.client.view
         public function Catalog()
         {
             super();
-
             createChildren();
-            addEventListener(Event.RESIZE, addedToStageHandler);
-            addEventListener(ProductEvent.BUY, buyProductHandler);
+        }
 
-            if (stage == null)
-            {
-                addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-            }
-            else
-            {
-                dispatchEvent(new Event('configureView', true));
-                updatePosition();
-            }
-
+        [Init]
+        override public function initialize():void
+        {
+            updatePosition();
+            stage.addEventListener(Event.RESIZE, stage_resizeHandler);
         }
 
 
@@ -124,8 +118,6 @@ package ua.com.froggy.flash.client.view
             _searchField = new SearchField();
             _searchField.x = 700;
             _searchField.y = 150;
-            _searchField.addEventListener(SearchEvent.SEARCH, searchField_searchHandler);
-            _searchField.addEventListener(SearchEvent.CLEAR, searchField_searchClearHandler);
             addChild(_searchField);
 
             _catalogTileList = new CatalogList();
@@ -139,30 +131,14 @@ package ua.com.froggy.flash.client.view
             _searchField.x = stage.stageWidth - _searchField.DEFAULT_WIDTH - 8;
         }
 
+
+
         //-------------------------------------------------------------------
         // Event Handler
         //-------------------------------------------------------------------
 
-        private function buyProductHandler(event:ProductEvent):void
+        private function stage_resizeHandler(event:Event):void
         {
-            dispatchEvent(new ProductEvent(ProductEvent.BUY, event.product));
-        }
-
-        private function searchField_searchHandler(event:SearchEvent):void
-        {
-            dispatchEvent(new SearchEvent(SearchEvent.SEARCH, event.mask));
-        }
-
-        private function searchField_searchClearHandler(event:SearchEvent):void
-        {
-            dispatchEvent(new SearchEvent(SearchEvent.CLEAR));
-        }
-
-        private function addedToStageHandler(event:Event):void
-        {
-            removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-
-            dispatchEvent(new Event('configureView', true));
             updatePosition()
         }
     }

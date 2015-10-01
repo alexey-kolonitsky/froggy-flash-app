@@ -5,6 +5,10 @@ package
 {
     import flash.net.URLRequest;
 
+    import ua.com.froggy.flash.client.controller.BuyCommand;
+    import ua.com.froggy.flash.client.controller.CancelProductCommand;
+    import ua.com.froggy.flash.client.controller.SearchCommand;
+
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
     import ua.com.froggy.flash.client.service.HTMLFroggyService;
@@ -15,6 +19,12 @@ package
         public const catalogProxy:CatalogProxy = new CatalogProxy();
 
         public const shoppingCartProxy:ShoppingCartProxy = new ShoppingCartProxy();
+
+        public const buyCommand:BuyCommand = new BuyCommand();
+
+        public const cancelCommand:CancelProductCommand = new CancelProductCommand();
+
+        public const searchCommand:SearchCommand = new SearchCommand();
 
 
         //-----------------------------

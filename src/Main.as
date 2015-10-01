@@ -65,6 +65,21 @@ package {
         private function configureParsley():void
         {
            _context = ActionScriptContextBuilder.build(Config, this);
+
+            MappedCommands.create(BuyCommand)
+                .messageType(ProductEvent)
+                .selector(ProductEvent.BUY)
+                .register(_context);
+
+            MappedCommands.create(CancelProductCommand)
+                .messageType(ProductEvent)
+                .selector(ProductEvent.CANCEL)
+                .register(_context);
+
+            MappedCommands.create(SearchCommand)
+                .messageType(SearchEvent)
+                .selector(SearchEvent.SEARCH)
+                .register(_context);
         }
 
 

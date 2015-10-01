@@ -12,6 +12,8 @@ package ua.com.froggy.flash.client.model
 
     [Event(name="cartChanged", type="ua.com.froggy.flash.client.events.CartEvent")]
 
+    [ManagedEvents("cartChanged")]
+
     public class ShoppingCartProxy extends EventDispatcher
     {
 

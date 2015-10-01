@@ -46,6 +46,8 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         public function SearchField()
         {
+            super();
+
             _searchTimer = new Timer(SEARCH_DELAY);
             _searchTimer.addEventListener(TimerEvent.TIMER, searchTimer_timerHandler);
 
@@ -95,11 +97,6 @@ package ua.com.froggy.flash.client.view.froggy_components
             graphics.endFill();
         }
 
-        private function removeIconBitmap_clickHandler(event:MouseEvent):void
-        {
-            clear();
-        }
-
         private function clear():void
         {
             dispatchEvent(new SearchEvent(SearchEvent.CLEAR));
@@ -107,21 +104,6 @@ package ua.com.froggy.flash.client.view.froggy_components
             _removeIconBitmap.visible = false;
             _promptTextField.visible = true;
             _searchTimer.stop();
-        }
-
-        private function searchTimer_timerHandler(event:TimerEvent):void
-        {
-            search();
-        }
-
-        private function inputTextField_changeHandler(event:TextEvent):void
-        {
-            search();
-        }
-
-        private function inputTextField_mouseDownHandler(event : MouseEvent) : void
-        {
-            _promptTextField.visible = false;
         }
 
         private function search()
@@ -151,6 +133,31 @@ package ua.com.froggy.flash.client.view.froggy_components
                 trace("[INFO] [SearchField] search: " + _searchMask);
                 dispatchEvent(new SearchEvent(SearchEvent.SEARCH, _searchMask));
             }
+        }
+
+
+        //-------------------------------------------------------------------
+        // Event Handlers
+        //-------------------------------------------------------------------
+
+        private function removeIconBitmap_clickHandler(event:MouseEvent):void
+        {
+            clear();
+        }
+
+        private function searchTimer_timerHandler(event:TimerEvent):void
+        {
+            search();
+        }
+
+        private function inputTextField_changeHandler(event:TextEvent):void
+        {
+            search();
+        }
+
+        private function inputTextField_mouseDownHandler(event : MouseEvent) : void
+        {
+            _promptTextField.visible = false;
         }
     }
 }

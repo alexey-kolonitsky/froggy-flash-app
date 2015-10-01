@@ -11,12 +11,15 @@ package ua.com.froggy.flash.client.view.core
         public function GUIElement()
         {
             if (stage)
-                initilize();
+                dispatchEvent(new Event('configureView', true));
             else
                 addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler)
         }
 
-        public function initilize():void { }
+        [Init]
+        public function initialize():void
+        {
+        }
 
         //-------------------------------------------------------------------
         //
@@ -26,7 +29,7 @@ package ua.com.froggy.flash.client.view.core
 
         private function addedToStageHandler(event:Event):void
         {
-            initilize();
+            dispatchEvent(new Event('configureView', true));
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
         }
     }

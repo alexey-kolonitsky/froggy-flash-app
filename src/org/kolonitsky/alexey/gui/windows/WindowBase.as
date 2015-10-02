@@ -6,6 +6,8 @@ package org.kolonitsky.alexey.gui.windows
     import flash.display.Sprite;
     import flash.events.Event;
 
+    import org.kolonitsky.alexey.gui.events.WindowEvent;
+
     public class WindowBase extends Sprite
     {
         //-----------------------------
@@ -20,19 +22,9 @@ package org.kolonitsky.alexey.gui.windows
                 addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
         }
 
-        //-----------------------------
-        // Window Data
-        //-----------------------------
-
-        private var _data:Object;
-
-        public function get data():Object
+        public function close():void
         {
-            return _data;
-        }
-        public function set data(data:Object):void
-        {
-            _data = data;
+            dispatchEvent(new WindowEvent(WindowEvent.CLOSE_WINDOW, definition))
         }
 
         //-----------------------------

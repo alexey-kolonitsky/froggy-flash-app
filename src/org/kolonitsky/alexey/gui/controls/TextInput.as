@@ -24,9 +24,11 @@ package org.kolonitsky.alexey.gui.controls
         // Constructor
         //-----------------------------
 
-        public function TextInput()
+        public function TextInput(width:int, height:int)
         {
             super();
+            _width = width;
+            _height = height;
         }
 
         //-----------------------------
@@ -103,7 +105,6 @@ package org.kolonitsky.alexey.gui.controls
             commitProperties();
         }
 
-        [Init]
         override public function initialize():void
         {
             createChildren();
@@ -139,7 +140,7 @@ package org.kolonitsky.alexey.gui.controls
 
         protected function createChildren():void
         {
-            _promptTextField = new Label(32, 0, 192, 30, Styles.HINT_TEXT);
+            _promptTextField = new Label(32, 0, _width, _height, Styles.HINT_TEXT);
             _promptTextField.text = _promptText;
             addChild(_promptTextField);
 
@@ -148,8 +149,8 @@ package org.kolonitsky.alexey.gui.controls
             _inputTextField.defaultTextFormat = Styles.INPUT_FONT_FORMAT;
             _inputTextField.x = 32;
             _inputTextField.y = 4;
-            _inputTextField.width = 192;
-            _inputTextField.height = 24;
+            _inputTextField.width = _width -32 -32;
+            _inputTextField.height = _height -2 -2;
             _inputTextField.addEventListener(MouseEvent.MOUSE_DOWN, inputTextField_mouseDownHandler);
             _inputTextField.addEventListener(FocusEvent.FOCUS_IN, inputTextField_focusInHandler);
             _inputTextField.addEventListener(FocusEvent.FOCUS_OUT, inputTextField_focusInHandler);

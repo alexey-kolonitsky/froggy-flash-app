@@ -6,6 +6,7 @@ package ua.com.froggy.flash.client.view.windows
     import flash.display.Bitmap;
     import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.text.TextField;
 
     import org.kolonitsky.alexey.gui.windows.WindowBase;
@@ -139,9 +140,9 @@ package ua.com.froggy.flash.client.view.windows
 
         private function createChildren():void
         {
-
-
             _titleLabel = new Label(0, 0, DEFAULT_WIDTH, 32, Styles.TITLE_FORMAT);
+            _titleLabel.text = "Форма заказа";
+
             addChild(_titleLabel);
 
             _catalogList = new List(OrderSmallRenderer, DEFAULT_WIDTH,
@@ -152,19 +153,19 @@ package ua.com.froggy.flash.client.view.windows
             _catalogList.y = 34;
             addChild(_catalogList);
 
-            _nameTextInput = new TextInput();
+            _nameTextInput = new TextInput(512, 32);
             _nameTextInput.promptText = "ФИО";
 
-            _emailTextInput = new TextInput();
+            _emailTextInput = new TextInput(512, 32);
             _emailTextInput.promptText = "Email";
 
-            _addressTextInput = new TextInput();
+            _addressTextInput = new TextInput(512, 32);
             _addressTextInput.promptText = "Адрес";
 
-            _phoneTextInput = new TextInput();
+            _phoneTextInput = new TextInput(512, 32);
             _phoneTextInput.promptText = "телефон";
 
-            _detailsTextArea = new TextInput();
+            _detailsTextArea = new TextInput(512, 32);
             _detailsTextArea.promptText = "Все что угодно";
 
             _formGroup = new GUIGroup(LayoutType.VERTICAL_LAYOUT, 512, 512, 32);
@@ -178,6 +179,7 @@ package ua.com.froggy.flash.client.view.windows
             addChild(_formGroup);
 
             _closeButton = new Button("Закрыть");
+            _closeButton.addEventListener(MouseEvent.CLICK, closeButton_clickHandler);
             addChild(_closeButton);
 
             _nextButton = new Button("Далее");
@@ -189,6 +191,11 @@ package ua.com.froggy.flash.client.view.windows
         //-------------------------------------------------------------------
         // Event Handler
         //-------------------------------------------------------------------
+
+        private function closeButton_clickHandler(event:MouseEvent):void
+        {
+            close();
+        }
 
         private function stage_resizeHandler(event:Event):void
         {

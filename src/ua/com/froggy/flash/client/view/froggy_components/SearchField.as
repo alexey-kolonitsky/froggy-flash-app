@@ -22,10 +22,7 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         public function SearchField()
         {
-            super();
-
-            width = DEFAULT_WIDTH;
-            height = DEFAULT_HEIGHT;
+            super(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
             _searchTimer = new Timer(SEARCH_DELAY);
             _searchTimer.addEventListener(TimerEvent.TIMER, searchTimer_timerHandler);

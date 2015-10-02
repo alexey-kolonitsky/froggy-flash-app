@@ -46,7 +46,6 @@ package ua.com.froggy.flash.client.view.components
         {
             _dataProvider = value;
             createItemRenderers();
-            updatePosition();
         }
 
 
@@ -54,7 +53,6 @@ package ua.com.froggy.flash.client.view.components
         {
             super.initialize();
             createItemRenderers();
-            updatePosition();
         }
 
         //-----------------------------

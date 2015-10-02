@@ -94,6 +94,12 @@ package org.kolonitsky.alexey.gui.core
             updatePosition();
         }
 
+        override public function initialize():void
+        {
+            super.initialize();
+            updatePosition();
+        }
+
         protected function updatePosition():void
         {
             if (_elements == null || _elements.length == 0 || state == GUIState.CREATED)

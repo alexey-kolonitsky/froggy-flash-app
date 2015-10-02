@@ -15,19 +15,28 @@ package org.kolonitsky.alexey.gui.events
 
         public var definition:WindowDefinition;
 
-        public function WindowEvent(eventType:String, windowType:String, data:Object = null)
+        public function WindowEvent(eventType:String, data:Object)
         {
             super(eventType, true, false);
-            definition = new WindowDefinition();
-            definition.type = windowType;
-            definition.data = data;
+            if (data is String)
+            {
+                definition = new WindowDefinition();
+                definition.type = data as String;
+            }
+            else if (data is WindowDefinition)
+            {
+                definition = data as WindowDefinition;
+            }
+            else if (data is Object)
+            {
+                definition = new WindowDefinition();
+                definition.data = data as String;
+            }
         }
-
 
         override public function clone():Event
         {
-            var result:WindowEvent = new WindowEvent(type, definition.type);
-            result.definition.data = definition.data;
+            var result:WindowEvent = new WindowEvent(type, definition);
             return result;
         }
     }

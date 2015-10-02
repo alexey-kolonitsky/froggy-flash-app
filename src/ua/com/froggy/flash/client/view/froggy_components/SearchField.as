@@ -5,22 +5,14 @@ package ua.com.froggy.flash.client.view.froggy_components
 {
     import flash.display.Bitmap;
     import flash.display.SimpleButton;
-    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import flash.events.TextEvent;
     import flash.events.TimerEvent;
-    import flash.text.TextField;
-    import flash.text.TextFieldType;
     import flash.utils.Timer;
     import flash.utils.getTimer;
 
     import ua.com.froggy.flash.client.Images;
-    import ua.com.froggy.flash.client.Styles;
     import ua.com.froggy.flash.client.events.SearchEvent;
-    import ua.com.froggy.flash.client.view.components.*;
-    import ua.com.froggy.flash.client.view.controls.Label;
-    import ua.com.froggy.flash.client.view.core.GUIElement;
-
+    import ua.com.froggy.flash.client.view.controls.TextInput;
 
     [Event(name="search",type="ua.com.froggy.flash.client.events.SearchEvent")]
 
@@ -28,36 +20,35 @@ package ua.com.froggy.flash.client.view.froggy_components
 
     [ManagedEvents("search,clear")]
 
-    public class SearchField extends GUIElement
+    public class SearchField extends TextInput
     {
         public var DEFAULT_WIDTH:Number = 256;
         public var DEFAULT_HEIGHT:Number = 32;
         private var SEARCH_DELAY:Number = 1000;
 
-        private var _inputTextField:TextField;
-        private var _promptTextField:Label;
-
-        private var _searchIconBitmap:Bitmap;
-        private var _removeIconBitmap:SimpleButton;
-
-        private var _searchTimer:Timer;
-        private var _searchMask:String;
-        private var _searchRequestTime:int;
-
         public function SearchField()
         {
             super();
+
+            width = DEFAULT_WIDTH;
+            height = DEFAULT_HEIGHT;
 
             _searchTimer = new Timer(SEARCH_DELAY);
             _searchTimer.addEventListener(TimerEvent.TIMER, searchTimer_timerHandler);
 
             _searchMask = "";
-            createChildren();
-            drawBorders();
         }
 
-        private function createChildren():void
+        [Init]
+        override public function initialize():void
         {
+            super.initialize();
+        }
+
+        override protected function createChildren():void
+        {
+            super.createChildren();
+
             _searchIconBitmap = new Images.ICON_SEARCH;
             _searchIconBitmap.alpha = 0.4;
             _searchIconBitmap.x = 4;
@@ -71,53 +62,19 @@ package ua.com.froggy.flash.client.view.froggy_components
             _removeIconBitmap.visible = false;
             _removeIconBitmap.addEventListener(MouseEvent.CLICK, removeIconBitmap_clickHandler);
             addChild(_removeIconBitmap);
-
-            _promptTextField = new Label(32, 0, 192, 30, Styles.HINT_TEXT);
-            _promptTextField.text = "ангел";
-            addChild(_promptTextField);
-
-            _inputTextField = new TextField();
-            _inputTextField.type = TextFieldType.INPUT;
-            _inputTextField.defaultTextFormat = Styles.INPUT_FONT_FORMAT;
-            _inputTextField.x = 32;
-            _inputTextField.y = 4;
-            _inputTextField.width = 192;
-            _inputTextField.height = 24;
-            _inputTextField.addEventListener(MouseEvent.MOUSE_DOWN, inputTextField_mouseDownHandler);
-            _inputTextField.addEventListener(TextEvent.TEXT_INPUT, inputTextField_changeHandler);
-            addChild(_inputTextField);
         }
 
-        private function drawBorders():void
+        override protected function textChanged():void
         {
-            graphics.beginFill(0xFFFFFF);
-            graphics.lineStyle(1, 0xEEEEEE, 1.0, true);
-            graphics.drawRoundRect(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, 16, 16);
-            graphics.lineStyle();
-            graphics.endFill();
-        }
-
-        private function clear():void
-        {
-            dispatchEvent(new SearchEvent(SearchEvent.CLEAR));
-            _inputTextField.text = "";
-            _removeIconBitmap.visible = false;
-            _promptTextField.visible = true;
-            _searchTimer.stop();
-        }
-
-        private function search()
-        {
-            if (_searchMask == _inputTextField.text)
+            if (_searchMask == text)
                 return;
 
-            var maskLength:int = _inputTextField.text.length;
-            _promptTextField.visible = maskLength < 1;
+            var maskLength:int = text.length;
             _removeIconBitmap.visible = maskLength > 1;
 
             if (_searchMask.length < 1)
                 _searchTimer.start();
-            _searchMask = _inputTextField.text;
+            _searchMask = text;
 
             if (_searchMask.length < 1)
             {
@@ -137,6 +94,26 @@ package ua.com.froggy.flash.client.view.froggy_components
 
 
         //-------------------------------------------------------------------
+        //
+        // Private
+        //
+        //-------------------------------------------------------------------
+
+        private var _searchIconBitmap:Bitmap;
+        private var _removeIconBitmap:SimpleButton;
+
+        private var _searchTimer:Timer;
+        private var _searchMask:String;
+        private var _searchRequestTime:int;
+
+        private function clear():void
+        {
+            text = "";
+            _searchTimer.stop();
+            dispatchEvent(new SearchEvent(SearchEvent.CLEAR));
+        }
+
+        //-------------------------------------------------------------------
         // Event Handlers
         //-------------------------------------------------------------------
 
@@ -147,17 +124,7 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         private function searchTimer_timerHandler(event:TimerEvent):void
         {
-            search();
-        }
-
-        private function inputTextField_changeHandler(event:TextEvent):void
-        {
-            search();
-        }
-
-        private function inputTextField_mouseDownHandler(event : MouseEvent) : void
-        {
-            _promptTextField.visible = false;
+            textChanged();
         }
     }
 }

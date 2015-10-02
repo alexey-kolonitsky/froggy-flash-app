@@ -44,5 +44,15 @@ package ua.com.froggy.flash.client
         public static const IMAGE_ALT_FORMAT:TextFormat = new TextFormat(BASE_FONT_NAME, BASE_FONT_SIZE, BASE_TEXT_COLOR);
 
         public static const IMAGE_BACKGROUND:uint = 0x3CC1AE;
+
+
+        //-----------------------------
+        // TextInput
+        //-----------------------------
+
+        public static const BORDER_INACTIVE_COLOR:uint = 0xEEEEEE;
+        public static const BORDER_ACTIVE_COLOR:uint = 0x1A98ED;
+        public static const BACKGROUND_COLOR:uint = 0xFFFFFF;
+        public static const TEXT_INPUT_CORDERN_RADIUS:uint = 16;
     }
 }

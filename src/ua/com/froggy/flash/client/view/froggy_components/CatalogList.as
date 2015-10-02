@@ -13,8 +13,9 @@ package ua.com.froggy.flash.client.view.froggy_components
 
     public class CatalogList extends ScrollView
     {
-        public var _productsList:List;
         public var _label:Label;
+
+        private var _productsList:List;
 
         public function get dataProvider():Vector.<Object>
         {

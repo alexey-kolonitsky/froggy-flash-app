@@ -1,13 +1,11 @@
 /**
  * Created by Alexey on 16.08.2015.
  */
-package ua.com.froggy.flash.client.view.controls
+package org.kolonitsky.alexey.gui.controls
 {
     import flash.text.AntiAliasType;
     import flash.text.TextField;
     import flash.text.TextFormat;
-
-    import ua.com.froggy.flash.client.Styles;
 
     public class Label extends TextField
     {

@@ -11,17 +11,17 @@ package ua.com.froggy.flash.client.view.renderers
     import ua.com.froggy.flash.client.Styles;
     import ua.com.froggy.flash.client.events.ProductEvent;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
-    import ua.com.froggy.flash.client.view.controls.Button;
+    import org.kolonitsky.alexey.gui.controls.Button;
     import ua.com.froggy.flash.client.view.components.IItemRenderer;
-    import ua.com.froggy.flash.client.view.controls.Label;
-    import ua.com.froggy.flash.client.view.components.ProductImage;
+    import org.kolonitsky.alexey.gui.controls.Label;
+    import org.kolonitsky.alexey.gui.controls.Image;
 
     public class ProductItemRenderer extends Sprite implements IItemRenderer
     {
         public static const DEFAULT_WIDTH:int = 256;
         public static const DEFAULT_HEIGHT:int = 412;
 
-        private var _photo:ProductImage;
+        private var _photo:Image;
         private var _titleLabel:Label;
         private var _descriptionLabel:Label;
         private var _priceLabel:Label;
@@ -39,7 +39,7 @@ package ua.com.froggy.flash.client.view.renderers
             graphics.lineStyle();
             graphics.endFill();
 
-            _photo = new ProductImage(DEFAULT_WIDTH, DEFAULT_WIDTH);
+            _photo = new Image(DEFAULT_WIDTH, DEFAULT_WIDTH);
             _photo.addEventListener(Event.COMPLETE, photoCompleteHandler);
             addChild(_photo);
 

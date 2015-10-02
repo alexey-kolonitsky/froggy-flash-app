@@ -1,7 +1,7 @@
 /**
  * Created by Alexey on 10.09.2015.
  */
-package ua.com.froggy.flash.client.view.components
+package org.kolonitsky.alexey.gui.controls
 {
     import flash.display.Bitmap;
     import flash.display.BitmapData;
@@ -16,9 +16,12 @@ package ua.com.froggy.flash.client.view.components
     import flash.text.TextFieldAutoSize;
 
     import ua.com.froggy.flash.client.Styles;
-    import ua.com.froggy.flash.client.view.controls.Label;
+    import org.kolonitsky.alexey.gui.controls.Label;
 
-    public class ProductImage extends Sprite
+    /**
+     * Common control to external loaded image
+     */
+    public class Image extends Sprite
     {
         private var _imageWidht:int;
         private var _imageHeight:int;
@@ -28,25 +31,19 @@ package ua.com.froggy.flash.client.view.components
         private var _loader:Loader;
         private var _label:Label;
 
-        private var _bitmapData:BitmapData;
+
         private var _scaleMode:String;
 
-        public function get bitmapData():BitmapData
-        {
-            return _bitmapData;
-        }
 
-        public function set bitmapData(value:BitmapData):void
-        {
-            _bitmapData = value;
-            drawBoundary();
-        }
+        //-----------------------------
+        // Constructor
+        //-----------------------------
 
-        public function ProductImage(imageWidth:Number, imageHeight:Number, fitType:String = "noScale")
+        public function Image(imageWidth:Number, imageHeight:Number, scaleMode:String = "noScale")
         {
             _imageWidht = imageWidth;
             _imageHeight = imageHeight;
-            _scaleMode = fitType;
+            _scaleMode = scaleMode;
 
             _label = new Label(0, 0, imageWidth, 60, Styles.IMAGE_ALT_FORMAT, true);
             _label.autoSize = TextFieldAutoSize.CENTER;
@@ -61,6 +58,41 @@ package ua.com.froggy.flash.client.view.components
             drawBoundary();
         }
 
+
+        //-----------------------------
+        // url
+        //-----------------------------
+
+        public function get url():String
+        {
+            return _url;
+        }
+
+        public function set url(value:String)
+        {
+            _url = value;
+            if (_autoLoad)
+                load();
+        }
+
+
+        //-----------------------------
+        // bitmapData
+        //-----------------------------
+
+        private var _bitmapData:BitmapData;
+
+        public function get bitmapData():BitmapData
+        {
+            return _bitmapData;
+        }
+
+        public function set bitmapData(value:BitmapData):void
+        {
+            _bitmapData = value;
+            drawBoundary();
+        }
+
         private function loader_progressHandelr(event:ProgressEvent):void
         {
             var loadingPercent:int = Math.ceil(100 * event.bytesLoaded / event.bytesTotal);
@@ -69,9 +101,6 @@ package ua.com.froggy.flash.client.view.components
 
         private function loader_completeHandler(event:Event):void
         {
-            if (_label.parent == this)
-                removeChild(_label);
-
             var loaderInfo:LoaderInfo = event.target as LoaderInfo;
             var bitmap:Bitmap = loaderInfo.content as Bitmap;
             _bitmapData = bitmap.bitmapData;
@@ -94,19 +123,6 @@ package ua.com.froggy.flash.client.view.components
             }
         }
 
-
-        public function get url():String
-        {
-            return _url;
-        }
-
-        public function set url(value:String)
-        {
-            _url = value;
-            if (_autoLoad)
-                load();
-        }
-
         public function load():void
         {
             if (_url == null || _url == "")
@@ -127,6 +143,9 @@ package ua.com.froggy.flash.client.view.components
             }
             else
             {
+                if (_label && _label.parent == this)
+                    removeChild(_label);
+
                 var m:Matrix = new Matrix();
                 var sx:Number = _imageWidht / _bitmapData.width;
                 var sy:Number = _imageHeight / _bitmapData.height;
@@ -134,18 +153,18 @@ package ua.com.froggy.flash.client.view.components
                 var smin:Number = sx < sy ? sx : sy;
                 switch(_scaleMode)
                 {
-                    case FitType.FIT:
+                    case ImageScaleMode.FIT:
                         m.scale(sx, sy);
                         break;
-                    case FitType.FIT_LONGEST:
+                    case ImageScaleMode.FIT_LONGEST:
                         m.scale(smax, smax);
                         break;
-                    case FitType.FIT_SHORTEST:
+                    case ImageScaleMode.FIT_SHORTEST:
                         m.scale(smin, smin);
                         break;
 
                     default:
-                    case FitType.NO_SCALE:
+                    case ImageScaleMode.NO_SCALE:
                         break;
                 }
                 graphics.beginBitmapFill(_bitmapData, m, false, true);

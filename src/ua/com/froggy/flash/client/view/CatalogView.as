@@ -15,13 +15,18 @@ package ua.com.froggy.flash.client.view
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.service.FroggyService;
-    import ua.com.froggy.flash.client.view.controls.Label;
-    import ua.com.froggy.flash.client.view.core.GUIElement;
-    import ua.com.froggy.flash.client.view.core.ViewComponent;
+    import org.kolonitsky.alexey.gui.controls.Label;
+    import org.kolonitsky.alexey.gui.core.GUIElement;
+    import org.kolonitsky.alexey.gui.core.ViewComponent;
     import ua.com.froggy.flash.client.view.froggy_components.CatalogList;
     import ua.com.froggy.flash.client.view.froggy_components.SearchField;
+    import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
 
     [Event(name="buyProduct",type="ua.com.froggy.flash.client.events.ProductEvent")]
+
+    [Event(name="search",type="ua.com.froggy.flash.client.events.SearchEvent")]
+
+    [Event(name="clear",type="ua.com.froggy.flash.client.events.SearchEvent")]
 
     [ManagedEvents("search,clear,buyProduct")]
 
@@ -38,6 +43,8 @@ package ua.com.froggy.flash.client.view
         private var _searchField:SearchField;
 
         private var _catalogTileList:CatalogList;
+
+        private var _miniCart:ShoppingCartLine;
 
         [Inject(id="froggyService")]
         public var froggyService:FroggyService;
@@ -98,6 +105,9 @@ package ua.com.froggy.flash.client.view
 
         private function createChildren():void
         {
+            _miniCart = new ShoppingCartLine();
+            addChild(_miniCart);
+
             _logoBitmap = new Images.FROGGY_LOGO();
             _logoBitmap.smoothing = true;
             _logoBitmap.scaleX = 0.8;

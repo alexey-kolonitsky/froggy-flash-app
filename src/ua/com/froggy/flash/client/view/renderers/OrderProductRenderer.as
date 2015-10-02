@@ -1,28 +1,26 @@
 /**
- * Created by Alexey on 11.09.2015.
+ * Created by Aliaksei_Kalanitski on 10/2/2015.
  */
 package ua.com.froggy.flash.client.view.renderers
 {
     import flash.display.Sprite;
 
     import ua.com.froggy.flash.client.model.vo.OrderProductVO;
-    import org.kolonitsky.alexey.gui.controls.Button;
-    import org.kolonitsky.alexey.gui.controls.ImageScaleMode;
 
     import ua.com.froggy.flash.client.view.components.IItemRenderer;
-
     import org.kolonitsky.alexey.gui.controls.Image;
+    import org.kolonitsky.alexey.gui.controls.ImageScaleMode;
 
-    public class OrderSmallRenderer extends Sprite implements IItemRenderer
+    public class OrderProductRenderer extends Sprite implements IItemRenderer
     {
-        public static const DEFAULT_WIDTH:int = 64;
+        public static const DEFAULT_WIDTH:int = 152;
         public static const DEFAULT_HEIGHT:int = 64;
 
         private var _photo:Image;
         private var _data:OrderProductVO;
         private var _index:int = 0;
 
-        public function OrderSmallRenderer()
+        public function OrderProductRenderer()
         {
             _photo = new Image(DEFAULT_WIDTH, DEFAULT_HEIGHT, ImageScaleMode.FIT);
             addChild(_photo);

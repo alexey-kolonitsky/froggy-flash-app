@@ -1,7 +1,7 @@
 /**
  * Created by Aliaksei_Kalanitski on 10/2/2015.
  */
-package ua.com.froggy.flash.client.view.core
+package org.kolonitsky.alexey.gui.core
 {
     import flash.display.DisplayObject;
 

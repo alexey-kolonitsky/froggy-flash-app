@@ -4,16 +4,20 @@
 package ua.com.froggy.flash.client.view.froggy_components
 {
     import flash.events.Event;
+    import flash.events.MouseEvent;
+
+    import org.kolonitsky.alexey.gui.events.WindowEvent;
 
     import ua.com.froggy.flash.client.events.CartEvent;
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
     import ua.com.froggy.flash.client.view.components.LayoutType;
     import ua.com.froggy.flash.client.view.components.List;
-    import ua.com.froggy.flash.client.view.controls.Button;
-    import ua.com.froggy.flash.client.view.core.GUIElement;
+    import org.kolonitsky.alexey.gui.controls.Button;
+    import org.kolonitsky.alexey.gui.core.ViewComponent;
     import ua.com.froggy.flash.client.view.renderers.OrderSmallRenderer;
+    import ua.com.froggy.flash.client.view.windows.OrderWindow;
 
-    public class ShoppingCartLine extends GUIElement
+    public class ShoppingCartLine extends ViewComponent
     {
         public static const MAX_ITEM_COUNT:int = 5;
 
@@ -58,7 +62,7 @@ package ua.com.froggy.flash.client.view.froggy_components
         }
 
         [Init]
-        override public function initialize():void
+        public function initialize():void
         {
             updatePosition();
             stage.addEventListener(Event.RESIZE, stage_resizeHandler);
@@ -91,6 +95,7 @@ package ua.com.froggy.flash.client.view.froggy_components
 
             _orderButton = new Button("Заказать.  ");
             _orderButton.x = listWidth;
+            _orderButton.addEventListener(MouseEvent.CLICK, orderButton_clickHandler);
             addChild(_orderButton);
         }
 
@@ -114,6 +119,12 @@ package ua.com.froggy.flash.client.view.froggy_components
         //-------------------------------------------------------------------
         // Event Handlers
         //-------------------------------------------------------------------
+
+
+        private function orderButton_clickHandler(event:MouseEvent):void
+        {
+            dispatchEvent(new WindowEvent(WindowEvent.OPEN_WINDOW, OrderWindow.TYPE));
+        }
 
         private function stage_resizeHandler(event:Event):void
         {

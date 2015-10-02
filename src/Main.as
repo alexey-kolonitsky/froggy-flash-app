@@ -1,19 +1,11 @@
 package {
+    import flash.display.DisplayObject;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
 
-    import org.spicefactory.lib.logging.Appender;
-    import org.spicefactory.lib.logging.LogContext;
-    import org.spicefactory.lib.logging.LogFactory;
-
-    import org.spicefactory.lib.logging.LogLevel;
-    import org.spicefactory.lib.logging.SpiceLogFactory;
-    import org.spicefactory.lib.logging.flex.FlexLogFactory;
-
-    import org.spicefactory.lib.logging.impl.DefaultLogFactory;
-
+    import org.kolonitsky.alexey.gui.windows.WindowManager;
     import org.spicefactory.parsley.asconfig.ActionScriptContextBuilder;
     import org.spicefactory.parsley.command.MappedCommands;
     import org.spicefactory.parsley.core.context.Context;
@@ -25,16 +17,19 @@ package {
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.view.CatalogView;
     import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
+    import ua.com.froggy.flash.client.view.windows.OrderWindow;
 
     public class Main extends Sprite
     {
         private var _context:Context;
         private var _catalog:CatalogView;
-        private var _miniCart:ShoppingCartLine;
+        private var _winodwLayer:Sprite;
+        private var _windowManager:WindowManager;
 
         public function Main()
         {
-            trace("[INFO] Main Created");
+            trace("[INFO] Froggy flash-client v" + Config.VERSION);
+
             if (stage)
             {
                 setupStage();
@@ -58,8 +53,11 @@ package {
             _catalog = new CatalogView();
             addChild(_catalog);
 
-            _miniCart = new ShoppingCartLine();
-            addChild(_miniCart);
+            _winodwLayer = new Sprite();
+            addChild(_winodwLayer);
+
+            _windowManager = new WindowManager(_winodwLayer);
+            _windowManager.push(OrderWindow.TYPE, new OrderWindow());
         }
 
         private function configureParsley():void

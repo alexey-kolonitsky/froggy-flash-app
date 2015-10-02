@@ -16,6 +16,8 @@ package
 
     public class Config
     {
+        public static const VERSION:String = "1.0.1"
+
         public const catalogProxy:CatalogProxy = new CatalogProxy();
 
         public const shoppingCartProxy:ShoppingCartProxy = new ShoppingCartProxy();

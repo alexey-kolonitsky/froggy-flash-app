@@ -54,5 +54,14 @@ package ua.com.froggy.flash.client
         public static const BORDER_ACTIVE_COLOR:uint = 0x1A98ED;
         public static const BACKGROUND_COLOR:uint = 0xFFFFFF;
         public static const TEXT_INPUT_CORDERN_RADIUS:uint = 16;
+
+
+        //-----------------------------
+        // Button
+        //-----------------------------
+
+        public static const BUTTON_UP_COLOR:uint = 0xf2711f;
+        public static const BUTTON_OVER_COLOR:uint = 0x1FF287;
+        public static const BUTTON_DOWN_COLOR:uint = 0x1FF287;
     }
 }

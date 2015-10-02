@@ -8,7 +8,7 @@ package ua.com.froggy.flash.client.view.froggy_components
     import ua.com.froggy.flash.client.events.ProductEvent;
 
     import ua.com.froggy.flash.client.view.components.*;
-    import ua.com.froggy.flash.client.view.controls.Label;
+    import org.kolonitsky.alexey.gui.controls.Label;
     import ua.com.froggy.flash.client.view.renderers.ProductItemRenderer;
 
     public class CatalogList extends ScrollView

@@ -12,13 +12,7 @@ package ua.com.froggy.flash.client.view.froggy_components
 
     import ua.com.froggy.flash.client.Images;
     import ua.com.froggy.flash.client.events.SearchEvent;
-    import ua.com.froggy.flash.client.view.controls.TextInput;
-
-    [Event(name="search",type="ua.com.froggy.flash.client.events.SearchEvent")]
-
-    [Event(name="clear",type="ua.com.froggy.flash.client.events.SearchEvent")]
-
-    [ManagedEvents("search,clear")]
+    import org.kolonitsky.alexey.gui.controls.TextInput;
 
     public class SearchField extends TextInput
     {

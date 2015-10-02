@@ -5,7 +5,7 @@ package ua.com.froggy.flash.client.view.components
 {
     import flash.display.DisplayObject;
 
-    import ua.com.froggy.flash.client.view.core.GUIGroup;
+    import org.kolonitsky.alexey.gui.core.GUIGroup;
 
     public class List extends GUIGroup
     {

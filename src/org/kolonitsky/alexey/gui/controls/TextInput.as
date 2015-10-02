@@ -1,7 +1,7 @@
 /**
  * Created by Aliaksei_Kalanitski on 10/2/2015.
  */
-package ua.com.froggy.flash.client.view.controls
+package org.kolonitsky.alexey.gui.controls
 {
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
@@ -11,8 +11,8 @@ package ua.com.froggy.flash.client.view.controls
 
     import ua.com.froggy.flash.client.Styles;
 
-    import ua.com.froggy.flash.client.view.core.GUIElement;
-    import ua.com.froggy.flash.client.view.core.GUIState;
+    import org.kolonitsky.alexey.gui.core.GUIElement;
+    import org.kolonitsky.alexey.gui.core.GUIState;
 
     /**
      * One line text input component. Should be used if you need to
@@ -117,7 +117,6 @@ package ua.com.froggy.flash.client.view.controls
             _text = _inputTextField.text;
         }
 
-
         protected function commitProperties():void
         {
             if (_textChenged && _inputTextField && _text != _inputTextField.text)
@@ -133,7 +132,9 @@ package ua.com.froggy.flash.client.view.controls
             }
 
             if (_text && _text.length == 0 && _promptText && _promptText.length > 0)
+            {
                 _promptTextField.visible = true;
+            }
         }
 
         protected function createChildren():void

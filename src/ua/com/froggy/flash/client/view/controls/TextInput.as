@@ -20,8 +20,6 @@ package ua.com.froggy.flash.client.view.controls
      */
     public class TextInput extends GUIElement
     {
-
-
         //-----------------------------
         // Constructor
         //-----------------------------
@@ -155,13 +153,11 @@ package ua.com.froggy.flash.client.view.controls
             _inputTextField.addEventListener(FocusEvent.FOCUS_IN, inputTextField_focusInHandler);
             _inputTextField.addEventListener(FocusEvent.FOCUS_OUT, inputTextField_focusInHandler);
             _inputTextField.addEventListener(TextEvent.TEXT_INPUT, inputTextField_changeHandler);
-
             addChild(_inputTextField);
         }
 
         private function inputTextField_focusInHandler(event:FocusEvent):void
         {
-            trace("DEBUG: TextInput focus change: " + event.type);
             if (event.type == FocusEvent.FOCUS_IN)
                 state = GUIState.FOCUS_IN;
             else

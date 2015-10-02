@@ -16,5 +16,6 @@ package ua.com.froggy.flash.client.service
         public function load():void {}
         public function filter(mask:String):void {}
         public function get products():Vector.<ProductVO> { return null }
+        public function sendOrder():void {}
     }
 }

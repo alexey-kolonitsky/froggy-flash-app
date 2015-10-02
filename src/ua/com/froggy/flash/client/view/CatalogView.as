@@ -17,6 +17,7 @@ package ua.com.froggy.flash.client.view
     import ua.com.froggy.flash.client.service.FroggyService;
     import ua.com.froggy.flash.client.view.controls.Label;
     import ua.com.froggy.flash.client.view.core.GUIElement;
+    import ua.com.froggy.flash.client.view.core.ViewComponent;
     import ua.com.froggy.flash.client.view.froggy_components.CatalogList;
     import ua.com.froggy.flash.client.view.froggy_components.SearchField;
 
@@ -27,7 +28,7 @@ package ua.com.froggy.flash.client.view
     /**
      *
      */
-    public class Catalog extends GUIElement
+    public class CatalogView extends ViewComponent
     {
         private var _logoBitmap:Bitmap;
 
@@ -48,14 +49,14 @@ package ua.com.froggy.flash.client.view
         // Constructor
         //-----------------------------
 
-        public function Catalog()
+        public function CatalogView()
         {
             super();
             createChildren();
         }
 
         [Init]
-        override public function initialize():void
+        public function initialize():void
         {
             updatePosition();
             stage.addEventListener(Event.RESIZE, stage_resizeHandler);

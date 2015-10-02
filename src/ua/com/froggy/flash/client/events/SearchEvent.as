@@ -14,7 +14,7 @@ package ua.com.froggy.flash.client.events
 
         public function SearchEvent(type:String, mask:String = "")
         {
-            super(type, false, false);
+            super(type, true, false);
             this.mask = mask;
         }
     }

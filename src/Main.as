@@ -23,13 +23,13 @@ package {
     import ua.com.froggy.flash.client.controller.SearchCommand;
     import ua.com.froggy.flash.client.events.ProductEvent;
     import ua.com.froggy.flash.client.events.SearchEvent;
-    import ua.com.froggy.flash.client.view.Catalog;
+    import ua.com.froggy.flash.client.view.CatalogView;
     import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
 
     public class Main extends Sprite
     {
         private var _context:Context;
-        private var _catalog:Catalog;
+        private var _catalog:CatalogView;
         private var _miniCart:ShoppingCartLine;
 
         public function Main()
@@ -55,7 +55,7 @@ package {
 
         private function createChildrend():void
         {
-            _catalog = new Catalog();
+            _catalog = new CatalogView();
             addChild(_catalog);
 
             _miniCart = new ShoppingCartLine();

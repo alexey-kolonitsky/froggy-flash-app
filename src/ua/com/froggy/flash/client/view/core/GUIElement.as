@@ -14,12 +14,11 @@ package ua.com.froggy.flash.client.view.core
 
         public function GUIElement()
         {
+            state = GUIState.CREATED;
             if (stage)
-                dispatchEvent(new Event('configureView', true));
+                initialize();
             else
                 addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-
-            state = GUIState.CREATED;
         }
 
         //-----------------------------
@@ -38,22 +37,15 @@ package ua.com.froggy.flash.client.view.core
             _state = value;
         }
 
-        [Init]
         public function initialize():void
         {
             _state = GUIState.INITIALIZED;
         }
 
-        //-------------------------------------------------------------------
-        //
-        // Private
-        //
-        //-------------------------------------------------------------------
-
         private function addedToStageHandler(event:Event):void
         {
-            dispatchEvent(new Event('configureView', true));
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+            initialize();
         }
     }
 }

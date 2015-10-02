@@ -15,9 +15,6 @@ package ua.com.froggy.flash.client.view.froggy_components
 
     public class ShoppingCartLine extends GUIElement
     {
-        public static const DEFAULT_WIDTH:int = 513;
-        public static const DEFAULT_HEIGHT:int = 64;
-
         public static const MAX_ITEM_COUNT:int = 5;
 
         public var _list:List;
@@ -84,22 +81,23 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         private function createChildren():void
         {
-            _list = new List(OrderSmallRenderer,
-                DEFAULT_WIDTH,
-                DEFAULT_HEIGHT,
+            var listWidth:int = MAX_ITEM_COUNT * (OrderSmallRenderer.DEFAULT_WIDTH + 2);
+
+            _list = new List(OrderSmallRenderer, listWidth,
                 OrderSmallRenderer.DEFAULT_WIDTH,
                 OrderSmallRenderer.DEFAULT_HEIGHT,
                 LayoutType.HORIZONTAL_LAYOUT);
             addChild(_list);
 
             _orderButton = new Button("Заказать.  ");
-            _orderButton.x = MAX_ITEM_COUNT * OrderSmallRenderer.DEFAULT_WIDTH;
+            _orderButton.x = listWidth;
             addChild(_orderButton);
         }
 
         private function updatePosition():void
         {
-            _width = MAX_ITEM_COUNT * OrderSmallRenderer.DEFAULT_WIDTH + _orderButton.width;
+            var listWidth:int = MAX_ITEM_COUNT * (OrderSmallRenderer.DEFAULT_WIDTH + 2);
+            _width = listWidth + _orderButton.width;
             _height = OrderSmallRenderer.DEFAULT_HEIGHT;
             x = stage.stageWidth - _width - 8;
             y = 60;

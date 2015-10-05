@@ -19,7 +19,9 @@ package ua.com.froggy.flash.client.model.vo
         public var description:String;
 
         /* Full product desription. Character limit	5000 */
-        public var price:String;
+        public var price:Number;
+
+        public var currency:String;
 
         /** Cache of loaded image */
         public var imageBitmap:BitmapData;

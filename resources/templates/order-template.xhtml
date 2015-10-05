@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Заказ №{orderNumber}</title>
+</head>
+<body>
+    <h1>Заказ №{orderNumber}</h1>
+    <h2>Товары</h2>
+    <ul>
+        <li><img src="{productImageURL}" alt="{productName}"  width="64" height="64" />{index}. {productName} ({price} x {count}) {totalPrice}</li>
+    </ul>
+    <p>Итого: {bottomLinePrice}</p>
+
+    <h2>Покупатель</h2>
+    <ul>
+        <li>Имя: {userName}</li>
+        <li>Адрес: {address}</li>
+        <li>Телефон: {phone}</li>
+        <li>email: {email}</li>
+    </ul>
+
+    <p>{details}</p>
+</body>
+</html>

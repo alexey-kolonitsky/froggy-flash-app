@@ -19,6 +19,7 @@ package {
     import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
     import ua.com.froggy.flash.client.view.windows.OrderWindow;
 
+    [SWF(width="1024", height="1000")]
     public class Main extends Sprite
     {
         private var _context:Context;

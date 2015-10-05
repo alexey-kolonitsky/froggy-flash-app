@@ -5,12 +5,17 @@ package ua.com.froggy.flash.client.service
 {
     import flash.events.Event;
     import flash.events.EventDispatcher;
+    import flash.events.HTTPStatusEvent;
     import flash.events.IOErrorEvent;
     import flash.events.SecurityErrorEvent;
     import flash.net.URLLoader;
     import flash.net.URLRequest;
+    import flash.net.URLRequestMethod;
+    import flash.net.URLVariables;
 
     import ua.com.froggy.flash.client.events.ServiceEvent;
+    import ua.com.froggy.flash.client.model.vo.OrderProductVO;
+    import ua.com.froggy.flash.client.model.vo.OrderVO;
     import ua.com.froggy.flash.client.model.vo.ProductVO;
 
 
@@ -19,6 +24,9 @@ package ua.com.froggy.flash.client.service
      */
     public class HTMLFroggyService extends FroggyService
     {
+        [Embed(source='/templates/order-template.xhtml',  mimeType="application/octet-stream")]
+        private static var OrderTemplateClass:Class;
+
         //-----------------------------
         // Namespaces
         //-----------------------------
@@ -36,6 +44,7 @@ package ua.com.froggy.flash.client.service
         public static const HPRODUCT_DESCRIPTION:String = "description";
         public static const HPRODUCT_PHOTO:String = "photo";
         public static const HPRODUCT_PRICE:String = "price";
+        public static const HPRODUCT_CURRENCY:String = "currency";
 
 
         public var urlRequest:URLRequest;
@@ -87,6 +96,78 @@ package ua.com.froggy.flash.client.service
         }
 
 
+        override public function sendOrder(order:OrderVO):void
+        {
+            var request:URLRequest = new URLRequest("http://froggy.com.ua/sendmail.php");
+            request.method = URLRequestMethod.GET;
+            request.data = new URLVariables();
+            request.data['from'] = order.customer.name + "<" + order.customer.email + ">";
+            request.data['data'] = orderToHTML(order);
+
+            var loader:URLLoader = new URLLoader();
+            loader.addEventListener(Event.COMPLETE, sendOrder_completeHandler);
+            loader.addEventListener(IOErrorEvent.IO_ERROR, sendOrder_ioErrorHandler);
+            loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, sendOrder_httpStatusHandler);
+            loader.load(request);
+        }
+
+        private function orderToHTML(order:OrderVO):String
+        {
+            var ulProducts:XML = <ol />;
+            for each (var productOrder:OrderProductVO in order.products)
+            {
+                var productVO:ProductVO = productOrder.product;
+                var fullURL:String = "http://froggy.com.ua/" + productVO.imageURL;
+                var productHTML:XML = <li>
+                    <img src={fullURL} alt={productVO.title} width="64" height="64"/>
+                    {productVO.title} ({productVO.price} x {productOrder.count}) {productOrder.localPrice}
+                </li>;
+                ulProducts.appendChild(productHTML);
+            }
+
+            var template:XML = <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+                <head>
+                    <title>Заказ №{order.orderId}</title>
+                </head>
+                <body>
+                    <h1>Заказ №{order.orderId}</h1>
+                    <h2>Товары</h2>
+                    {ulProducts}
+
+                    <p>Итого: {order.totalPrice}</p>
+
+                    <h2>Покупатель</h2>
+                    <ul>
+                        <li>Имя: {order.customer.name}</li>
+                        <li>Адрес: {order.customer.address}</li>
+                        <li>Телефон: {order.customer.phone}</li>
+                        <li>email: {order.customer.email}</li>
+                    </ul>
+
+                    <p>{order.details}</p>
+                </body>
+                </html>
+            return template.toXMLString();
+        }
+
+        private function sendOrder_httpStatusHandler(event:HTTPStatusEvent):void
+        {
+            trace("NET: Service: " + event.status + ", " + event.toString())
+        }
+
+        private function sendOrder_ioErrorHandler(event:IOErrorEvent):void
+        {
+            trace("ERROR: NET: HTTPFroggyService failure send order");
+        }
+
+        private function sendOrder_completeHandler(event:Event):void
+        {
+            var loader:URLLoader = event.target as URLLoader;
+            var response:String = String(loader.data);
+
+            trace("NET: sendOrder : '" + response + "'");
+        }
+
         //-------------------------------------------------------------------
         // Private
         //-------------------------------------------------------------------
@@ -114,7 +195,8 @@ package ua.com.froggy.flash.client.service
                 productVO.title = String(firstNodeByClass(divXML..h2, HPRODUCT_NAME));
                 productVO.description = String(firstNodeByClass(divXML..p, HPRODUCT_DESCRIPTION).toXMLString);
                 productVO.imageURL = String(firstNodeByClass(divXML..img, HPRODUCT_PHOTO).@src);
-                productVO.price = String(firstNodeByClass(divXML..span, HPRODUCT_PRICE));
+                productVO.price = parseInt(firstNodeByClass(divXML..span, HPRODUCT_PRICE));
+                productVO.currency = String(firstNodeByClass(divXML..span, HPRODUCT_CURRENCY));
                 _productsFull.push(productVO);
             }
         }

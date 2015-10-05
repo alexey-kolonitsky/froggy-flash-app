@@ -3,9 +3,11 @@
  */
 package org.kolonitsky.alexey.gui.controls
 {
+    import flash.events.Event;
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
     import flash.events.TextEvent;
+    import flash.text.AntiAliasType;
     import flash.text.TextField;
     import flash.text.TextFieldType;
 
@@ -116,6 +118,7 @@ package org.kolonitsky.alexey.gui.controls
         protected function textChanged():void
         {
             _text = _inputTextField.text;
+            trace("TextInput textChanged " + _text);
         }
 
         protected function commitProperties():void
@@ -123,19 +126,24 @@ package org.kolonitsky.alexey.gui.controls
             if (_textChenged && _inputTextField && _text != _inputTextField.text)
             {
                 _inputTextField.text = _text;
+                updatePromptVisible();
                 _textChenged = false;
             }
 
             if (_promptTextChanged && _promptTextField && _promptText != _promptTextField.text)
             {
                 _promptTextField.text = _promptText;
+                updatePromptVisible();
                 _promptTextChanged = false;
             }
+        }
 
-            if (_text && _text.length == 0 && _promptText && _promptText.length > 0)
-            {
-                _promptTextField.visible = true;
-            }
+        private function updatePromptVisible():void
+        {
+            if (_promptTextField == null || _promptText == null || _promptText.length == 0)
+                return;
+
+            _promptTextField.visible = _text == null || _text.length == 0;
         }
 
         protected function createChildren():void
@@ -147,6 +155,8 @@ package org.kolonitsky.alexey.gui.controls
             _inputTextField = new TextField();
             _inputTextField.type = TextFieldType.INPUT;
             _inputTextField.defaultTextFormat = Styles.INPUT_FONT_FORMAT;
+            _inputTextField.embedFonts = true;
+            _inputTextField.antiAliasType = AntiAliasType.ADVANCED;
             _inputTextField.x = 32;
             _inputTextField.y = 4;
             _inputTextField.width = _width -32 -32;
@@ -154,7 +164,7 @@ package org.kolonitsky.alexey.gui.controls
             _inputTextField.addEventListener(MouseEvent.MOUSE_DOWN, inputTextField_mouseDownHandler);
             _inputTextField.addEventListener(FocusEvent.FOCUS_IN, inputTextField_focusInHandler);
             _inputTextField.addEventListener(FocusEvent.FOCUS_OUT, inputTextField_focusInHandler);
-            _inputTextField.addEventListener(TextEvent.TEXT_INPUT, inputTextField_changeHandler);
+            _inputTextField.addEventListener(Event.CHANGE, inputTextField_changeHandler);
             addChild(_inputTextField);
         }
 
@@ -165,6 +175,7 @@ package org.kolonitsky.alexey.gui.controls
             else
                 state = GUIState.INITIALIZED;
 
+            updatePromptVisible();
             drawBorders();
         }
 
@@ -202,7 +213,7 @@ package org.kolonitsky.alexey.gui.controls
         private var _inputTextField:TextField;
 
 
-        private function inputTextField_changeHandler(event:TextEvent):void
+        private function inputTextField_changeHandler(event:Event):void
         {
             textChanged();
         }

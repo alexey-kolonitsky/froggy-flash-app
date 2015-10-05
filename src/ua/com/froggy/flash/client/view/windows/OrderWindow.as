@@ -9,6 +9,8 @@ package ua.com.froggy.flash.client.view.windows
     import flash.events.MouseEvent;
     import flash.text.TextField;
 
+    import org.kolonitsky.alexey.data.LocalStorage;
+
     import org.kolonitsky.alexey.gui.windows.WindowBase;
 
     import ua.com.froggy.flash.client.Images;
@@ -18,6 +20,9 @@ package ua.com.froggy.flash.client.view.windows
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
     import ua.com.froggy.flash.client.model.ShoppingCartProxy;
+    import ua.com.froggy.flash.client.model.vo.CustomerDetailsVO;
+    import ua.com.froggy.flash.client.model.vo.OrderProductVO;
+    import ua.com.froggy.flash.client.model.vo.OrderVO;
     import ua.com.froggy.flash.client.service.FroggyService;
     import ua.com.froggy.flash.client.view.components.LayoutType;
     import ua.com.froggy.flash.client.view.components.List;
@@ -61,6 +66,9 @@ package ua.com.froggy.flash.client.view.windows
 
         [Inject(id="froggyService")]
         public var froggyService:FroggyService;
+
+        [Inject]
+        public var localStorage:LocalStorage;
 
         [Inject]
         public var shoppingCart:ShoppingCartProxy;
@@ -111,6 +119,21 @@ package ua.com.froggy.flash.client.view.windows
         public function init():void
         {
             products = shoppingCart.orders;
+
+            if (_nameTextInput)
+                _nameTextInput.text = localStorage.readString("fn");
+
+            if (_emailTextInput)
+                _emailTextInput.text = localStorage.readString("email");
+
+            if (_addressTextInput)
+                _addressTextInput.text = localStorage.readString("address");
+
+            if (_phoneTextInput)
+                _phoneTextInput.text = localStorage.readString("phone");
+
+            if (_detailsTextArea)
+                _detailsTextArea.text = localStorage.readString("details");
         }
 
 
@@ -183,7 +206,32 @@ package ua.com.froggy.flash.client.view.windows
             addChild(_closeButton);
 
             _nextButton = new Button("Далее");
+            _nextButton.addEventListener(MouseEvent.CLICK, nextButton_clickHandler);
             addChild(_nextButton);
+        }
+
+        private function nextButton_clickHandler(event:MouseEvent):void
+        {
+            var customer:CustomerDetailsVO = new CustomerDetailsVO();
+            customer.email = _emailTextInput.text;
+            customer.name = _nameTextInput.text;
+            customer.phone = _phoneTextInput.text;
+            customer.address = _addressTextInput.text;
+
+            var order:OrderVO = new OrderVO();
+            order.customer = customer;
+            order.details = _detailsTextArea.text;
+            order.products = new Vector.<OrderProductVO>();
+            for (var i:int = 0; i < products.length; i++)
+                order.products.push(products[i] as OrderProductVO);
+
+            localStorage.save("fn", customer.name);
+            localStorage.save("email", customer.email);
+            localStorage.save("address", customer.address);
+            localStorage.save("phone", customer.phone);
+            localStorage.save("details", order.details);
+
+            froggyService.sendOrder(order)
         }
 
 

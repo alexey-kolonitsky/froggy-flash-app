@@ -76,14 +76,14 @@ package org.kolonitsky.alexey.gui.core
             return _height;
         }
 
-        public function addElement(element:DisplayObject)
+        public function addElement(element:DisplayObject):void
         {
             _elements.push(element);
             addChild(element);
             updatePosition();
         }
 
-        public function removeElement(element:DisplayObject)
+        public function removeElement(element:DisplayObject):void
         {
             var index:int = _elements.indexOf(element);
             if (index == -1)

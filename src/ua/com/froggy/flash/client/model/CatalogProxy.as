@@ -5,13 +5,13 @@ package ua.com.froggy.flash.client.model
 {
     import flash.events.EventDispatcher;
 
-    import ua.com.froggy.flash.client.events.CatalogEvent;
-    import ua.com.froggy.flash.client.events.ServiceEvent;
+    import ua.com.froggy.flash.client.events.CatalogChangedEvent;
+    import org.kolonitsky.alexey.events.ServiceEvent;
 
     import ua.com.froggy.flash.client.model.vo.ProductVO;
-    import ua.com.froggy.flash.client.service.FroggyService;
+    import org.kolonitsky.alexey.service.FroggyService;
 
-    [Event(name="catalogChanged", type="ua.com.froggy.flash.client.events.CatalogEvent")]
+    [Event(name="catalogChanged", type="ua.com.froggy.flash.client.events.CatalogChangedEvent")]
 
     [ManagedEvents("catalogChanged")]
 
@@ -58,7 +58,7 @@ package ua.com.froggy.flash.client.model
 
             if (_filter == "" || _filter == null)
             {
-                dispatchEvent(new CatalogEvent(CatalogEvent.CHANGED));
+                dispatchEvent(new CatalogChangedEvent());
                 return;
             }
 
@@ -93,17 +93,14 @@ package ua.com.froggy.flash.client.model
                 }
             }
 
-            dispatchEvent(new CatalogEvent(CatalogEvent.CHANGED));
+            dispatchEvent(new CatalogChangedEvent());
         }
 
-        [MessageHandler]
-        public function service_laodedHandler(event:ServiceEvent):void
+        public function updateProducts(products:Vector.<ProductVO>):void
         {
-            var service:FroggyService = event.target as FroggyService;
-            _products = service.products;
+            _products = products;
 
-            dispatchEvent(new CatalogEvent(CatalogEvent.CHANGED));
+            dispatchEvent(new CatalogChangedEvent());
         }
-
     }
 }

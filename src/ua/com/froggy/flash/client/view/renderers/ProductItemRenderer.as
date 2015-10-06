@@ -101,7 +101,7 @@ package ua.com.froggy.flash.client.view.renderers
             return "";
         }
 
-        private function update()
+        private function update():void
         {
             if (_data && _titleLabel)
                 _titleLabel.text = _data.title;

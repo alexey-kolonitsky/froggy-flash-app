@@ -68,7 +68,7 @@ package org.kolonitsky.alexey.gui.controls
             return _url;
         }
 
-        public function set url(value:String)
+        public function set url(value:String):void
         {
             _url = value;
             if (_autoLoad)

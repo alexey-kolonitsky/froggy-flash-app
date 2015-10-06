@@ -25,7 +25,7 @@ package org.kolonitsky.alexey.gui.windows
             _root.stage.addEventListener(WindowEvent.CLOSE_WINDOW, root_closeWindowHandler);
         }
 
-        public function push(windowType:String, window:WindowBase)
+        public function push(windowType:String, window:WindowBase):void
         {
             if (windowType in _windowsPool)
             {
@@ -36,7 +36,7 @@ package org.kolonitsky.alexey.gui.windows
             _windowsPool[windowType] = window;
         }
 
-        public function remove(windowType:String)
+        public function remove(windowType:String):void
         {
             if (windowType in _windowsPool)
             {
@@ -74,7 +74,7 @@ package org.kolonitsky.alexey.gui.windows
             _root.addChild(window);
         }
 
-        public function closeWindow(definition:WindowDefinition)
+        public function closeWindow(definition:WindowDefinition):void
         {
             if (definition == null)
             {

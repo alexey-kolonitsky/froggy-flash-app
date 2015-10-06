@@ -22,7 +22,7 @@ package ua.com.froggy.flash.client.view.froggy_components
             return _productsList.dataProvider;
         }
 
-        public function set dataProvider(value:Vector.<Object>)
+        public function set dataProvider(value:Vector.<Object>):void
         {
             _productsList.dataProvider = value;
         }
@@ -40,10 +40,10 @@ package ua.com.froggy.flash.client.view.froggy_components
             addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
         }
 
-        public function addedToStageHandler(event:Event)
+        public function addedToStageHandler(event:Event):void
         {
-            var stageWidth = stage.stageWidth;
-            var stageHeight = stage.stageHeight - y;
+            var stageWidth:Number = stage.stageWidth;
+            var stageHeight:Number = stage.stageHeight - y;
 
             setScrollSize(stageWidth, stageHeight);
             _productsList.contentWidth = stageWidth;

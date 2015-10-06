@@ -12,10 +12,13 @@ package ua.com.froggy.flash.client.view.windows
     import org.kolonitsky.alexey.data.LocalStorage;
 
     import org.kolonitsky.alexey.gui.windows.WindowBase;
+    import org.spicefactory.lib.command.builder.Commands;
 
     import ua.com.froggy.flash.client.Images;
     import ua.com.froggy.flash.client.Styles;
-    import ua.com.froggy.flash.client.events.CatalogEvent;
+    import ua.com.froggy.flash.client.controller.SendOrderCommand;
+    import ua.com.froggy.flash.client.events.CatalogChangedEvent;
+    import ua.com.froggy.flash.client.events.OrderEvent;
     import ua.com.froggy.flash.client.events.ProductEvent;
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
@@ -23,7 +26,7 @@ package ua.com.froggy.flash.client.view.windows
     import ua.com.froggy.flash.client.model.vo.CustomerDetailsVO;
     import ua.com.froggy.flash.client.model.vo.OrderProductVO;
     import ua.com.froggy.flash.client.model.vo.OrderVO;
-    import ua.com.froggy.flash.client.service.FroggyService;
+    import org.kolonitsky.alexey.service.FroggyService;
     import ua.com.froggy.flash.client.view.components.LayoutType;
     import ua.com.froggy.flash.client.view.components.List;
     import org.kolonitsky.alexey.gui.controls.Button;
@@ -39,7 +42,9 @@ package ua.com.froggy.flash.client.view.windows
 
     [Event(name="buyProduct",type="ua.com.froggy.flash.client.events.ProductEvent")]
 
-    [ManagedEvents("search,clear,buyProduct")]
+    [Event(name="createOrder",type="ua.com.froggy.flash.client.events.OrderEvent")]
+
+    [ManagedEvents("buyProduct,createOrder")]
 
     /**
      *
@@ -63,9 +68,6 @@ package ua.com.froggy.flash.client.view.windows
 
         private var _catalogList:List;
         private var _formGroup:GUIGroup;
-
-        [Inject(id="froggyService")]
-        public var froggyService:FroggyService;
 
         [Inject]
         public var localStorage:LocalStorage;
@@ -98,6 +100,11 @@ package ua.com.froggy.flash.client.view.windows
         {
             updatePosition();
             stage.addEventListener(Event.RESIZE, stage_resizeHandler);
+        }
+
+        public function removeFromStage():void
+        {
+            stage.removeEventListener(Event.RESIZE, stage_resizeHandler);
         }
 
 
@@ -143,10 +150,13 @@ package ua.com.froggy.flash.client.view.windows
         //
         //-------------------------------------------------------------------
 
-        private function updatePosition()
+        private function updatePosition():void
         {
-            x = (stage.stageWidth - width) / 2;
-            y = (stage.stageHeight - height) / 2;
+            if (stage)
+            {
+                x = (stage.stageWidth - width) / 2;
+                y = (stage.stageHeight - height) / 2;
+            }
 
             if (_closeButton)
             {
@@ -231,7 +241,7 @@ package ua.com.froggy.flash.client.view.windows
             localStorage.save("phone", customer.phone);
             localStorage.save("details", order.details);
 
-            froggyService.sendOrder(order)
+            dispatchEvent(new OrderEvent(OrderEvent.CREATE, order));
         }
 
 

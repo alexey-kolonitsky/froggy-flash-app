@@ -8,13 +8,18 @@ package ua.com.froggy.flash.client.view
     import flash.events.Event;
     import flash.text.TextField;
 
+    import org.spicefactory.lib.command.builder.Commands;
+
     import ua.com.froggy.flash.client.Images;
     import ua.com.froggy.flash.client.Styles;
-    import ua.com.froggy.flash.client.events.CatalogEvent;
+    import ua.com.froggy.flash.client.controller.LoadCatalogCommand;
+    import ua.com.froggy.flash.client.events.CatalogChangedEvent;
+    import ua.com.froggy.flash.client.events.CatalogChangedEvent;
+    import ua.com.froggy.flash.client.events.LoadCatalogEvent;
     import ua.com.froggy.flash.client.events.ProductEvent;
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.model.CatalogProxy;
-    import ua.com.froggy.flash.client.service.FroggyService;
+    import org.kolonitsky.alexey.service.FroggyService;
     import org.kolonitsky.alexey.gui.controls.Label;
     import org.kolonitsky.alexey.gui.core.GUIElement;
     import org.kolonitsky.alexey.gui.core.ViewComponent;
@@ -28,7 +33,9 @@ package ua.com.froggy.flash.client.view
 
     [Event(name="clear",type="ua.com.froggy.flash.client.events.SearchEvent")]
 
-    [ManagedEvents("search,clear,buyProduct")]
+    [Event(name="loadCatalog",type="ua.com.froggy.flash.client.events.LoadCatalogEvent")]
+
+    [ManagedEvents("search,clear,buyProduct,loadCatalog")]
 
     /**
      *
@@ -67,6 +74,7 @@ package ua.com.froggy.flash.client.view
         {
             updatePosition();
             stage.addEventListener(Event.RESIZE, stage_resizeHandler);
+            dispatchEvent(new LoadCatalogEvent());
         }
 
 
@@ -84,14 +92,8 @@ package ua.com.froggy.flash.client.view
             _catalogTileList.dataProvider = value;
         }
 
-        [Init]
-        public function init():void
-        {
-            froggyService.load();
-        }
-
         [MessageHandler]
-        public function catalogLoadedHandler(event:CatalogEvent):void
+        public function catalogLoadedHandler(event:CatalogChangedEvent):void
         {
             products = catalogProxy.products;
         }
@@ -137,7 +139,7 @@ package ua.com.froggy.flash.client.view
             addChild(_catalogTileList);
         }
 
-        private function updatePosition()
+        private function updatePosition():void
         {
             _searchField.x = stage.stageWidth - _searchField.DEFAULT_WIDTH - 8;
         }

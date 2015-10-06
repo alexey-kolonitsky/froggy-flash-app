@@ -12,11 +12,15 @@ package {
 
     import ua.com.froggy.flash.client.controller.BuyCommand;
     import ua.com.froggy.flash.client.controller.CancelProductCommand;
+    import ua.com.froggy.flash.client.controller.LoadCatalogCommand;
     import ua.com.froggy.flash.client.controller.SearchCommand;
+    import ua.com.froggy.flash.client.controller.SendOrderCommand;
+    import ua.com.froggy.flash.client.events.CatalogChangedEvent;
+    import ua.com.froggy.flash.client.events.LoadCatalogEvent;
+    import ua.com.froggy.flash.client.events.OrderEvent;
     import ua.com.froggy.flash.client.events.ProductEvent;
     import ua.com.froggy.flash.client.events.SearchEvent;
     import ua.com.froggy.flash.client.view.CatalogView;
-    import ua.com.froggy.flash.client.view.froggy_components.ShoppingCartLine;
     import ua.com.froggy.flash.client.view.windows.OrderWindow;
 
     [SWF(width="1024", height="1000")]
@@ -29,7 +33,7 @@ package {
 
         public function Main()
         {
-            trace("[INFO] Froggy flash-client v" + Config.VERSION);
+            trace("[INFO] " + Config.APPLICATION_NAME + Config.VERSION);
 
             if (stage)
             {
@@ -78,6 +82,15 @@ package {
             MappedCommands.create(SearchCommand)
                 .messageType(SearchEvent)
                 .selector(SearchEvent.SEARCH)
+                .register(_context);
+
+            MappedCommands.create(SendOrderCommand)
+                .messageType(OrderEvent)
+                .selector(OrderEvent.CREATE)
+                .register(_context);
+
+            MappedCommands.create(LoadCatalogCommand)
+                .messageType(LoadCatalogEvent)
                 .register(_context);
         }
 

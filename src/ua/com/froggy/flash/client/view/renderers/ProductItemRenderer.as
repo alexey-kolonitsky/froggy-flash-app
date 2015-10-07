@@ -16,6 +16,9 @@ package ua.com.froggy.flash.client.view.renderers
     import org.kolonitsky.alexey.gui.controls.Label;
     import org.kolonitsky.alexey.gui.controls.Image;
 
+    /**
+     * Common product renderer, used in catalog
+     */
     public class ProductItemRenderer extends Sprite implements IItemRenderer
     {
         public static const DEFAULT_WIDTH:int = 256;

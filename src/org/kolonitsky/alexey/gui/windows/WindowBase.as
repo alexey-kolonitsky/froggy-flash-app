@@ -6,9 +6,13 @@ package org.kolonitsky.alexey.gui.windows
     import flash.display.Sprite;
     import flash.events.Event;
 
+    import org.kolonitsky.alexey.gui.core.GUIGroup;
+
     import org.kolonitsky.alexey.gui.events.WindowEvent;
 
-    public class WindowBase extends Sprite
+    import ua.com.froggy.flash.client.view.components.LayoutType;
+
+    public class WindowBase extends GUIGroup
     {
         //-----------------------------
         // Constructor
@@ -16,6 +20,9 @@ package org.kolonitsky.alexey.gui.windows
 
         public function WindowBase()
         {
+            super(640, 480);
+            updateLayout(LayoutType.FREE, 2, 2);
+
             if (stage)
                 dispatchEvent(new Event('configureView', true));
             else

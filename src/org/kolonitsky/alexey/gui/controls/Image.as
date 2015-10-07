@@ -93,6 +93,16 @@ package org.kolonitsky.alexey.gui.controls
             drawBoundary();
         }
 
+        override public function get width():Number
+        {
+            return _imageWidht;
+        }
+
+        override public function get height():Number
+        {
+            return _imageHeight;
+        }
+
         private function loader_progressHandelr(event:ProgressEvent):void
         {
             var loadingPercent:int = Math.ceil(100 * event.bytesLoaded / event.bytesTotal);

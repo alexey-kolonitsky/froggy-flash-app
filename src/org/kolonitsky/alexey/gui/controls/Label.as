@@ -9,8 +9,12 @@ package org.kolonitsky.alexey.gui.controls
 
     public class Label extends TextField
     {
+
         public function Label(x:int, y:int, width:int, height:int, format:TextFormat, multiline:Boolean = false)
         {
+            _width = width;
+            _height = height;
+
             defaultTextFormat = format;
             antiAliasType = AntiAliasType.ADVANCED;
             embedFonts = true;
@@ -22,6 +26,20 @@ package org.kolonitsky.alexey.gui.controls
 
             this.multiline = multiline;
             this.wordWrap = multiline;
+        }
+
+        private var _width:Number;
+
+        override public function get width():Number
+        {
+            return _width;
+        }
+
+        private var _height:Number;
+
+        override public function get height():Number
+        {
+            return _height;
         }
     }
 }

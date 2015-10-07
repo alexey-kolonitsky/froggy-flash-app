@@ -90,7 +90,7 @@ package ua.com.froggy.flash.client.view.froggy_components
             _list = new List(OrderSmallRenderer, listWidth,
                 OrderSmallRenderer.DEFAULT_WIDTH,
                 OrderSmallRenderer.DEFAULT_HEIGHT,
-                LayoutType.HORIZONTAL_LAYOUT);
+                LayoutType.HORIZONTAL);
             addChild(_list);
 
             _orderButton = new Button("Заказать.  ");

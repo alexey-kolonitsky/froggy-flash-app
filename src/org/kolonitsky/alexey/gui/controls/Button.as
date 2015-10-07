@@ -5,6 +5,8 @@ package org.kolonitsky.alexey.gui.controls
 {
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
 
     import org.kolonitsky.alexey.gui.core.GUIElement;
     import org.kolonitsky.alexey.gui.core.GUIState;
@@ -29,6 +31,7 @@ package org.kolonitsky.alexey.gui.controls
             buttonMode = true;
 
             _textLabel = new Label(4, 4, width - 8, height - 8, Styles.BUTTON_TEXT);
+            _textLabel.autoSize = TextFieldAutoSize.CENTER;
             _textLabel.mouseEnabled = false;
             _textLabel.text = text;
             addChild(_textLabel);
@@ -124,10 +127,8 @@ package org.kolonitsky.alexey.gui.controls
                     break;
             }
 
-            graphics.clear();
-            graphics.beginFill(color);
-            graphics.drawRect(0, 0, width, height);
-            graphics.endFill();
+
+            drawWireframe(0, 0, color);
         }
 
         private function mouseDownHandler(event:MouseEvent):void

@@ -29,7 +29,7 @@ package ua.com.froggy.flash.client.view.froggy_components
 
         public function CatalogList()
         {
-            _productsList = new List(ProductItemRenderer, 700, ProductItemRenderer.DEFAULT_WIDTH, ProductItemRenderer.DEFAULT_HEIGHT, LayoutType.TILE_LAYOUT);
+            _productsList = new List(ProductItemRenderer, 700, ProductItemRenderer.DEFAULT_WIDTH, ProductItemRenderer.DEFAULT_HEIGHT, LayoutType.TILE);
 
             super(_productsList, 1024, 760);
             horizontalScroll = false;
@@ -46,7 +46,7 @@ package ua.com.froggy.flash.client.view.froggy_components
             var stageHeight:Number = stage.stageHeight - y;
 
             setScrollSize(stageWidth, stageHeight);
-            _productsList.contentWidth = stageWidth;
+            _productsList.fixedWidth = stageWidth;
 
             stage.addEventListener(Event.RESIZE, addedToStageHandler);
         }

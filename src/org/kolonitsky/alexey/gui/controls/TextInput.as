@@ -34,7 +34,7 @@ package org.kolonitsky.alexey.gui.controls
         }
 
         //-----------------------------
-        // width
+        // measuredWidth
         //-----------------------------
 
         private var _width:Number;
@@ -52,7 +52,7 @@ package org.kolonitsky.alexey.gui.controls
 
 
         //-----------------------------
-        // height
+        // measuredHeight
         //-----------------------------
 
         private var _height:Number;

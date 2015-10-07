@@ -5,22 +5,32 @@ package org.kolonitsky.alexey.gui.core
 {
     import flash.display.DisplayObject;
 
+    import org.kolonitsky.alexey.gui.events.GUIEvent;
+
     import ua.com.froggy.flash.client.view.components.LayoutType;
 
+    [Event(name="guiResize", type="org.kolonitsky.alexey.gui.events.GUIEvent")]
+
+    /**
+     * GUIGroup is base class for all layout groups.
+     */
     public class GUIGroup extends GUIElement
     {
-        public static const ERROR_DISPLAY_OBJECT:String = "[ERROR] [View] ItemRenderer must be inherited from DisplayObject";
+        public static const ERROR_DISPLAY_OBJECT:String = "[ERROR] GUIGroup element must be inherited from DisplayObject";
 
         private var _columnCount:int;
         private var _rowCount:int;
 
-        private var horizontalGap:int = 2;
-        private var verticalGap:int = 2;
+        private var _horizontalGap:int = 2;
+        private var _verticalGap:int = 2;
+        private var _paddingTop:int = 0;
+        private var _paddingRight:int = 0;
+        private var _paddingBottom:int = 0;
+        private var _paddingLeft:int = 0;
+        private var _layout:String = LayoutType.FREE;
 
-        private var _layout:String;
-
-        private var _fixedWidth:int = 0;
-        private var _fixedHeight:int = 0;
+        private var _itemFixedWidth:int = 0;
+        private var _itemFixedHeight:int = 0;
         private var _elements:Vector.<DisplayObject>;
 
 
@@ -28,59 +38,120 @@ package org.kolonitsky.alexey.gui.core
         // Constructor
         //-----------------------------
 
-        public function GUIGroup(layout:String, contentWidth:int = -1, fixedWidth:int = -1, fixedHeight:int = -1)
+        public function GUIGroup(fixedWidth:int = -1, fixedHeight:int = -1)
         {
-            _layout = layout;
-            _contentWidth = contentWidth;
             _fixedWidth = fixedWidth;
             _fixedHeight = fixedHeight;
             _elements = new Vector.<DisplayObject>();
         }
 
         //-----------------------------
-        // contentWidth
+        // fixedWidth
         //-----------------------------
 
-        private var _contentWidth:int = 0;
+        private var _fixedWidth:int = 0;
 
-        public function get contentWidth():int
+        public function get fixedWidth():int
         {
-            return _contentWidth;
+            return _fixedWidth;
         }
 
-        public function set contentWidth(contentWidth:int):void
+        public function set fixedWidth(value:int):void
         {
-            _contentWidth = contentWidth;
+            _fixedWidth = value;
             updatePosition();
         }
 
         //-----------------------------
-        // width
+        // fixedHeight
         //-----------------------------
 
-        private var _width:int;
+        private var _fixedHeight:int = 0;
 
-        override public function get width():Number
+        public function get fixedHeight():int
         {
-            return _width;
+            return _fixedHeight;
+        }
+
+        public function set fixedHeight(value:int):void
+        {
+            _fixedHeight = value;
+            updatePosition();
         }
 
         //-----------------------------
-        // height
+        // measuredWidth
         //-----------------------------
 
-        private var _height:int;
+        private var _measuredWidth:int = 0;
+
+        override public function get width():Number
+        {
+            if (_measuredWidth == 0 || isNaN(_measuredWidth))
+                return _fixedWidth;
+
+            return _measuredWidth;
+        }
+
+        //-----------------------------
+        // measuredHeight
+        //-----------------------------
+
+        private var _measuredHeight:int;
 
         override public function get height():Number
         {
-            return _height;
+            if (_measuredHeight == 0 || isNaN(_measuredHeight))
+                return _fixedHeight;
+
+            return _measuredHeight;
+        }
+
+        //-------------------------------------------------------------------
+        // GUIElement Implementation
+        //-------------------------------------------------------------------
+
+        override public function initialize():void
+        {
+            super.initialize();
+            updatePosition();
+        }
+
+        //-------------------------------------------------------------------
+        // Layout logic
+        //-------------------------------------------------------------------
+
+        public function updateLayout(layout:String, horizontalGap:int = 2, verticalGap:int = 2, itemFixedWidth:int = -1, itemFixedHeight:int = -1):void
+        {
+            _layout = layout;
+            _horizontalGap = horizontalGap;
+            _verticalGap = verticalGap;
+            _itemFixedWidth = itemFixedWidth;
+            _itemFixedHeight = itemFixedHeight;
+
+            if (state != GUIState.CREATED)
+                updatePosition();
+        }
+
+        public function updatePadding(top:int, right:int, bottom:int, left:int):void
+        {
+            _paddingTop = top;
+            _paddingRight = right;
+            _paddingBottom = bottom;
+            _paddingLeft = left;
+
+            if (state != GUIState.CREATED)
+                updatePosition();
         }
 
         public function addElement(element:DisplayObject):void
         {
+            element.addEventListener(GUIEvent.RESIZE, element_resizeHandler);
             _elements.push(element);
             addChild(element);
-            updatePosition();
+
+            if (state != GUIState.CREATED)
+                updatePosition();
         }
 
         public function removeElement(element:DisplayObject):void
@@ -91,42 +162,46 @@ package org.kolonitsky.alexey.gui.core
 
             _elements.splice(index, 1);
             removeChild(element);
-            updatePosition();
-        }
 
-        override public function initialize():void
-        {
-            super.initialize();
-            updatePosition();
+            if (state != GUIState.CREATED)
+                updatePosition();
         }
 
         protected function updatePosition():void
         {
-            if (_elements == null || _elements.length == 0 || state == GUIState.CREATED)
+            if (_elements == null || _elements.length == 0)
+                return;
+
+            if (state == GUIState.CREATED)
                 return;
 
             switch (_layout)
             {
-                case LayoutType.TILE_LAYOUT:
+                case LayoutType.TILE:
                     tileLayout();
                     break;
-                case LayoutType.HORIZONTAL_LAYOUT:
+                case LayoutType.HORIZONTAL:
                     horizontalLayout();
                     break;
-                case LayoutType.VERTICAL_LAYOUT:
+                case LayoutType.VERTICAL:
                     verticalLayout();
                     break;
+                default:
+                    break;
             }
-
-            _width = _columnCount * (_fixedWidth + horizontalGap) - horizontalGap;
-            _height = _rowCount * (_fixedHeight + verticalGap) - verticalGap;
         }
 
-        public function horizontalLayout():void
+        private function horizontalLayout():void
         {
-            var n:int = _elements.length;
+            var horizontalPadding:int = _paddingLeft + _paddingRight;
+            var verticalPadding:int = _paddingTop + _paddingBottom;
+            var measuredWidth:int = 0;
+            var measuredHeight:int = 0;
+            var xPosition:int = _paddingLeft;
+            var yPosition:int = _paddingTop;
             var index:int = 0;
-            for (var i:int = 0; i < n; i++)
+
+            for (var i:int = 0; i < _elements.length; i++)
             {
                 var child:DisplayObject = _elements[i] as DisplayObject;
                 if (child == null)
@@ -135,20 +210,38 @@ package org.kolonitsky.alexey.gui.core
                 if (child.visible == false)
                     continue;
 
-                child.x = index * (_fixedWidth + horizontalGap);
-                child.y = 0;
+                child.x = xPosition;
+                child.y = yPosition;
+
                 index++;
+                if (_itemFixedWidth == -1)
+                    xPosition += child.width + _horizontalGap;
+                else
+                    xPosition = _paddingLeft + index * (_itemFixedWidth + _horizontalGap);
+
+                if (measuredHeight < child.height + verticalPadding)
+                    measuredHeight = child.height + verticalPadding;
             }
 
-            _columnCount = index;
-            _rowCount = 1;
+            measuredWidth = xPosition - _horizontalGap + _paddingRight;
+            if (measuredWidth != _measuredWidth || measuredHeight != _measuredHeight)
+            {
+                _measuredWidth = measuredWidth;
+                _measuredHeight = measuredHeight;
+                dispatchEvent(new GUIEvent(GUIEvent.RESIZE));
+            }
         }
 
-        public function verticalLayout():void
+        private function verticalLayout():void
         {
-            var n:int = _elements.length;
+            var horizontalPadding:int = _paddingLeft + _paddingRight;
+            var measuredWidth:int = 0;
+            var measuredHeight:int = 0;
+            var xPosition:int = _paddingLeft;
+            var yPosition:int = _paddingTop;
             var index:int = 0;
-            for (var i:int = 0; i < n; i++)
+
+            for (var i:int = 0; i < _elements.length; i++)
             {
                 var child:DisplayObject = _elements[i] as DisplayObject;
                 if (child == null)
@@ -157,28 +250,41 @@ package org.kolonitsky.alexey.gui.core
                 if (child.visible == false)
                     continue;
 
-                child.x = 0;
-                child.y = index * (_fixedHeight + verticalGap);
+                child.x = xPosition;
+                child.y = yPosition;
+
                 index++;
+                if (_itemFixedHeight == -1)
+                    yPosition += child.height + _verticalGap;
+                else
+                    yPosition = _paddingTop + index * (_itemFixedHeight + _verticalGap);
+
+                if (measuredWidth < child.width + horizontalPadding)
+                    measuredWidth = child.width + horizontalPadding;
             }
 
-            _columnCount = 1;
-            _rowCount = index;
+            measuredHeight = yPosition - _verticalGap + _paddingBottom;
+            if (measuredWidth != _measuredWidth || measuredHeight != _measuredHeight)
+            {
+                _measuredWidth = measuredWidth;
+                _measuredHeight = measuredHeight;
+                dispatchEvent(new GUIEvent(GUIEvent.RESIZE));
+            }
         }
 
-        public function tileLayout():void
+        private function tileLayout():void
         {
 
-            if (_contentWidth == 0)
+            if (_fixedWidth == 0)
             {
-                trace("ERROR: To use GUIGroup tile layout define _contentWidth property");
+                trace("ERROR: To use GUIGroup tile layout define _fixedWidth property");
                 return;
             }
 
             var rowIndex:int = 0;
             var colIndex:int = 0;
             var n:int = _elements.length;
-            _columnCount = (_contentWidth + horizontalGap) / (_fixedWidth + horizontalGap);
+            _columnCount = (_fixedWidth + _horizontalGap) / (_itemFixedWidth + _horizontalGap);
             for (var i:int = 0; i < n; i++)
             {
                 if (colIndex >= _columnCount)
@@ -193,10 +299,8 @@ package org.kolonitsky.alexey.gui.core
 
                 if (child)
                 {
-                    child.x = colIndex * (_fixedWidth + horizontalGap);
-                    child.y = rowIndex * (_fixedHeight + verticalGap);
-//                    var index:int = colIndex + rowIndex * _columnCount;
-//                    TweenLite.from(child, 0.7, {alpha:0.0, y:child.y+60, delay: 0.1 * index})
+                    child.x = colIndex * (_itemFixedWidth + _horizontalGap);
+                    child.y = rowIndex * (_itemFixedHeight + _verticalGap);
                 }
                 else
                 {
@@ -206,6 +310,24 @@ package org.kolonitsky.alexey.gui.core
             }
 
             _rowCount = rowIndex + 1;
+            var measuredWidth:int = _columnCount * (_itemFixedWidth + _horizontalGap) - _horizontalGap;
+            var measuredHeight:int = _rowCount * (_itemFixedHeight + _verticalGap) - _verticalGap;
+            if (measuredWidth != _measuredWidth || measuredHeight != _measuredHeight)
+            {
+                _measuredWidth = measuredWidth;
+                _measuredHeight = measuredHeight;
+                dispatchEvent(new GUIEvent(GUIEvent.RESIZE));
+            }
+        }
+
+
+        //-------------------------------------------------------------------
+        // Event Handlers
+        //-------------------------------------------------------------------
+
+        private function element_resizeHandler(event:GUIEvent):void
+        {
+            updatePosition();
         }
     }
 }

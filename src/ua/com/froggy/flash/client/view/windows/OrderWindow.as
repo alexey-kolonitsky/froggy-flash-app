@@ -10,6 +10,8 @@ package ua.com.froggy.flash.client.view.windows
     import flash.text.TextField;
 
     import org.kolonitsky.alexey.data.LocalStorage;
+    import org.kolonitsky.alexey.gui.core.GUIState;
+    import org.kolonitsky.alexey.gui.events.GUIEvent;
 
     import org.kolonitsky.alexey.gui.windows.WindowBase;
     import org.spicefactory.lib.command.builder.Commands;
@@ -17,6 +19,7 @@ package ua.com.froggy.flash.client.view.windows
     import ua.com.froggy.flash.client.Images;
     import ua.com.froggy.flash.client.Styles;
     import ua.com.froggy.flash.client.controller.SendOrderCommand;
+    import ua.com.froggy.flash.client.events.CartEvent;
     import ua.com.froggy.flash.client.events.CatalogChangedEvent;
     import ua.com.froggy.flash.client.events.OrderEvent;
     import ua.com.froggy.flash.client.events.ProductEvent;
@@ -56,7 +59,7 @@ package ua.com.froggy.flash.client.view.windows
         public static const DEFAULT_WIDTH:uint = 640;
         public static const DEFAULT_HEIGHT:uint = 480;
 
-        private var _titleLabel:Label;
+        private var _cartLabel:Label;
         private var _closeButton:Button;
         private var _nextButton:Button;
 
@@ -66,14 +69,14 @@ package ua.com.froggy.flash.client.view.windows
         private var _phoneTextInput:TextInput;
         private var _detailsTextArea:TextInput;
 
-        private var _catalogList:List;
+        private var _shoppingCartList:List;
         private var _formGroup:GUIGroup;
 
         [Inject]
         public var localStorage:LocalStorage;
 
         [Inject]
-        public var shoppingCart:ShoppingCartProxy;
+        public var cartProxy:ShoppingCartProxy;
 
         //-----------------------------
         // Constructor
@@ -83,50 +86,25 @@ package ua.com.froggy.flash.client.view.windows
         {
             super();
             createChildren();
-            drawBorder();
-        }
-
-        private function drawBorder():void
-        {
-            graphics.beginFill(Styles.BACKGROUND_COLOR);
-            graphics.lineStyle(1, Styles.BORDER_ACTIVE_COLOR);
-            graphics.drawRoundRect(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, Styles.TEXT_INPUT_CORDERN_RADIUS, Styles.TEXT_INPUT_CORDERN_RADIUS);
-            graphics.lineStyle();
-            graphics.endFill();
+            updateLayout(LayoutType.VERTICAL, 2, 2);
+            updatePadding(8, 8, 8, 8);
+            drawWireframe(Styles.BORDER_ACTIVE_COLOR, 1, 0xFFFFFF);
         }
 
         [Init]
-        public function initialize():void
+        override public function initialize():void
         {
-            updatePosition();
-            stage.addEventListener(Event.RESIZE, stage_resizeHandler);
-        }
+            // commit injected properties
+            if (cartProxy == null)
+                return;
 
-        public function removeFromStage():void
-        {
-            stage.removeEventListener(Event.RESIZE, stage_resizeHandler);
-        }
+            products = cartProxy.orders;
 
+            // don't initialize more then one times
+            if (state != GUIState.CREATED)
+                return;
 
-        //-----------------------------
-        // products
-        //-----------------------------
-
-        public function get products():Vector.<Object>
-        {
-            return _catalogList.dataProvider;
-        }
-
-        public function set products(value:Vector.<Object>):void
-        {
-            _catalogList.dataProvider = value;
-        }
-
-        [Init]
-        public function init():void
-        {
-            products = shoppingCart.orders;
-
+            // commit stored properties to form
             if (_nameTextInput)
                 _nameTextInput.text = localStorage.readString("fn");
 
@@ -141,8 +119,35 @@ package ua.com.froggy.flash.client.view.windows
 
             if (_detailsTextArea)
                 _detailsTextArea.text = localStorage.readString("details");
+
+            stage.addEventListener(Event.RESIZE, stage_resizeHandler);
+
+            // commit GUIState.INITILIZED and updatePosition
+            super.initialize();
         }
 
+        [MessageHandler]
+        public function shoppingCartChanged(event:CartEvent):void
+        {
+            products = cartProxy.orders;
+        }
+
+        //-----------------------------
+        // products
+        //-----------------------------
+
+        public function get products():Vector.<Object>
+        {
+            return _shoppingCartList.dataProvider;
+        }
+
+        public function set products(value:Vector.<Object>):void
+        {
+            _shoppingCartList.dataProvider = value;
+
+            if (state != GUIState.CREATED)
+                updatePosition();
+        }
 
         //-------------------------------------------------------------------
         //
@@ -150,8 +155,10 @@ package ua.com.froggy.flash.client.view.windows
         //
         //-------------------------------------------------------------------
 
-        private function updatePosition():void
+        override protected function updatePosition():void
         {
+            super.updatePosition();
+
             if (stage)
             {
                 x = (stage.stageWidth - width) / 2;
@@ -173,18 +180,20 @@ package ua.com.froggy.flash.client.view.windows
 
         private function createChildren():void
         {
-            _titleLabel = new Label(0, 0, DEFAULT_WIDTH, 32, Styles.TITLE_FORMAT);
-            _titleLabel.text = "Форма заказа";
+            _cartLabel = new Label(0, 0, DEFAULT_WIDTH, 32, Styles.TITLE_FORMAT);
+            _cartLabel.text = "Корзина";
+            addElement(_cartLabel);
 
-            addChild(_titleLabel);
+            _shoppingCartList = new List(OrderProductRenderer, DEFAULT_WIDTH,
+                OrderProductRenderer.DEFAULT_WIDTH,
+                OrderProductRenderer.DEFAULT_HEIGHT,
+                LayoutType.VERTICAL);
+            _shoppingCartList.addEventListener(GUIEvent.RESIZE, shoppingCartList_resizeHandler);
+            addElement(_shoppingCartList);
 
-            _catalogList = new List(OrderSmallRenderer, DEFAULT_WIDTH,
-                OrderSmallRenderer.DEFAULT_WIDTH,
-                OrderSmallRenderer.DEFAULT_HEIGHT,
-                LayoutType.TILE_LAYOUT);
-            _catalogList.x = 0;
-            _catalogList.y = 34;
-            addChild(_catalogList);
+            _cartLabel = new Label(0, 0, DEFAULT_WIDTH, 32, Styles.TITLE_FORMAT);
+            _cartLabel.text = "Адрес доставки";
+            addElement(_cartLabel);
 
             _nameTextInput = new TextInput(512, 32);
             _nameTextInput.promptText = "ФИО";
@@ -201,16 +210,16 @@ package ua.com.froggy.flash.client.view.windows
             _detailsTextArea = new TextInput(512, 32);
             _detailsTextArea.promptText = "Все что угодно";
 
-            _formGroup = new GUIGroup(LayoutType.VERTICAL_LAYOUT, 512, 512, 32);
+            _formGroup = new GUIGroup(480 - 8 - 8, -1);
+            _formGroup.updateLayout(LayoutType.VERTICAL, 2, 2, 480 - 8 - 8, 32);
             _formGroup.addElement(_nameTextInput);
             _formGroup.addElement(_emailTextInput);
             _formGroup.addElement(_addressTextInput);
             _formGroup.addElement(_phoneTextInput);
             _formGroup.addElement(_detailsTextArea);
-            _formGroup.x = 0;
-            _formGroup.y = 32 + 64 + 4;
-            addChild(_formGroup);
+            addElement(_formGroup);
 
+            // Untracked
             _closeButton = new Button("Закрыть");
             _closeButton.addEventListener(MouseEvent.CLICK, closeButton_clickHandler);
             addChild(_closeButton);
@@ -258,6 +267,11 @@ package ua.com.froggy.flash.client.view.windows
         private function stage_resizeHandler(event:Event):void
         {
             updatePosition()
+        }
+
+        private function shoppingCartList_resizeHandler(event:GUIEvent):void
+        {
+            updatePosition();
         }
     }
 }

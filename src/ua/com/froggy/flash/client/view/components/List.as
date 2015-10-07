@@ -6,11 +6,18 @@ package ua.com.froggy.flash.client.view.components
     import flash.display.DisplayObject;
 
     import org.kolonitsky.alexey.gui.core.GUIGroup;
+    import org.kolonitsky.alexey.gui.core.GUIState;
 
+    /**
+     *
+     */
     public class List extends GUIGroup
     {
+        /**
+         * Item renderer class definition. Each item of list will be
+         * represented by this class.
+         */
         private var _itemRendererClass:Class;
-
 
         /**
          * Pool of ItemRenderers.
@@ -25,7 +32,9 @@ package ua.com.froggy.flash.client.view.components
         public function List(itemRendererClass:Class,
             contentWidth:int, itemWidth:int, itemHeight:int, layout:String = "tile")
         {
-            super(layout, contentWidth, itemWidth, itemHeight);
+            super(contentWidth, -1);
+            updateLayout(layout, 2, 2, itemWidth, itemHeight);
+
             _renderers = new Vector.<IItemRenderer>();
             _itemRendererClass = itemRendererClass;
         }
@@ -46,30 +55,47 @@ package ua.com.froggy.flash.client.view.components
         {
             _dataProvider = value;
             createItemRenderers();
+
+            if (state != GUIState.CREATED)
+                updatePosition();
         }
 
+        //-------------------------------------------------------------------
+        // GUIElement override
+        //-------------------------------------------------------------------
 
+        /**
+         * Create item renderers and invoke GUIGroup.initialize() to update
+         * their position.
+         */
         override public function initialize():void
         {
-            super.initialize();
             createItemRenderers();
+            super.initialize();
         }
 
-        //-----------------------------
+        //-------------------------------------------------------------------
+        //
         // Private
-        //-----------------------------
+        //
+        //-------------------------------------------------------------------
 
+        /**
+         * Create item renderer if count of instance are not enough to render
+         * all data from dataProvider. If new renderers are not needed all
+         * renderers from pool updated.
+         */
         private function createItemRenderers():void
         {
             if (_itemRendererClass == null)
             {
-                trace("[ERROR] [View] itemRendererClass not defined");
+                trace("[ERROR] List.createItemRenderer() itemRendererClass is NOT defined");
                 return;
             }
 
             if (_dataProvider == null || _dataProvider.length == 0)
             {
-                trace("[ERROR] [View] data is not defined");
+                trace("[ERROR] List.createItemRenderer() data is NOT defined");
                 return;
             }
 

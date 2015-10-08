@@ -50,6 +50,13 @@ package org.kolonitsky.alexey.gui.core
         public function initialize():void
         {
             _state = GUIState.INITIALIZED;
+            addEventListener(Event.REMOVED_FROM_STAGE, removedFromStageHandler);
+        }
+
+        public function removed():void
+        {
+            _state = GUIState.REMOVED;
+            addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
         }
 
         public function drawWireframe(color:uint = 0xFF0000, size:uint = 1, fill:uint = NaN):void
@@ -71,6 +78,12 @@ package org.kolonitsky.alexey.gui.core
         {
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
             initialize();
+        }
+
+        private function removedFromStageHandler(event:Event):void
+        {
+            removeEventListener(Event.REMOVED_FROM_STAGE, addedToStageHandler);
+            removed();
         }
     }
 }

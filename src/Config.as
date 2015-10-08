@@ -28,7 +28,7 @@ package
         // Build Configuration
         //-----------------------------
 
-        public static const VERSION:String = "v1.0.1";
+        public static const VERSION:String = "v1.0.2";
         public static const APPLICATION_NAME:String = "froggy-client-app";
         public static const DOMAIN:String = "http://froggy.com.ua/";
 

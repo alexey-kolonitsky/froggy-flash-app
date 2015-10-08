@@ -45,9 +45,11 @@ package ua.com.froggy.flash.client.view.windows
 
     [Event(name="buyProduct",type="ua.com.froggy.flash.client.events.ProductEvent")]
 
+    [Event(name="cancelProduct",type="ua.com.froggy.flash.client.events.ProductEvent")]
+
     [Event(name="createOrder",type="ua.com.froggy.flash.client.events.OrderEvent")]
 
-    [ManagedEvents("buyProduct,createOrder")]
+    [ManagedEvents("buyProduct,cancelProduct,createOrder")]
 
     /**
      *
@@ -60,6 +62,7 @@ package ua.com.froggy.flash.client.view.windows
         public static const DEFAULT_HEIGHT:uint = 480;
 
         private var _cartLabel:Label;
+        private var _totalLabel:Label;
         private var _closeButton:Button;
         private var _nextButton:Button;
 
@@ -71,6 +74,12 @@ package ua.com.froggy.flash.client.view.windows
 
         private var _shoppingCartList:List;
         private var _formGroup:GUIGroup;
+
+        //-----------------------------
+        // Stored Fields
+        //-----------------------------
+        private var _customer:CustomerDetailsVO;
+        private var _order:OrderVO;
 
         [Inject]
         public var localStorage:LocalStorage;
@@ -85,9 +94,14 @@ package ua.com.froggy.flash.client.view.windows
         public function OrderWindow()
         {
             super();
+            _customer = new CustomerDetailsVO();
+
+            _order = new OrderVO();
+            _order.customer = _customer;
+
             createChildren();
             updateLayout(LayoutType.VERTICAL, 2, 2);
-            updatePadding(8, 8, 8, 8);
+            updatePadding(8, 8, 40, 8);
             drawWireframe(Styles.BORDER_ACTIVE_COLOR, 1, 0xFFFFFF);
         }
 
@@ -145,6 +159,13 @@ package ua.com.froggy.flash.client.view.windows
         {
             _shoppingCartList.dataProvider = value;
 
+            _order.products = new Vector.<OrderProductVO>();
+            for (var i:int = 0; i < products.length; i++)
+                _order.products.push(products[i] as OrderProductVO);
+
+            if (_totalLabel)
+                _totalLabel.text = "Всего: " + _order.totalPrice;
+
             if (state != GUIState.CREATED)
                 updatePosition();
         }
@@ -167,15 +188,17 @@ package ua.com.froggy.flash.client.view.windows
 
             if (_closeButton)
             {
-                _closeButton.y = DEFAULT_HEIGHT - _closeButton.height - 2;
-                _closeButton.x = DEFAULT_WIDTH / 2 + 2;
+                _closeButton.y = height - _closeButton.height - 2;
+                _closeButton.x = width / 2 + 2;
             }
 
             if (_nextButton)
             {
-                _nextButton.y = DEFAULT_HEIGHT - _closeButton.height - 2;
-                _nextButton.x = DEFAULT_WIDTH / 2 - Button.BUTTON_WIDTH - 2;
+                _nextButton.y = height - _closeButton.height - 2;
+                _nextButton.x = width / 2 - Button.BUTTON_WIDTH - 2;
             }
+
+            drawWireframe(Styles.BORDER_ACTIVE_COLOR, 1, 0xFFFFFF);
         }
 
         private function createChildren():void
@@ -188,8 +211,11 @@ package ua.com.froggy.flash.client.view.windows
                 OrderProductRenderer.DEFAULT_WIDTH,
                 OrderProductRenderer.DEFAULT_HEIGHT,
                 LayoutType.VERTICAL);
-            _shoppingCartList.addEventListener(GUIEvent.RESIZE, shoppingCartList_resizeHandler);
             addElement(_shoppingCartList);
+
+            _totalLabel = new Label(0, 0, DEFAULT_WIDTH, 32, Styles.BASE_TEXT_FORMAT);
+            _totalLabel.text = "";
+            addElement(_totalLabel);
 
             _cartLabel = new Label(0, 0, DEFAULT_WIDTH, 32, Styles.TITLE_FORMAT);
             _cartLabel.text = "Адрес доставки";
@@ -231,26 +257,21 @@ package ua.com.froggy.flash.client.view.windows
 
         private function nextButton_clickHandler(event:MouseEvent):void
         {
-            var customer:CustomerDetailsVO = new CustomerDetailsVO();
-            customer.email = _emailTextInput.text;
-            customer.name = _nameTextInput.text;
-            customer.phone = _phoneTextInput.text;
-            customer.address = _addressTextInput.text;
+            _customer.email = _emailTextInput.text;
+            _customer.name = _nameTextInput.text;
+            _customer.phone = _phoneTextInput.text;
+            _customer.address = _addressTextInput.text;
 
-            var order:OrderVO = new OrderVO();
-            order.customer = customer;
-            order.details = _detailsTextArea.text;
-            order.products = new Vector.<OrderProductVO>();
-            for (var i:int = 0; i < products.length; i++)
-                order.products.push(products[i] as OrderProductVO);
+            _order = new OrderVO();
+            _order.details = _detailsTextArea.text;
 
-            localStorage.save("fn", customer.name);
-            localStorage.save("email", customer.email);
-            localStorage.save("address", customer.address);
-            localStorage.save("phone", customer.phone);
-            localStorage.save("details", order.details);
+            localStorage.save("fn", _customer.name);
+            localStorage.save("email", _customer.email);
+            localStorage.save("address", _customer.address);
+            localStorage.save("phone", _customer.phone);
+            localStorage.save("details", _order.details);
 
-            dispatchEvent(new OrderEvent(OrderEvent.CREATE, order));
+            dispatchEvent(new OrderEvent(OrderEvent.CREATE, _order));
         }
 
 
@@ -267,11 +288,6 @@ package ua.com.froggy.flash.client.view.windows
         private function stage_resizeHandler(event:Event):void
         {
             updatePosition()
-        }
-
-        private function shoppingCartList_resizeHandler(event:GUIEvent):void
-        {
-            updatePosition();
         }
     }
 }

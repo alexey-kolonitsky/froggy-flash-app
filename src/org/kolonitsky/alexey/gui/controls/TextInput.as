@@ -31,6 +31,8 @@ package org.kolonitsky.alexey.gui.controls
             super();
             _width = width;
             _height = height;
+
+            createChildren();
         }
 
         //-----------------------------
@@ -109,7 +111,6 @@ package org.kolonitsky.alexey.gui.controls
 
         override public function initialize():void
         {
-            createChildren();
             drawBorders();
             commitProperties();
             super.initialize();
@@ -149,7 +150,6 @@ package org.kolonitsky.alexey.gui.controls
         protected function createChildren():void
         {
             _promptTextField = new Label(32, 0, _width, _height, Styles.HINT_TEXT);
-            _promptTextField.text = _promptText;
             addChild(_promptTextField);
 
             _inputTextField = new TextField();

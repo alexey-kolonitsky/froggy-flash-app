@@ -73,7 +73,7 @@ package org.kolonitsky.alexey.service
                 productVO.description = String(firstNodeByClass(divXML..p, HPRODUCT_DESCRIPTION).toXMLString);
                 productVO.imageURL = String(firstNodeByClass(divXML..img, HPRODUCT_PHOTO).@src);
                 productVO.price = parseInt(firstNodeByClass(divXML..span, HPRODUCT_PRICE));
-                productVO.currency = String(firstNodeByClass(divXML..span, HPRODUCT_CURRENCY));
+                productVO.currency = firstNodeByClass(divXML..span, HPRODUCT_CURRENCY) as String;
                 result.push(productVO);
             }
 

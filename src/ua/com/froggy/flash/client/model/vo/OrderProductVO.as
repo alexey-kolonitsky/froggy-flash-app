@@ -16,7 +16,7 @@ package ua.com.froggy.flash.client.model.vo
 
         public function get localPrice():String
         {
-            var strCurrency:String = product.currency || "грн";
+            var strCurrency:String = product.currency ? product.currency : "грн";
             return price + " " + strCurrency;
         }
     }

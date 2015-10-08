@@ -30,5 +30,11 @@ package ua.com.froggy.flash.client.model.vo
         {
             return "[ProductVO " + id + " '" + title + "']";
         }
+
+        public function get localPrice():String
+        {
+            var strCurrency:String = currency ? currency : "грн";
+            return price + " " + strCurrency;
+        }
     }
 }

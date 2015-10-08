@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec8a913-0c9c-4ab2-a5a1-7686945aa976" name="Default" comment="Update project settings, Parsly settings and project documentation">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Config.as" afterPath="$PROJECT_DIR$/src/Config.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGEDS.md" afterPath="$PROJECT_DIR$/CHANGEDS.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="flash-client.iws" />
@@ -48,13 +48,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.as" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Config.as" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Config.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2850679">
-              <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CHANGEDS.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CHANGEDS.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5588235">
+              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -138,11 +151,11 @@
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/components/List.as" />
         <option value="$PROJECT_DIR$/src/Main.as" />
         <option value="$PROJECT_DIR$/src/ua/com/froggy/flash/client/view/windows/OrderWindow.as" />
-        <option value="$PROJECT_DIR$/CHANGEDS.md" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/out/production/froggy-flash-app/html-client.html" />
         <option value="$PROJECT_DIR$/out/production/froggy-flash-app/flash-client.html" />
         <option value="$PROJECT_DIR$/src/Config.as" />
+        <option value="$PROJECT_DIR$/CHANGEDS.md" />
       </list>
     </option>
   </component>
@@ -268,10 +281,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="production" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -659,7 +668,7 @@
       <workItem from="1443619220799" duration="68590000" />
       <workItem from="1444026774295" duration="20090000" />
       <workItem from="1444113613152" duration="46524000" />
-      <workItem from="1444285888545" duration="9495000" />
+      <workItem from="1444285888545" duration="11012000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Trebuchet&quot; font asset and project configuration">
       <created>1443619580363</created>
@@ -773,7 +782,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151749000" />
+    <option name="totallyTimeSpent" value="153266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -1291,17 +1300,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGEDS.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.352941">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19494584">
@@ -1349,10 +1347,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Config.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2850679">
-          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGEDS.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5588235">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>

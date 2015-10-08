@@ -6,9 +6,12 @@ package {
     import flash.events.Event;
 
     import org.kolonitsky.alexey.gui.windows.WindowManager;
+    import org.spicefactory.parsley.asconfig.ActionScriptConfig;
     import org.spicefactory.parsley.asconfig.ActionScriptContextBuilder;
     import org.spicefactory.parsley.command.MappedCommands;
+    import org.spicefactory.parsley.context.ContextBuilder;
     import org.spicefactory.parsley.core.context.Context;
+    import org.spicefactory.parsley.core.view.ViewSettings;
 
     import ua.com.froggy.flash.client.controller.BuyCommand;
     import ua.com.froggy.flash.client.controller.CancelProductCommand;
@@ -23,7 +26,7 @@ package {
     import ua.com.froggy.flash.client.view.CatalogView;
     import ua.com.froggy.flash.client.view.windows.OrderWindow;
 
-    [SWF(width="1030", height="1000")]
+    [SWF(width="1030", height="748")]
     public class Main extends Sprite
     {
         private var _context:Context;
@@ -67,7 +70,15 @@ package {
 
         private function configureParsley():void
         {
-           _context = ActionScriptContextBuilder.build(Config, this);
+            _context = ContextBuilder.newSetup()
+                .viewRoot(this)
+                .description(Config.APPLICATION_NAME)
+                .scope(Config.APPLICATION_NAME)
+                .viewSettings()
+                    .autoremoveComponents(false)
+                .newBuilder()
+                    .config(ActionScriptConfig.forClass(Config))
+                    .build();
 
             MappedCommands.create(BuyCommand)
                 .messageType(ProductEvent)

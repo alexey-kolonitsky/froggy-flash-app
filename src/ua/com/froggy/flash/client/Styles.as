@@ -20,7 +20,7 @@ package ua.com.froggy.flash.client
         // Size
         public static const TITLE_FONT_SIZE:int = 24;
         public static const INPUT_FONT_SIZE:int = 16;
-        public static const BASE_FONT_SIZE:int = 12;
+        public static const BASE_FONT_SIZE:int = 14;
 
         // Color
         public static const HINT_TEXT_COLOR:uint = 0xEEEEEE;

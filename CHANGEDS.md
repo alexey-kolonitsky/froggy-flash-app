@@ -1,16 +1,20 @@
 10-10-2015 v1.0.2
 -----------------
- - Order form with server side order implementation and 
+ - Order form
     * Order window
     * Order service layer
+    * Order server side
+    * Email notification to manager
  
 
 20-09-2015 v1.0.1
 -----------------
- - First stable version
- 
-Backglog
---------
+ - Shopping catalog with ability to search product by 
+   name and small shopping cart in the top right corner
+
+
+Backlog
+-------
  - Scroll in catalog
  - Order Form
     * [2]  Validation for text field with visual markers
